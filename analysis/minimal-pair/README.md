@@ -72,7 +72,6 @@ Some experiments might have multiple words of interest. In such cases, each of t
 - `roi-summary`: `macro`, `micro` (average across tokens or compare each word; for `micro` it is necessary that ROIs in both comparison settings have the same number of words)
 - `k-lemmas`: number of lemmas to include in the summary; positive integer k for the top-k lemmas, negative integer k for bottom-k lemmas; `inf` to include all lemmas. 
 
-``
 
 
 ## Output
@@ -88,9 +87,8 @@ The number of rows in the output will be 4 times the number of conditions.
 
 #### Defining metrics
 
-`acc`: Proportion of times Pred(expected) > Pred(unexpected)
-`perr`: $\frac{Pred(unexpected)}{Pred(expected) + Pred(unexpected))}
-`ew`: ADD FORMULA FROM NEWMAN ET AL
-`mw`: ADD FORMULAR FROM NEWMAN ET AL
+- `acc`: Proportion of times Pred(expected) > Pred(unexpected)
+- `perr`: $\frac{Pred(unexpected)}{Pred(expected) + Pred(unexpected))}
+- `ew`: ADD FORMULA FROM NEWMAN ET AL
+- `mw`: ADD FORMULAR FROM NEWMAN ET AL
 
- 
