@@ -6,6 +6,7 @@
 
 import torch
 import numpy as np
+import string
 from typing import Union, Dict, List, Tuple, Optional
 
 class Tokenizer: 
@@ -102,6 +103,16 @@ class Tokenizer:
     def all_special_tokens(self):
         """ List of all special tokens """ 
         return None
+
+    def id_is_punct(self, token_id:int) -> bool:
+        """ Whether the id is English puncutation
+
+        Args:
+            token_id (`int`): id of token in vocab
+        Returns:
+            `bool`: True if id is for string in python string punctuation
+        """
+        return self.convert_ids_to_tokens(token_id) in string.punctuation
 
     def convert_tokens_to_ids(self, 
           tokens: Union[str, List[str]]) -> Union[int, List[int]]:
