@@ -1,17 +1,29 @@
 import torch
 import transformers
+import sys
 from .Tokenizer import Tokenizer
 
 class HFTokenizer(Tokenizer):
     """ Wraps Tokenizer class around HuggingFace AutoTokenizer """
-    def __init__(self, version, doLower=False, addPrefixSpace=False):
-        super().__init__(version, doLower, addPrefixSpace)
+    def __init__(self, version, doLower=False, addPrefixSpace=False, 
+                addPadToken=True):
+        super().__init__(version, doLower, addPrefixSpace, addPadToken)
         self._tokenizer = transformers.AutoTokenizer.from_pretrained(version,
                                             add_prefix_space=addPrefixSpace)
         self.convert_ids_to_tokens = self._tokenizer.convert_ids_to_tokens
         self.all_special_tokens = self._tokenizer.all_special_tokens
+        self.model_max_length = self._tokenizer.model_max_length
         self.decode = self._tokenizer.decode
         self.batch_decode = self._tokenizer.batch_decode
+
+        # deal with pad token 
+        if self.addPadToken:
+            if not self._tokenizer.pad_token:
+                if self._tokenizer.eos_token_id is not None:
+                    self._tokenizer.pad_token = self._tokenizer.eos_token
+                    sys.stderr.write(f"Adding {self._tokenizer.eos_token} as pad token\n")
+                else:
+                    sys.stderr.write(f"Need to specify a pad token\n")
 
     def LowerCaseText(self, text):
         """ Lowercases text making sure to reintroduce special characters with

@@ -4,7 +4,9 @@
 # August 2024
 
 import torch
+from ..tokenizers.load_tokenizers import load_tokenizers
 from typing import Union, Dict, List, Tuple, Optional
+import sys
 
 class LM:
 
@@ -16,7 +18,12 @@ class LM:
                  device: str = 'best'):
 
         self.modelname = modelname
+        self.halfPrecision = halfPrecision
+        self.getHidden = getHidden
+        self.offset = offset
 
+        # Set device
+        self.device = device
         if self.device == 'best':
             if torch.cuda.is_available():
                 self.device = 'cuda'
@@ -25,6 +32,12 @@ class LM:
             else:
                 self.device = 'cpu'
         self.device = torch.device(self.device)
+        sys.stderr.write(f"Running on {self.device}\n")
+
+        # Load tokenizer
+        self.tokenizer = load_tokenizers(tokenizer_config)[0]
+
+        self.model = None
 
     @torch.no_grad()
     def get_output(self, text: Union[str, List[str]]):
@@ -37,6 +50,3 @@ class LM:
     @torch.no_grad()
     def get_hidden_layers(self, text: Union[str, List[str]]):
         raise NotImplementedError
-
-if __name__ == "__main__":
-    print()

@@ -12,12 +12,14 @@ from typing import Union, Dict, List, Tuple, Optional
 class Tokenizer: 
 
     def __init__(self, version: str, doLower: bool = False,
-                 addPrefixSpace: bool = False,):
+                 addPrefixSpace: bool = False,
+                 addPadToken: bool = True):
         """ Initialize a tokenizer. 
         """
         self.version = version
         self.doLower = doLower
         self.addPrefixSpace = addPrefixSpace
+        self.addPadToken = addPadToken
 
     def __call__(self):
         raise NotImplementedError
