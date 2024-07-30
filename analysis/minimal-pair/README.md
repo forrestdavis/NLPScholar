@@ -88,7 +88,7 @@ The number of rows in the output will be 4 times the number of conditions.
 #### Defining metrics
 
 - `acc`: Proportion of times Pred(expected) > Pred(unexpected)
-- `perr`: $\frac{Pred(unexpected)}{Pred(expected) + Pred(unexpected))}
+- `perr`: $\frac{Pred(unexpected)}{Pred(expected) + Pred(unexpected))}$
 - `ew`: ADD FORMULA FROM NEWMAN ET AL
 - `mw`: ADD FORMULAR FROM NEWMAN ET AL
 
