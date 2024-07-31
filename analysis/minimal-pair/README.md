@@ -1,4 +1,4 @@
-## Defining Minimal-pair analysis [SHOULD THIS BE TSE ANALYSIS ??]
+# Defining Minimal-pair analysis [SHOULD THIS BE TSE ANALYSIS ??]
 
 We define a minimal pair analysis as any analysis that either: 
 
@@ -23,9 +23,9 @@ In this toolkit:
 
 
 
-## Input requirements
+# Input requirements
 
-#### TSV file with predictability
+## TSV file with predictability
 This has one sub-word token per line for every pair of sentences that needs to be compared. The tsv has the following columns. 
 - `token` (the subword token)
 - `sentid` (the ID of the specific pair of sentences being compared)
@@ -41,7 +41,7 @@ Note, this setup assumes that if an experiment wants to compare multiple word-pa
 Given the context, if one wanted to compare the probability of `___` being filled with is vs. are, but also exist vs. exists, the resulting tsv file would have two sentids: one for each of the lemmas BE and EXIST. Each sentid would have two unqiue sentences: one for each of the comparisons grammatical and ungrammatical. If there were 1000 lemmas, then there would be 1000 sentids, and 2000 sentences in the tsv. 
 
 
-#### TSV file with conditions
+## TSV file with conditions
 
 - `sentid` (the ID of the specific pair of sentences being compared; matches what is in `predictability.tsv`)
 - `sentence` (the full sentence)
@@ -62,7 +62,7 @@ The ROI filed in this case should be filled with  `6;9`
 Some experiments might have multiple words of interest. In such cases, each of the words should be comma separated. For example, if the target words in ambiguous occur at positions 6--8 and the target words in unambiguous occur at positions 9--11, the ROI field should be filled with: `9,10,11;6,7,8`. 
 
 
-#### Other parameters inputted with flags:
+## Other parameters inputted with flags:
 
 - `predfpath`: File path and name for predictability TSV
 - `condfpath`: File path and name for conditons TSV
@@ -74,7 +74,7 @@ Some experiments might have multiple words of interest. In such cases, each of t
 
 
 
-## Output
+# Output
 
 Saves a TSV file with the following columns: 
 
@@ -85,7 +85,7 @@ Saves a TSV file with the following columns:
 
 The number of rows in the output will be 4 times the number of conditions. 
 
-#### Defining metrics
+## Defining metrics
 
 - `acc`: Proportion of times Pred(expected) > Pred(unexpected)
 - `perr`: $\frac{Pred(unexpected)}{Pred(expected) + Pred(unexpected))}$
