@@ -44,11 +44,38 @@ class LM:
         self.model = None
 
     @torch.no_grad()
-    def get_output(self, text: Union[str, List[str]]):
+    def get_output(self, text: Union[str, List[str]]) -> dict:
+        """ Returns model output for text
+
+        Args:
+            text (`Union[str, List[str]]`): A (batch of) strings.
+
+        Returns:
+            `dict`: Dictionary with input_ids, last_non_masked_idx, and logits.
+                    input_ids are the input ids from the tokenizer.
+                    last_non_masked_idx is the index right before padding starts
+                    of shape batch_size. Logits has shape (batch_size, number of
+                    tokens, vocab_size).
+        """
         raise NotImplementedError
 
     @torch.no_grad()
-    def get_hidden_layers(self, text: Union[str, List[str]]):
+    def get_hidden_layers(self, text: Union[str, List[str]]) -> dict:
+        """ Returns model hidden layer representations for text
+
+        Args:
+            text (`Union[str, List[str]]`): A (batch of) strings.
+
+        Returns:
+            `dict`: Dictionary with input_ids, last_non_masked_idx, and
+                    hidden_layers.
+                    input_ids are the input ids from the tokenizer.
+                    last_non_masked_idx is the index right before padding starts
+                    of shape batch_size. hidden_layers is a tuple of length
+                    number of layers (including embeddings). Each element has
+                    shape (batch_size, number of tokens, hidden_size).
+        """
+
         raise NotImplementedError
 
     @torch.no_grad()
