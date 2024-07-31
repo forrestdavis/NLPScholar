@@ -16,7 +16,7 @@ class Tokenizer:
                  addPadToken: bool = True):
         """ Initialize a tokenizer. 
         """
-        self.version = version
+        self.tokenizername = version
         self.doLower = doLower
         self.addPrefixSpace = addPrefixSpace
         self.addPadToken = addPadToken
@@ -33,7 +33,7 @@ class Tokenizer:
         Args:
             text (`Union[str, List[str]]`): Input string or batch of strings
             lang (`str`): Language to split with. 'en' is whitespace and is
-                    efault. 
+                    the default. 
 
         Returns:
             `Union[Tuple[List[str], List[int]], List[Tuple[List[str],
@@ -106,7 +106,7 @@ class Tokenizer:
         """ List of all special tokens """ 
         return None
 
-    def id_is_punct(self, token_id:int) -> bool:
+    def TokenIDIsPunct(self, token_id:int) -> bool:
         """ Whether the id is English puncutation
 
         Args:
