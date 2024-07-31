@@ -106,7 +106,7 @@ class Tokenizer:
         """ List of all special tokens """ 
         return None
 
-    def id_is_punct(self, token_id:int) -> bool:
+    def TokenIDIsPunct(self, token_id:int) -> bool:
         """ Whether the id is English puncutation
 
         Args:
