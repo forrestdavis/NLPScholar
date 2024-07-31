@@ -16,18 +16,20 @@ class LM:
 
     def __init__(self, modelname: str, 
                  tokenizer_config: dict, 
-                 offset: bool = True, 
-                 getHidden: bool = False,
-                 precision: str = None,
-                 device: str = 'best'):
+                 **kwargs):
 
         self.modelname = modelname
-        self.precision = precision
-        self.getHidden = getHidden
-        self.offset = offset
 
-        # Set device
-        self.device = device
+        # Default values
+        self.offset = True
+        self.getHidden = False
+        self.precision = None
+        self.includePunct = True
+        self.language = 'en'
+        self.device = 'best' 
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+
         if self.device == 'best':
             if torch.cuda.is_available():
                 self.device = 'cuda'
@@ -192,11 +194,12 @@ class LM:
 
     @torch.no_grad()
     def get_aligned_words_predictabilities(self, text: Union[str, List[str]], 
-                                           include_punctuation: bool = True,
-                                           lang: str = 'en'
                                           ) -> List[List[WordPred]]:
         """ Returns predictability measures of each word for inputted text.
            Note that this requires `get_output`.
+
+        Note: self.language is used for alignment. The default is en which is
+            simple space split. 
 
         WordPred Object: 
             word: word in text
@@ -210,10 +213,6 @@ class LM:
 
         Args:
             text (`Union[str, List[str]]`): A (batch of) strings.
-            include_punctuation (`bool`): Whether to include punctuation in word
-                                    aggregation.
-            lang (`str`): Language to use for alignment. Default is English
-                        which is space deliminated characters. 
 
         Returns:
             `List[List[WordPred]]`: List of lists for each batch comprised of
@@ -222,7 +221,8 @@ class LM:
 
         all_data = []
         batched_token_predicts = self.get_by_token_predictability(text)
-        batched_word_alignments = self.tokenizer.align_words_ids(text, lang)
+        batched_word_alignments = self.tokenizer.align_words_ids(text,
+                                                                 self.language)
         for token_predicts, (words, alignments) in zip(batched_token_predicts,
                                                    batched_word_alignments, 
                                                       strict=True):
@@ -246,7 +246,7 @@ class LM:
                     assert token_predict[0] == word_id
 
                     # Ignore punctuation is desired
-                    if (not(include_punctuation) and
+                    if (not(self.includePunct) and
                         self.tokenizer.TokenIDIsPunct(word_id)):
                         surp += 0
                         prob *= 1

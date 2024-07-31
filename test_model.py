@@ -1,13 +1,15 @@
-from src.models.LM import LM
-from src.models.hf_causal_model import HFCausalModel
-from src.models.hf_masked_model import HFMaskedModel
+from src.models.load_models import load_models
 
-tokenizer_config = {'tokenizer': 
-                    {'hf': ['bert-base-uncased']}}
+config = {'models': 
+            {'hf_causal_model': ['gpt2']}, 
+          'tokenizers':
+            {'hf': ['gpt2']}, 
+          'ignorePunct': None, 
+          'device': 'mps'}
+
+model = load_models(config)[0]
 
 
-model = HFMaskedModel('bert-base-uncased', tokenizer_config, getHidden=True,
-                      precision='16bit')
 text = ['the boy is happy.', 'the boy are happy.']
 output = model.get_by_token_predictability(text)
 print(output[0])
@@ -15,6 +17,6 @@ print(output[1])
 
 print()
 
-aligned = model.get_aligned_words_predictabilities(text, True)
+aligned = model.get_aligned_words_predictabilities(text)
 print(aligned)
 print()

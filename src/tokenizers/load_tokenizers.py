@@ -15,10 +15,10 @@ def load_tokenizers(config: dict) -> List[Tokenizer]:
         `List[Tokenizer]`: List of Tokenizer instances
     """
     return_tokenizers = []
-    for tokenizer_type in config['tokenizer']:
+    for tokenizer_type in config['tokenizers']:
         if tokenizer_type not in tokenizer_nickname_to_model_class:
             raise ValueError(f"Unrecognized tokenizer: {tokenizer_type}")
-        for tokenizer_instance in config['tokenizer'][tokenizer_type]:
+        for tokenizer_instance in config['tokenizers'][tokenizer_type]:
             tokenizer_cls = tokenizer_nickname_to_model_class[tokenizer_type]
             assert issubclass(tokenizer_cls, Tokenizer)
             return_tokenizers.append(tokenizer_cls(tokenizer_instance))

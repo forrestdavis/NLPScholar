@@ -13,13 +13,9 @@ class HFCausalModel(LM):
 
     def __init__(self, modelname: str, 
                  tokenizer_config: dict, 
-                 offset: bool = True, 
-                 getHidden: bool = False,
-                 precision: str = None,
-                 device: str = 'best'):
+                 **kwargs):
         super().__init__(modelname, tokenizer_config, 
-                         offset, getHidden, precision, 
-                         device)
+                         **kwargs)
 
         if self.precision == '16bit':
             self.model = AutoModelForCausalLM.from_pretrained(modelname, 
