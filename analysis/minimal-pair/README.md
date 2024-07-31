@@ -33,6 +33,7 @@ This has one sub-word token per line for every pair of sentences that needs to b
 - `comparison` (the specific comparison condition, e.g., "grammatical" or "ungrammatical")
 - `prob` (the probability of the token given the context)
 - `surp` (the surprisal of the token given the context; log base 2)
+- `punctuation` (is the token punctuation?)
 
 Note, this setup assumes that if an experiment wants to compare multiple word-pairs in the same context each of the word-pairs gets a different sentence ID. For example, consider the following context from Newman et al: 
 
@@ -67,10 +68,11 @@ Some experiments might have multiple words of interest. In such cases, each of t
 - `predfpath`: File path and name for predictability TSV
 - `condfpath`: File path and name for conditons TSV
 - `outfpath`: File path and name for output TSV
-- `predicability-measure`: `prob`, `surp` (which measure to use in the output results)
-- `token-to-word`: `sum`, `average` (sum or average predictability across all tokens; sum doesn't make sense for probability)
-- `roi-summary`: `macro`, `micro` (average across tokens or compare each word; for `micro` it is necessary that ROIs in both comparison settings have the same number of words)
+- `predicability-measure`: `probability`, `surprisal`, `perplexity` (which measure to use in the output results; perplexity is sentence level)
+- `token-to-word`: `sum`, `average` (sum or average predictability across all sub-word tokens; sum doesn't make sense for probability)
+- `roi-summary`: `macro`, `micro` (average across all words in the ROI before comparison or compare each word; for `micro` it is necessary that ROIs in both comparison settings have the same number of words)
 - `k-lemmas`: number of lemmas to include in the summary; positive integer k for the top-k lemmas, negative integer k for bottom-k lemmas; `inf` to include all lemmas. 
+- `punctuation`: `previous`, `next`, `separate`, `ignore` (how to handle punctation tokens; fold into previous word, next word, treat as a separate word or ignore from computation. If it is treated as separate token, this will influence ROIs.)
 
 
 
@@ -89,6 +91,8 @@ The number of rows in the output will be 4 times the number of conditions.
 
 - `acc`: Proportion of times Pred(expected) > Pred(unexpected)
 - `perr`: $\frac{Pred(unexpected)}{Pred(expected) + Pred(unexpected))}$
-- `ew`: ADD FORMULA FROM NEWMAN ET AL
+- `ew`: ADD FORMULA FROM NEWMAN ET AL 
 - `mw`: ADD FORMULAR FROM NEWMAN ET AL
+
+[MAYBE IMPLEMENT JUST ONE OF EW OR MW AND HAVE STUDENTS IMPLEMENT THE OTHER PARTS?]
 
