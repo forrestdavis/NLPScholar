@@ -25,9 +25,13 @@ class HFTokenizer(Tokenizer):
                 else:
                     sys.stderr.write(f"Need to specify a pad token\n")
 
+    @property 
+    def mask_token_id(self) -> int:
+        return self._tokenizer.mask_token_id
+
     def IsSkipTokenID(self, token_id: int) -> bool:
         """ Whether the token id is for a skippable token. We consider cls, sep,
-        and beginning of sentence tokens skippable. Note that eos is included. 
+        and beginning of sentence tokens skippable. Note that eos is not included. 
 
         Args: 
             token_id (`int`): Token id
@@ -38,6 +42,17 @@ class HFTokenizer(Tokenizer):
         return (token_id == self._tokenizer.cls_token_id or 
                 token_id == self._tokenizer.sep_token_id or 
                 token_id == self._tokenizer.bos_token_id)
+
+    def IsUnkTokenID(self, token_id: int) -> bool:
+        """ Whether the token id is for an unk token. 
+
+        Args: 
+            token_id (`int`): Token id
+
+        Returns:
+            `bool`: Whether the token id is unk
+        """
+        return token_id == self._tokenizer.unk_token_id
 
     def LowerCaseText(self, text):
         """ Lowercases text making sure to reintroduce special characters with

@@ -10,7 +10,7 @@ import sys
 from collections import namedtuple
 
 WordPred = namedtuple('WordPred', 'word surp prob isSplit isUnk '\
-                              'withPunct modelName')
+                              'withPunct modelName tokenizername')
 
 class LM:
 
@@ -165,6 +165,88 @@ class LM:
 
     @torch.no_grad()
     def get_aligned_words_predictabilities(self, text: Union[str, List[str]], 
-                                           include_punctuation: bool = False
-                                          ) -> WordPred:
-        pass
+                                           include_punctuation: bool = True,
+                                           lang: str = 'en'
+                                          ) -> List[List[WordPred]]:
+        """ Returns predictability measures of each word for inputted text.
+           Note that this requires `get_output`.
+
+        WordPred Object: 
+            word: word in text
+            surp: surprisal of word (total surprisal)
+            prob: probability of word (joint probability)
+            isSplit: whether it was subworded 
+            isUnk: whether it is or contains an unk token
+            withPunct: whether punctuation was included
+            modelName: name of language model 
+            tokenizername: name of tokenizer used
+
+        Args:
+            text (`Union[str, List[str]]`): A (batch of) strings.
+            include_punctuation (`bool`): Whether to include punctuation in word
+                                    aggregation.
+            lang (`str`): Language to use for alignment. Default is English
+                        which is space deliminated characters. 
+
+        Returns:
+            `List[List[WordPred]]`: List of lists for each batch comprised of
+                                    WordPred named tuple objects. 
+        """
+
+        all_data = []
+        batched_token_predicts = self.get_by_token_predictability(text)
+        batched_word_alignments = self.tokenizer.align_words_ids(text, lang)
+        for token_predicts, (words, alignments) in zip(batched_token_predicts,
+                                                   batched_word_alignments, 
+                                                      strict=True):
+            sentence_data = []
+            for word, alignment in zip(words, alignments, strict=True):
+                token_predict = token_predicts.pop(0)
+                word_id = alignment.pop(0)
+                # Ensure we start at the same spot (ie ignore [CLS])
+                while token_predict[0] != word_id:
+                    token_predict = token_predicts.pop(0)
+
+                surp = 0
+                prob = 1
+                keepAligning = True
+                isUnk = False
+                isSplit = False
+                withPunct = False
+                if len(alignment) > 0:
+                    isSplit = True
+                while keepAligning:
+                    assert token_predict[0] == word_id
+
+                    # Ignore punctuation is desired
+                    if (not(include_punctuation) and
+                        self.tokenizer.TokenIDIsPunct(word_id)):
+                        surp += 0
+                        prob *= 1
+                    else:
+                        if self.tokenizer.TokenIDIsPunct(word_id):
+                            withPunct = True
+                        prob *= token_predict[1]
+                        surp += token_predict[2]
+
+                    if self.tokenizer.IsUnkTokenID(word_id):
+                        isUnk = True
+
+                    if len(alignment) == 0:
+                        keepAligning = False
+                    else:
+                        word_id = alignment.pop(0)
+                        token_predict = token_predicts.pop(0)
+
+                # Set prob to 0 if applicable (ie the first word)
+                if surp == 0:
+                    prob = 0
+
+                sentence_data.append(WordPred(word, float(surp), float(prob),
+                                isSplit, isUnk, withPunct, self.modelname, 
+                                self.tokenizer.tokenizername))
+
+
+            all_data.append(sentence_data)
+        return all_data
+
