@@ -84,9 +84,14 @@ def yield_models(config: dict):
     Yields:
         `LM`: model instances 
     """
+    tokenizer_configs = create_tokenizer_configs(config)
     for model_type in config['models']:
         if model_type not in model_nickname_to_model_class:
             raise ValueError(f"Unrecognized model: {model_type}")
         for model_instance in config['models'][model_type]:
             model_cls, kwargs = get_model_instance(model_type, config)
-            yield model_cls(model_instance, config, **kwargs)
+            if tokenizer_configs:
+                tokenizer_config = tokenizer_configs.pop(0)
+            else:
+                tokenizer_config = None
+            yield model_cls(model_instance, tokenizer_config, **kwargs)

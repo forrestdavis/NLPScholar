@@ -1,0 +1,11 @@
+exp: TSE
+
+models: 
+      hf_causal_model:
+          - gpt2
+      hf_masked_model:
+          - bert-base-uncased
+
+predfpath: results/minimal_pairs.tsv
+
+condfpath: stimuli/minimal_pairs.tsv
