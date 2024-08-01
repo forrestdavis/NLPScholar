@@ -27,13 +27,17 @@ In this toolkit:
 
 ## TSV file with predictability
 This has one sub-word token per line for every pair of sentences that needs to be compared. The tsv has the following columns. 
+
 - `token` (the subword token)
 - `sentid` (the ID of the specific pair of sentences being compared)
+- `word` (the word the subword token belongs to)
 - `wordpos` (the specific word in the context sentence that the subword token belongs to)
-- `comparison` (the specific comparison condition, e.g., "grammatical" or "ungrammatical")
+- `condition` (the specific condition, e.g., "grammatical" or "ungrammatical")
+- `model` (the name of the language model)
+- `tokenizer` (the name of the tokenizer)
+- `punctuation` (is the token punctuation?)
 - `prob` (the probability of the token given the context)
 - `surp` (the surprisal of the token given the context; log base 2)
-- `punctuation` (is the token punctuation?)
 
 Note, this setup assumes that if an experiment wants to compare multiple word-pairs in the same context each of the word-pairs gets a different sentence ID. For example, consider the following context from Newman et al: 
 

@@ -50,17 +50,17 @@ class TSE:
     def formatCheck(self):
         """ Ensure that condition file has the expected format. As in, 
 
-        - `sentid` (the ID of the specific pair of sentences being compared;
-                    matches what is in `predictability.tsv`)
-        - `sentence` (the full sentence)
-        - `lemma` (the word lemma)
-        - `contextid` (the ID of context shared across all lemmas)
-        - `condition` (the specific conditions or group that the sentence
-                    belongs to)
-        - `ROI` (the specific word positions that are of interest)
-        - `expected` (the comparison that is predicted to have higher
+        - `sentid`: the ID of the specific pair of sentences being compared;
+                    matches what is in `predictability.tsv`
+        - `sentence`: the full sentence
+        - `lemma`: the word lemma
+        - `contextid`: the ID of context shared across all lemmas
+        - `condition`: the specific conditions or group that the sentence
+                    belongs to
+        - `ROI`: the specific word positions that are of interest
+        - `expected`: the comparison that is predicted to have higher
                     probability; comparison should match what is in
-                    `predictability.tsv`)
+                    `predictability.tsv`
         """
 
         NEEDS = ['sentid', 'sentence', 'lemma', 'contextid', 
@@ -73,6 +73,19 @@ class TSE:
     def gather_token_output(self, LM):
         """ Returns the outputs and word alignments for a langaguage model for
             the experiment. 
+
+        Args:
+            LM (`LM`): An instance of a LM
+
+        Returns:
+            `list`: List of lists for each batch comprised of dictionaries per
+                    token. Each dictionary has token_id, probability, surprisal.
+                    Note: the padded output is included.
+            `List[dict]`: List with a dictionary for each batch. Dictionary has
+                        two elements: mapping_to_words, which is a list with the
+                        word number each token belongs to, and words, which is a
+                        list of each token's word string. 
+
         """
         sentences = self.data['sentence'].tolist()
         outputs = []
@@ -135,16 +148,16 @@ class TSE:
         """ Run TSE and save result to predfpath. 
 
         The output has the following information. 
-        - `token` (the subword token)
-        - `sentid` (the ID of the specific pair of sentences being compared)
-        - `word` (the word the subword token belongs to)
-        - `wordpos` (the specific word in the context sentence that the subword token belongs to)
-        - `condition` (the specific condition, e.g., "grammatical" or "ungrammatical")
-        - `model` (the name of the language model)
-        - `tokenizer` (the name of the tokenizer)
-        - `punctuation` (is the token punctuation?)
-        - `prob` (the probability of the token given the context)
-        - `surp` (the surprisal of the token given the context; log base 2)
+        - `token`: the subword token
+        - `sentid`: the ID of the specific pair of sentences being compared
+        - `word`: the word the subword token belongs to
+        - `wordpos`: the specific word in the context sentence that the subword token belongs to
+        - `condition`: the specific condition, e.g., "grammatical" or "ungrammatical"
+        - `model`: the name of the language model
+        - `tokenizer`: the name of the tokenizer
+        - `punctuation`: is the token punctuation?
+        - `prob`: the probability of the token given the context
+        - `surp`: the surprisal of the token given the context; log base 2
 
         """
         predictData = {'token': [], 
