@@ -1,5 +1,5 @@
-from src.models.load_models import load_models
 from src.experiments.TSE import TSE
+from src.experiments.Interact import Interact
 
 config = {'models': 
              {'hf_masked_model': ['bert-base-cased']}, 
@@ -11,6 +11,8 @@ config = {'models':
           'device': 'mps', 
           'batchSize': 10}
 
-experiment = TSE(config)
+#experiment = TSE(config)
+experiment = Interact(config)
+
 experiment.run()
 
