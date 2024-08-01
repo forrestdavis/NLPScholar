@@ -21,6 +21,11 @@ class Tokenizer:
         self.addPrefixSpace = addPrefixSpace
         self.addPadToken = addPadToken
 
+    def __repr__(self):
+        return self.tokenizername
+    def __str__(self):
+        return self.tokenizername
+
     def __call__(self):
         raise NotImplementedError
 

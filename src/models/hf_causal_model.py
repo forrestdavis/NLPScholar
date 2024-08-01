@@ -4,6 +4,7 @@
 # August 2024
 
 from .LM import LM
+from ..tokenizers.load_tokenizers import load_tokenizers
 import torch
 from transformers import AutoModelForCausalLM
 from typing import Union, Dict, List, Tuple, Optional
@@ -19,6 +20,11 @@ class HFCausalModel(LM):
         super().__init__(modelname, tokenizer_config, 
                          offset=offset,
                          **kwargs)
+
+        # Load tokenizer
+        if tokenizer_config is None:
+            tokenizer_config = {'tokenizers': {'hf': [modelname]}}
+        self.tokenizer = load_tokenizers(tokenizer_config)[0]
 
         if self.precision == '16bit':
             self.model = AutoModelForCausalLM.from_pretrained(modelname, 

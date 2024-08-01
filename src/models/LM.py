@@ -40,10 +40,13 @@ class LM:
         self.device = torch.device(self.device)
         sys.stderr.write(f"Running on {self.device}\n")
 
-        # Load tokenizer
-        self.tokenizer = load_tokenizers(tokenizer_config)[0]
-
+        self.tokenizer = None
         self.model = None
+
+    def __repr__(self):
+        return self.modelname
+    def __str__(self):
+        return self.modelname
 
     @torch.no_grad()
     def get_output(self, text: Union[str, List[str]]) -> dict:

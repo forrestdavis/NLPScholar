@@ -6,15 +6,18 @@ config = {'models':
             {'hf': ['bert-base-cased']}, 
           'device': 'mps'}
 
-"""
 config = {'models': 
-            {'hf_causal_model': ['gpt2']}, 
-          'tokenizers':
-            {'hf': ['gpt2']}, 
-          'device': 'mps'}
-"""
+            {'hf_masked_model': ['bert-base-cased'],
+            'hf_causal_model': ['gpt2-medium']},
+         }
 
-model = load_models(config)[0]
+models = load_models(config)
+
+for model in models:
+    print(model, model.tokenizer)
+
+import sys
+sys.exit()
 
 output = model.get_by_token_predictability('Rudolfson is happy.')[0]
 for word in output:
