@@ -1,0 +1,5 @@
+sentid	sentence	lemma	contextid	condition	ROI	expected
+1	the boy is happy.	BE	1	grammatical	"6,8"	grammatical
+2	the boy are happy.	BE	1	ungrammatical	5	grammatical
+3	Rudolfson was outside.	BE	2	grammatical	4	grammatical
+4	Rudolfson were outside.	BE	2	ungrammatical	4	grammatical
