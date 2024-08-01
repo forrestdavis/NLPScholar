@@ -26,6 +26,10 @@ class HFTokenizer(Tokenizer):
                     sys.stderr.write(f"Need to specify a pad token\n")
 
     @property 
+    def pad_token_id(self) -> int:
+        return self._tokenizer.pad_token_id
+
+    @property 
     def mask_token_id(self) -> int:
         return self._tokenizer.mask_token_id
 
@@ -133,3 +137,25 @@ class HFTokenizer(Tokenizer):
                      add_special_tokens = add_special_tokens, 
                      padding=padding, truncation=truncation, 
                      max_length = max_length, return_tensors=return_tensors)
+
+    def align_words_ids(self, text):
+        # batchify 
+        if isinstance(text, str):
+            text = [text]
+        text = self.LowerCaseText(text)
+        encoded = self._tokenizer(text, padding=True)
+        data = []
+        for batch in range(len(encoded['input_ids'])):
+            mapping = encoded.word_ids(batch)
+            words = []
+            for element in mapping: 
+                word = None
+                if element is not None: 
+                    start, end = encoded.word_to_chars(batch, element)
+                    word = text[batch][start:end]
+                words.append(word)
+            data.append({'mapping_to_words': mapping, 
+                         'words': words})
+        return data
+
+

@@ -8,7 +8,8 @@ config = {'models':
           'ignorePunct': None, 
           'predfpath': 'results/minimal_pairs.tsv',
           'condfpath': 'stimuli/minimal_pairs.tsv',
-          'device': 'mps'}
+          'device': 'mps', 
+          'batchSize': 10}
 
 experiment = TSE(config)
 experiment.run()

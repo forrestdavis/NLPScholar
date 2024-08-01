@@ -24,84 +24,6 @@ class Tokenizer:
     def __call__(self):
         raise NotImplementedError
 
-    def align_words_ids(self, text: Union[str, List[str]], 
-                        lang: str = 'en', 
-                       ) -> Union[Tuple[List[str], List[int]], 
-                                  List[Tuple[List[str], List[int]]]]:
-        """ Aligns words in text input with their ids in the input 
-       
-        Args:
-            text (`Union[str, List[str]]`): Input string or batch of strings
-            lang (`str`): Language to split with. 'en' is whitespace and is
-                    the default. 
-
-        Returns:
-            `Union[Tuple[List[str], List[int]], List[Tuple[List[str],
-            List[int]]]]`: Tuple of the words and the ids per word or a list of
-                tuples for the batch. 
-        """
-        input_ids = self.__call__(text, return_offsets_mapping=True)
-
-        if isinstance(text, str):
-            return self._align_words_ids(text, input_ids['offset_mapping'], 
-                                        input_ids['input_ids'], lang)
-        elif isinstance(text, list):
-            data = []
-            for idx, t in enumerate(text):
-                in_ids = input_ids['input_ids'][idx]
-                offset_mapping = input_ids['offset_mapping'][idx]
-                data.append(self._align_words_ids(t, offset_mapping, 
-                                             in_ids, lang))
-            return data
-        return None
-
-    def _align_words_ids(self, text: str, offset_mapping: List[Tuple[int]], 
-                         input_ids: List[int], 
-                         lang: str) -> Tuple[List[str], List[int]]:
-        """ Aligns words in a sentence with their ids in the input 
-       
-        Args: text (`str`): String representing text
-            offset_mapping (`List[Tuple[int]]`): List of tuples representing the
-                    start and end position of the token in the string
-            input_ids (`List[int]`): List of input ids from tokenization
-            lang (`str`): Language to split with. 'en' is whitespace
-
-        Returns:
-            `Tuple[List[str], List[int]]`: Tuple of the words and the ids per
-                    word.
-        """
-        if lang == 'en':
-            chunks = text.split()
-        else:
-            import sys
-            sys.stderr.write(f"{lang} has no splitting rule\n")
-            sys.exit(1)
-
-        chunk = chunks.pop(0)
-
-        ids = []
-        words = []
-
-        string = ''
-        sub_ids = []
-        for idx, region in enumerate(offset_mapping):
-            # Is an added special token (e.g., [CLS])
-            if region[0] == 0 and region[1] == 0:
-                continue
-            region_str = text[region[0]:region[1]].strip()
-            sub_ids.append(input_ids[idx])
-            string += region_str 
-            if string == chunk:
-                words.append(string)
-                ids.append(sub_ids)
-                sub_ids = []
-                string = ''
-                if chunks:
-                    chunk = chunks.pop(0)
-
-        assert len(words) == len(ids) == len(text.split())
-        return (words, ids)
-
     def all_special_tokens(self):
         """ List of all special tokens """ 
         return None
@@ -236,5 +158,16 @@ class Tokenizer:
         """
         raise NotImplementedError
 
-if __name__ == "__main__":
-    tokenizer = Tokenizer('ye')
+    def align_words_ids(self, text: Union[str, List[str]]) -> List[dict]: 
+        """ Returns the alignment between token ids and words and words.
+       
+        Args:
+            text (`Union[str, List[str]]`): Input string or batch of strings
+
+        Returns:
+            `List[dict]`: List with a dictionary for each batch. Dictionary has
+                        two elements: mapping_to_words, which is a list with the
+                        word number each token belongs to, and words, which is a
+                        list of each token's word string. 
+        """
+        raise NotImplementedError

@@ -10,7 +10,7 @@ import sys
 from collections import namedtuple
 
 WordPred = namedtuple('WordPred', 'word surp prob isSplit isUnk '\
-                              'withPunct modelName tokenizername')
+                              'modelName tokenizername')
 
 class LM:
 
@@ -25,8 +25,7 @@ class LM:
         # Default values
         self.getHidden = False
         self.precision = None
-        self.includePunct = True
-        self.language = 'en'
+        self.showSpecialTokens = False
         self.device = 'best' 
         for k, v in kwargs.items():
             setattr(self, k, v)
@@ -110,8 +109,8 @@ class LM:
 
         Returns:
             `list`: List of lists for each batch comprised of dictionaries per
-                    token. Each dictionary has input_id, probability, surprisal.
-                    Note: the padded output is removed. 
+                    token. Each dictionary has token_id, probability, surprisal.
+                    Note: the padded output is included.
         """
         output = self.get_output(text)
         input_ids = output['input_ids']
@@ -120,11 +119,12 @@ class LM:
         by_token_probabilities, by_token_surprisals = \
                     self.convert_to_predictability(output['logits'])
 
-        # If predictions are offset (as with causal LMs) then shift targets 
-        # using zero vector. This has the added benefit of making the first
-        # prediction value zero.  
+        # If predictions are offset (as with causal LMs) then shift targets
+        # using a zero vector for surprisal and a ones vector for probability.
+        # This has the added benefit of making the first prediction value zero
+        # for surprisal and one for probability.
         if self.offset:
-            by_token_probabilities = torch.cat((torch.zeros(
+            by_token_probabilities = torch.cat((torch.ones(
                                         by_token_probabilities.size(0), 1,
                                      by_token_probabilities.size(-1)).to(self.device),
                                          by_token_probabilities), 
@@ -142,15 +142,15 @@ class LM:
                                                       input_ids.unsqueeze(2)).squeeze(-1)
 
         # For each batch, zip together input ids and predictability measures
-        # (trimming of the padding)
+        # into dictionaries 
         data = []
         for i in range(by_token_surprisals.size(0)):
             row = []
-            for group in zip(input_ids[i, :last_non_masked_idx[i]], 
-                        by_token_probabilities[i,:last_non_masked_idx[i]], 
-                        by_token_surprisals[i,:last_non_masked_idx[i]],
+            for group in zip(input_ids[i, :], 
+                        by_token_probabilities[i,:], 
+                        by_token_surprisals[i,:],
                              strict=True):
-                row.append({'input_id': int(group[0]), 
+                row.append({'token_id': int(group[0]), 
                             'probability': float(group[1]), 
                             'surprisal': float(group[2])})
             data.append(row)
@@ -190,7 +190,7 @@ class LM:
             if self.offset:
                 length = -1
             for token_measure in by_token_measures[idx]:
-                if self.tokenizer.IsSkipTokenID(token_measure['input_id']):
+                if self.tokenizer.IsSkipTokenID(token_measure['token_id']):
                     continue
                 total_surprisal += token_measure['surprisal']
                 length += 1
@@ -205,16 +205,12 @@ class LM:
         """ Returns predictability measures of each word for inputted text.
            Note that this requires `get_output`.
 
-        Note: self.language is used for alignment. The default is en which is
-            simple space split. 
-
         WordPred Object: 
             word: word in text
             surp: surprisal of word (total surprisal)
             prob: probability of word (joint probability)
             isSplit: whether it was subworded 
             isUnk: whether it is or contains an unk token
-            withPunct: whether punctuation was included
             modelName: name of language model 
             tokenizername: name of tokenizer used
 
@@ -228,59 +224,51 @@ class LM:
 
         all_data = []
         batched_token_predicts = self.get_by_token_predictability(text)
-        batched_word_alignments = self.tokenizer.align_words_ids(text,
-                                                                 self.language)
-        for token_predicts, (words, alignments) in zip(batched_token_predicts,
-                                                   batched_word_alignments, 
-                                                      strict=True):
+        batched_alignments = self.tokenizer.align_words_ids(text)
+        for token_predicts, alignments_words in zip(batched_token_predicts,
+                                                    batched_alignments,
+                                                    strict=True):
+
+            alignments = alignments_words['mapping_to_words']
+            words = alignments_words['words']
+
+            prob = 1
+            surp = 0
+            isUnk = False
             sentence_data = []
-            for word, alignment in zip(words, alignments, strict=True):
-                token_predict = token_predicts.pop(0)
-                word_id = alignment.pop(0)
-                # Ensure we start at the same spot (ie ignore [CLS])
-                while token_predict['input_id'] != word_id:
-                    token_predict = token_predicts.pop(0)
-
-                surp = 0
-                prob = 1
-                keepAligning = True
-                isUnk = False
+            for idx, (measure, alignment, word) in enumerate(zip(token_predicts,
+                                                                 alignments,
+                                                                 words,
+                                                                 strict=True)):
                 isSplit = False
-                withPunct = False
-                if len(alignment) > 0:
-                    isSplit = True
-                while keepAligning:
-                    assert token_predict['input_id'] == word_id
+                prob *= measure['probability']
+                surp += measure['surprisal']
+                if self.tokenizer.IsUnkTokenID(measure['token_id']):
+                    isUnk = True
+                # This is a special token (e.g., [CLS], [PAD])
+                if word is None:
+                    # Surface only when requested (still ignoring pad)
+                    if (self.showSpecialTokens and 
+                       self.tokenizer.pad_token_id != measure['token_id']):
+                        word = self.tokenizer.convert_ids_to_tokens(
+                            measure['token_id'])
+                        sentence_data.append(WordPred(word, surp, prob, isSplit,
+                                                      isUnk, self.modelname,
+                                                      self.tokenizer.tokenizername))
+                    prob = 1
+                    surp = 0
 
-                    # Ignore punctuation is desired
-                    if (not(self.includePunct) and
-                        self.tokenizer.TokenIDIsPunct(word_id)):
-                        surp += 0
-                        prob *= 1
-                    else:
-                        if self.tokenizer.TokenIDIsPunct(word_id):
-                            withPunct = True
-                        prob *= token_predict['probability']
-                        surp += token_predict['surprisal']
-
-                    if self.tokenizer.IsUnkTokenID(word_id):
-                        isUnk = True
-
-                    if len(alignment) == 0:
-                        keepAligning = False
-                    else:
-                        word_id = alignment.pop(0)
-                        token_predict = token_predicts.pop(0)
-
-                # Set prob to 0 if applicable (ie the first word)
-                if surp == 0:
-                    prob = 0
-
-                sentence_data.append(WordPred(word, surp, prob,
-                                isSplit, isUnk, withPunct, self.modelname, 
-                                self.tokenizer.tokenizername))
-
-
+                # Either the last word or the next word is new 
+                elif ((idx == len(alignments) - 1) or 
+                    (alignments[idx+1] != alignments[idx])):
+                    if idx != 0 and alignments[idx-1] == alignments[idx]:
+                        isSplit = True
+                    sentence_data.append(WordPred(word, surp, prob, isSplit,
+                                                  isUnk, self.modelname,
+                                                  self.tokenizer.tokenizername))
+                    prob = 1
+                    surp = 0
+                    isUnk = False
             all_data.append(sentence_data)
         return all_data
 

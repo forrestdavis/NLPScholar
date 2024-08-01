@@ -28,8 +28,6 @@ def get_model_instance(model_type: str, config: dict):
         kwargs['getHidden'] = True
     if 'precision' in config:
         kwargs['precision'] = config['precision']
-    if 'ignorePunct' in config:
-        kwargs['includePunct'] = False
     if 'device' in config:
         kwargs['device'] = config['device']
 

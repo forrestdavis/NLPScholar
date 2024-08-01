@@ -71,62 +71,85 @@ class TSE:
             assert need in columns, f"Missing {need} in {self.condfpath}"
 
     def gather_token_output(self, LM):
+        """ Returns the outputs and word alignments for a langaguage model for
+            the experiment. 
+        """
         sentences = self.data['sentence'].tolist()
         outputs = []
+        word_alignments = []
         for batch_idx in range(0, len(sentences), self.batchSize):
             batch = sentences[batch_idx:batch_idx+self.batchSize]
             outputs.extend(LM.get_by_token_predictability(batch))
-        return outputs
+            word_alignments.extend(LM.tokenizer.align_words_ids(batch))
+        return outputs, word_alignments
 
-    def add_entries(self, entriesDict, outputs, LM):
+    def add_entries(self, entriesDict, outputs, word_alignments, LM):
+        """ Adds entries to the dictionary of results.
+        """
         sentences = self.data['sentence'].tolist()
         sentids = self.data['sentid'].tolist()
         conditions = self.data['condition'].tolist()
-        word_alignments = LM.tokenizer.align_words_ids(sentences, LM.language)
 
-        for idx in range(len(sentences)):
-            words, alignments = word_alignments[idx]
-            output = outputs[idx]
-            sentid = sentids[idx]
-            condition = conditions[idx]
+        for batch in range(len(sentences)):
+            output = outputs[batch]
+            sentid = sentids[batch]
+            condition = conditions[batch]
+            alignments = word_alignments[batch]['mapping_to_words']
+            words = word_alignments[batch]['words']
 
-            for word_idx, (word, alignment) in enumerate(zip(words,
-                                                             alignments)):
-                token_predict = output.pop(0)
-                word_token_id = alignment.pop(0)
-                # Handle non-surface tokens (e.g., [CLS])
-                while token_predict['input_id'] != word_token_id:
-                    token_predict = output.pop(0)
+            for measure, alignment, word in zip(output, alignments, words,
+                                                strict=True):
+                
+                # Skip pad tokens 
+                if LM.tokenizer.pad_token_id == measure['token_id']:
+                    continue
 
-                keepAligning = True
-                while keepAligning: 
-                    assert token_predict['input_id'] == word_token_id
-                    isPunct = 0
-                    if LM.tokenizer.TokenIDIsPunct(word_token_id):
-                        isPunct = 1
+                # Get token
+                token = LM.tokenizer.convert_ids_to_tokens(measure['token_id'])
 
-                    token = LM.tokenizer.convert_ids_to_tokens(word_token_id)
+                if word is None:
+                    if not LM.showSpecialTokens: 
+                        continue
+                    word = ''
 
-                    # Add to prediction data
-                    entriesDict['token'].append(token)
-                    entriesDict['sentid'].append(sentid)
-                    entriesDict['wordpos'].append(word_idx)
-                    entriesDict['condition'].append(condition)
-                    entriesDict['model'].append(LM.modelname)
-                    entriesDict['tokenizer'].append(LM.tokenizer.tokenizername)
-                    entriesDict['punctuation'].append(isPunct)
-                    entriesDict['prob'].append(token_predict['probability'])
-                    entriesDict['surp'].append(token_predict['surprisal'])
-                    
-                    if alignment:
-                        token_predict = output.pop(0)
-                        word_token_id = alignment.pop(0)
-                    else:
-                        keepAligning = False
+                # Figure out if punctuation 
+                isPunct = False
+                if LM.tokenizer.TokenIDIsPunct(measure['token_id']):
+                    isPunct = True
+
+                # Add to prediction data
+                entriesDict['token'].append(token)
+                entriesDict['sentid'].append(sentid)
+                entriesDict['word'].append(word)
+                entriesDict['wordpos'].append(alignment)
+                entriesDict['condition'].append(condition)
+                entriesDict['model'].append(LM.modelname)
+                entriesDict['tokenizer'].append(LM.tokenizer.tokenizername)
+                entriesDict['punctuation'].append(isPunct)
+                entriesDict['prob'].append(measure['probability'])
+                entriesDict['surp'].append(measure['surprisal'])
+        return 
+
 
     def run(self):
+        """ Run TSE and save result to predfpath. 
+
+        The output has the following information. 
+        - `token` (the subword token)
+        - `sentid` (the ID of the specific pair of sentences being compared)
+        - `word` (the word the subword token belongs to)
+        - `wordpos` (the specific word in the context sentence that the subword token belongs to)
+        - `condition` (the specific condition, e.g., "grammatical" or "ungrammatical")
+        - `model` (the name of the language model)
+        - `tokenizer` (the name of the tokenizer)
+        - `punctuation` (is the token punctuation?)
+        - `prob` (the probability of the token given the context)
+        - `surp` (the surprisal of the token given the context; log base 2)
+
+        """
         predictData = {'token': [], 
                        'sentid': [], 
+                       'word': [],
                        'wordpos': [], 
                        'condition': [], 
                        'model': [],
@@ -136,10 +159,10 @@ class TSE:
                        'surp': [],
                       }
         for LM in self.LMs:
-            outputs = self.gather_token_output(LM)
-            self.add_entries(predictData, outputs, LM)
+            outputs, word_alignments = self.gather_token_output(LM)
+            self.add_entries(predictData, outputs, word_alignments, LM)
 
         predictData = pd.DataFrame.from_dict(predictData)
-        print(predictData)
+        predictData.to_csv(self.predfpath, index=False, sep='\t')
 
 
