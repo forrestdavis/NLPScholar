@@ -16,12 +16,13 @@ class LM:
 
     def __init__(self, modelname: str, 
                  tokenizer_config: dict, 
+                 offset=True,
                  **kwargs):
 
         self.modelname = modelname
+        self.offset = offset
 
         # Default values
-        self.offset = True
         self.getHidden = False
         self.precision = None
         self.includePunct = True
@@ -108,9 +109,9 @@ class LM:
             text (`Union[str, List[str]]`): A (batch of) strings.
 
         Returns:
-            `list`: List of lists for each batch comprised of tuples of token id
-            and predicability measures (probability, surprisal).  Note: the
-            padded output is removed. 
+            `list`: List of lists for each batch comprised of dictionaries per
+                    token. Each dictionary has input_id, probability, surprisal.
+                    Note: the padded output is removed. 
         """
         output = self.get_output(text)
         input_ids = output['input_ids']
@@ -142,12 +143,18 @@ class LM:
 
         # For each batch, zip together input ids and predictability measures
         # (trimming of the padding)
-        return [list(zip(input_ids[i, :last_non_masked_idx[i]], 
+        data = []
+        for i in range(by_token_surprisals.size(0)):
+            row = []
+            for group in zip(input_ids[i, :last_non_masked_idx[i]], 
                         by_token_probabilities[i,:last_non_masked_idx[i]], 
                         by_token_surprisals[i,:last_non_masked_idx[i]],
-                         strict=True)) 
-                for i in range(by_token_surprisals.size(0))]
-
+                             strict=True):
+                row.append({'input_id': int(group[0]), 
+                            'probability': float(group[1]), 
+                            'surprisal': float(group[2])})
+            data.append(row)
+        return data
 
     @torch.no_grad()
     def get_by_sentence_perplexity(self, text: Union[str, List[str]]
@@ -183,9 +190,9 @@ class LM:
             if self.offset:
                 length = -1
             for token_measure in by_token_measures[idx]:
-                if self.tokenizer.IsSkipTokenID(int(token_measure[0].item())):
+                if self.tokenizer.IsSkipTokenID(token_measure['input_id']):
                     continue
-                total_surprisal += float(token_measure[-1].item())
+                total_surprisal += token_measure['surprisal']
                 length += 1
             avg_surprisal = total_surprisal/length
             ppl = 2**avg_surprisal
@@ -231,7 +238,7 @@ class LM:
                 token_predict = token_predicts.pop(0)
                 word_id = alignment.pop(0)
                 # Ensure we start at the same spot (ie ignore [CLS])
-                while token_predict[0] != word_id:
+                while token_predict['input_id'] != word_id:
                     token_predict = token_predicts.pop(0)
 
                 surp = 0
@@ -243,7 +250,7 @@ class LM:
                 if len(alignment) > 0:
                     isSplit = True
                 while keepAligning:
-                    assert token_predict[0] == word_id
+                    assert token_predict['input_id'] == word_id
 
                     # Ignore punctuation is desired
                     if (not(self.includePunct) and
@@ -253,8 +260,8 @@ class LM:
                     else:
                         if self.tokenizer.TokenIDIsPunct(word_id):
                             withPunct = True
-                        prob *= token_predict[1]
-                        surp += token_predict[2]
+                        prob *= token_predict['probability']
+                        surp += token_predict['surprisal']
 
                     if self.tokenizer.IsUnkTokenID(word_id):
                         isUnk = True
@@ -269,7 +276,7 @@ class LM:
                 if surp == 0:
                     prob = 0
 
-                sentence_data.append(WordPred(word, float(surp), float(prob),
+                sentence_data.append(WordPred(word, surp, prob,
                                 isSplit, isUnk, withPunct, self.modelname, 
                                 self.tokenizer.tokenizername))
 

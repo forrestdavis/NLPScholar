@@ -13,8 +13,11 @@ class HFCausalModel(LM):
 
     def __init__(self, modelname: str, 
                  tokenizer_config: dict, 
+                 offset=True,
                  **kwargs):
+
         super().__init__(modelname, tokenizer_config, 
+                         offset=offset,
                          **kwargs)
 
         if self.precision == '16bit':

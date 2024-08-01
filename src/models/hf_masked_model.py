@@ -13,13 +13,12 @@ class HFMaskedModel(LM):
 
     def __init__(self, modelname: str, 
                  tokenizer_config: dict, 
-                 offset: bool = False, 
-                 getHidden: bool = False,
-                 precision: str = None,
-                 device: str = 'best'):
+                 offset=False,
+                 **kwargs):
+
         super().__init__(modelname, tokenizer_config, 
-                         offset, getHidden, precision, 
-                         device)
+                         offset=offset,
+                         **kwargs)
 
         if self.precision == '16bit':
             self.model = AutoModelForMaskedLM.from_pretrained(modelname, 
@@ -48,6 +47,8 @@ class HFMaskedModel(LM):
     def get_output(self, texts: Union[str, List[str]], 
                    PLL_type: str = "within_word_l2r"):
         
+        assert PLL_type in {'original', 'within_word_l2r'}, f"PLL metric {PLL_type} not supported"
+
         # batchify 
         if isinstance(texts, str):
             texts = [texts]
@@ -79,11 +80,15 @@ class HFMaskedModel(LM):
         # Kanishka Misra's minicons: https://github.com/kanishkamisra/minicons
         # Loop through batch and replace each element of the input with MASK
         # token add model output to logits. 
+
+        # If you don't do this, you get a bug!
+        MASK = torch.tensor(self.tokenizer.mask_token_id).to(self.device)
+
         for idx in range(inputs.shape[1]):
             masked_input = inputs.clone()
-            masked_input[:,idx] = self.tokenizer.mask_token_id
+            masked_input[:,idx] = MASK
 
-            assert PLL_type in {'original', 'within_word_l2r'}, f"PLL metric {PLL_type} not supported"
+            assert masked_input[0,idx] == self.tokenizer.mask_token_id
 
             # Following Kauf & Ivanova (2023) https://arxiv.org/abs/2305.10588
             if PLL_type == 'within_word_l2r':
@@ -97,7 +102,7 @@ class HFMaskedModel(LM):
                     for k in range(idx+1, inputs.shape[1]):
                         if word_ids[k] != mask_word:
                             break
-                        masked_input[j,k] = self.tokenizer.mask_token_id
+                        masked_input[j,k] = MASK
 
             masked_dict = {'input_ids': masked_input,
                            'attention_mask': attn_mask}
