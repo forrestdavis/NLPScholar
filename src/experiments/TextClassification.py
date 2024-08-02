@@ -52,6 +52,7 @@ class TextClassification:
         - `textid`: the ID of the specific pair of text being compared;
                     matches what is in `predictability.tsv`
         - `text`: the full text
+        - `pair`: *optional* second sentence to use as a pair 
         - `condition`: the specific conditions or group that the text
                     belongs to
         - `target`: the target label that this text belongs to 
@@ -81,10 +82,15 @@ class TextClassification:
 
         """
         text = self.data['text'].tolist()
+        pair = None
+        if 'pair' in self.data.columns:
+            pair = self.data['pair'].tolist()
         outputs = []
         for batch_idx in range(0, len(text), self.batchSize):
             batch = text[batch_idx:batch_idx+self.batchSize]
-            outputs.extend(Classifier.get_text_predictions(batch))
+            if pair is not None:
+                batch_pair = pair[batch_idx:batch_idx+self.batchSize]
+            outputs.extend(Classifier.get_text_predictions(batch, pair))
         return outputs
 
     def add_entries(self, entriesDict, outputs, Classifier):
@@ -130,7 +136,6 @@ class TextClassification:
             self.add_entries(predictData, outputs, Classifier)
 
         predictData = pd.DataFrame.from_dict(predictData)
-        print(predictData)
-        #predictData.to_csv(self.predfpath, index=False, sep='\t')
+        predictData.to_csv(self.predfpath, index=False, sep='\t')
 
 

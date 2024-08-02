@@ -25,7 +25,6 @@ class Classifier:
         self.showSpecialTokens = False
         self.device = 'best' 
         self.id2label = None
-        self.id2label = {0: 'Negative', 1: 'Positive'}
         for k, v in kwargs.items():
             setattr(self, k, v)
 
@@ -48,11 +47,14 @@ class Classifier:
         return self.modelname
 
     @torch.no_grad()
-    def get_text_output(self, text: Union[str, List[str]]) -> dict:
+    def get_text_output(self, text: Union[str, List[str]], 
+                        pair: Union[str, List[str]] = None) -> dict:
         """ Returns model output for text
 
         Args:
             text (`Union[str, List[str]]`): A (batch of) strings.
+            pair (`Union[str, List[str]]`): A *optional* (batch of) strings to
+                                            use as a second sentence. 
 
         Returns:
             `dict`: Dictionary with input_ids, last_non_masked_idx, and logits.
@@ -80,18 +82,21 @@ class Classifier:
         probabilities = torch.exp(log_probs)
         return probabilities
 
-    def get_text_predictions(self, text: Union[str, List[str]]) -> List[dict]:
+    def get_text_predictions(self, text: Union[str, List[str]], 
+                             pair: Union[str, List[str]] = None) -> List[dict]:
         """ Returns model predicted labels for text
 
         Args:
             text (`Union[str, List[str]]`): A (batch of) strings.
+            pair (`Union[str, List[str]]`): A *optional* (batch of) strings to
+                                            use as a second sentence. 
 
         Returns:
             `List[dict]`: A list with dictionaries per batch. Each dictionary
                           has the label, probability, and id.  
         """
 
-        output = self.get_text_output(text)
+        output = self.get_text_output(text, pair)
         probabilities, predictions = \
                 self.convert_to_probability(output['logits']).max(-1)
 

@@ -16,9 +16,10 @@ config = {'models':
           'batchSize': 10}
 
 config = {'models': 
-             {'hf_text_classification_model': ["stevhliu/my_awesome_model"]}, 
-          'predfpath': 'results/imdb_sentiment.tsv',
-          'condfpath': 'stimuli/imdb_sentiment.tsv',
+             {'hf_text_classification_model':
+              ['ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli']},
+          'predfpath': 'results/snli_paired_sentences.tsv',
+          'condfpath': 'stimuli/snli_paired_sentences.tsv',
           'device': 'mps', 
           'batchSize': 10}
 
