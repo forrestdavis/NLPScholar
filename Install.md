@@ -23,7 +23,7 @@ one for the changes to take effect.
 Once Anaconda is installed, run the following command to update
 the `conda` packaging tool to the latest version:
 
-    $ conda update -n base -c defaults conda
+    conda update -n base -c defaults conda
 
 ## Create the `nlp` Environment
 
@@ -31,9 +31,9 @@ Next, make sure you're in the toolkit directory and run the following command.
 It will create a new `conda` environment containing the libraries you need to
 run the toolkit.  
 
-    $ conda env create -f environment.yml
+    conda env create -f environment.yml
 
 Next, activate the new environment:
 
-    $ conda activate nlp
+    conda activate nlp
 
