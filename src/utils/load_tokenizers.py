@@ -1,5 +1,5 @@
-from .Tokenizer import Tokenizer
-from .hf_tokenizer import HFTokenizer
+from ..tokenizers.Tokenizer import Tokenizer
+from ..tokenizers.hf_tokenizer import HFTokenizer
 from typing import List
 
 tokenizer_nickname_to_model_class = {

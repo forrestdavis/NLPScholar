@@ -4,7 +4,7 @@
 # August 2024
 
 import torch
-from ..tokenizers.load_tokenizers import load_tokenizers
+from ..utils.load_tokenizers import load_tokenizers
 from typing import Union, Dict, List, Tuple, Optional
 import sys
 from collections import namedtuple

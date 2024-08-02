@@ -4,7 +4,7 @@
 # August 2024
 
 from .LM import LM
-from ..tokenizers.load_tokenizers import load_tokenizers
+from ..utils.load_tokenizers import load_tokenizers
 import torch
 from transformers import AutoModelForCausalLM
 from typing import Union, Dict, List, Tuple, Optional

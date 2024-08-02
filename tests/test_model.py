@@ -1,4 +1,7 @@
-from src.models.load_models import load_models
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from src.utils.load_models import load_models
 
 config = {'models': 
             {'hf_masked_model': ['bert-base-cased']}, 

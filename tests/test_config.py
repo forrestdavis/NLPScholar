@@ -1,4 +1,8 @@
 import yaml
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+
 from src.experiments.TSE import TSE
 from src.experiments.Interact import Interact
 
