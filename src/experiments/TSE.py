@@ -4,7 +4,7 @@
 # (https://github.com/forrestdavis)
 # August 2024
 
-from ..models.load_models import load_models, yield_models
+from ..utils.load_models import load_models, yield_models
 import pandas as pd
 
 class TSE:
