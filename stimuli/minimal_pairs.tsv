@@ -1,5 +1,17 @@
-sentid	sentence	lemma	contextid	condition	ROI	expected
-1	the boy is happy.	BE	1	grammatical	"6,8"	grammatical
-2	the boy are happy.	BE	1	ungrammatical	5	grammatical
-3	Rudolfson was outside the store.	BE	2	grammatical	4	grammatical
-4	Rudolfson were outside the store.	BE	2	ungrammatical	4	grammatical
+sentid	pairid	contextid	condition	comparison	sentence	ROI	expected
+1	1	1	sing	grammatical	the student is the chameleon.	2,3	grammatical
+2	1	1	sing	ungrammatical	the student are the chameleon.	2,3	grammatical
+3	2	1	sing	grammatical	the student likes the chameleon.	2,3	grammatical
+4	2	1	sing	ungrammatical	the student like the chameleon.	2,3	grammatical
+5	3	2	sing	grammatical	the chameleon is the student.	2,3	grammatical
+6	3	2	sing	ungrammatical	the chameleon are the student.	2,3	grammatical
+7	4	2	sing	grammatical	the chameleon likes the student.	2,3	grammatical
+8	4	2	sing	ungrammatical	the chameleon like the student.	2,3	grammatical
+9	5	3	plu	grammatical	students are chameleons.	1,2	grammatical
+10	5	3	plu	ungrammatical	students is chameleons.	1,2	grammatical
+11	6	3	plu	grammatical	students like chameleons.	1,2	grammatical
+12	6	3	plu	ungrammatical	students likes chameleons.	1,2	grammatical
+13	7	4	plu	grammatical	chameleons are students.	1,2	grammatical
+14	7	4	plu	ungrammatical	chameleons is students.	1,2	grammatical
+15	8	4	plu	grammatical	chameleons like students.	1,2	grammatical
+16	8	4	plu	ungrammatical	chameleons likes students.	1,2	grammatical
