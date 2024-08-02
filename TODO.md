@@ -1,0 +1,7 @@
+- [ ] Handle longer sequences in classification (truncate?)
+- [ ] Handle longer sequences in language models (sliding window?)
+- [ ] Add classification trainer 
+- [ ] Add language model trainer 
+- [ ] Add ngram 
+- [ ] Add custom tokenizer 
+- [ ] Add compatibility with marty's neural-complexity
