@@ -1,0 +1,28 @@
+token	textid	word	wordpos	condition	model	tokenizer	punctuation	target	predicted	prob
+The	1	The	0	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	DT	0.9997743368148804
+Golden	1	Golden	1	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	B-location	NNP	0.9996951222419739
+State	1	State	2	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	I-location	NNP	0.9997199177742004
+War	1	Warrirors	3	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	B-group	NNPS	0.872401237487793
+##rir	1	Warrirors	3	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	B-group	NNPS	0.8525828123092651
+##ors	1	Warrirors	3	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	B-group	NNPS	0.9207190275192261
+are	1	are	4	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	VBP	0.9980643391609192
+an	1	an	5	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	DT	0.9998288750648499
+American	1	American	6	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	JJ	0.9871192574501038
+professional	1	professional	7	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	JJ	0.9972197413444519
+basketball	1	basketball	8	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	NN	0.9991515874862671
+team	1	team	9	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	NN	0.9997453689575195
+based	1	based	10	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	VBN	0.9988507032394409
+in	1	in	11	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	IN	0.9997530579566956
+San	1	San	12	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	B-location	NNP	0.9996310472488403
+Francisco	1	Francisco	13	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	B-location	NNP	0.997801661491394
+.	1	.	14	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	True		.	0.9999104142189026
+Klein	2	Kleinfeltersville	0	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	NNP	0.9986889958381653
+##felt	2	Kleinfeltersville	0	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	NNP	0.9992737770080566
+##ers	2	Kleinfeltersville	0	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	NNP	0.9993886351585388
+##ville	2	Kleinfeltersville	0	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	NNP	0.9988419413566589
+is	2	is	1	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	VBZ	0.9995901584625244
+a	2	a	2	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	DT	0.9998592138290405
+town	2	town	3	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	NN	0.9997840523719788
+in	2	in	4	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	IN	0.9997972249984741
+Pennsylvania	2	Pennsylvania	5	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	False	O	NNP	0.9991316795349121
+.	2	.	6	random	QCRI/bert-base-multilingual-cased-pos-english	QCRI/bert-base-multilingual-cased-pos-english	True		.	0.9999229907989502

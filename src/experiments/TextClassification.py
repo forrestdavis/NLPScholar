@@ -113,7 +113,7 @@ class TextClassification:
 
 
     def run(self):
-        """ Run TSE and save result to predfpath. 
+        """ Run text classification and save result to predfpath. 
 
         The output has the following information. 
         - `textid`: the ID of the specific pair of text being compared;

@@ -1,4 +1,4 @@
-# Basic child using AutoModelForSequenceClassification HuggingFace
+# Basic child using AutoModelForTokenClassification HuggingFace
 # Implemented by Forrest Davis 
 # (https://github.com/forrestdavis)
 # August 2024
@@ -6,11 +6,11 @@
 from .Classifier import Classifier
 from ..utils.load_tokenizers import load_tokenizers
 import torch
-from transformers import AutoModelForSequenceClassification
+from transformers import AutoModelForTokenClassification
 from typing import Union, Dict, List, Tuple, Optional
 import sys
 
-class HFTextClassificationModel(Classifier):
+class HFTokenClassificationModel(Classifier):
 
     def __init__(self, modelname: str, 
                  tokenizer_config: dict, 
@@ -26,24 +26,24 @@ class HFTextClassificationModel(Classifier):
 
         if self.precision == '16bit':
             self.model = \
-                AutoModelForSequenceClassification.from_pretrained(modelname, 
+                AutoModelForTokenClassification.from_pretrained(modelname, 
                                         torch_dtype=torch.float16, 
                                        low_cpu_mem_usage=True, 
                                        trust_remote_code=True).to(self.device)
         elif self.precision == '8bit':
             self.model = \
-                AutoModelForSequenceClassification.from_pretrained(modelname,
+                AutoModelForTokenClassification.from_pretrained(modelname,
                                         trust_remote_code=True,
                                         load_in_8bit=True).to(self.device)
 
         elif self.precision == '4bit':
             self.model = \
-                AutoModelForSequenceClassification.from_pretrained(modelname,
+                AutoModelForTokenClassification.from_pretrained(modelname,
                                         trust_remote_code=True,
                                         load_in_4bit=True).to(self.device)
         else:
             self.model = \
-                AutoModelForSequenceClassification.from_pretrained(modelname,
+                AutoModelForTokenClassification.from_pretrained(modelname,
                                            trust_remote_code=True).to(self.device)
 
         self.model.eval()
@@ -52,28 +52,17 @@ class HFTextClassificationModel(Classifier):
             self.id2label = self.model.config.id2label
 
     @torch.no_grad()
-    def get_text_output(self, texts: Union[str, List[str]], 
-                            pairs: Union[str, List[str]] = None):
+    def get_token_output(self, texts: Union[str, List[str]]):
         
         # batchify 
         if isinstance(texts, str):
             texts = [texts]
-        if isinstance(pairs, str):
-            pairs = [pairs]
 
         MAX_LENGTH = self.tokenizer.model_max_length
 
-        # We have pairs of sentences
-        if pairs is not None:
-            assert len(texts) == len(pairs), f"You have {len(texts)} first "\
-                            f"sentences and {len(pairs)} second sentences"
-            inputs_dict = self.tokenizer(texts, pairs, 
-                                         padding=True, 
-                                         return_tensors='pt').to(self.device)
-        else:
-            inputs_dict = self.tokenizer(texts, 
-                                         padding=True,
-                                         return_tensors='pt').to(self.device)
+        inputs_dict = self.tokenizer(texts, 
+                                     padding=True,
+                                     return_tensors='pt').to(self.device)
         inputs = inputs_dict['input_ids']
         attn_mask = inputs_dict['attention_mask']
 

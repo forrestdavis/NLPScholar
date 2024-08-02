@@ -1,18 +1,15 @@
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from src.classifiers.hf_text_classification_model import HFTextClassificationModel
-from src.classifiers.load_classifiers import load_classifiers
+from src.utils.load_models import load_models
 
 config = {'models': 
-             {'hf_text_classification_model':
-              ['ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli']},
-          'predfpath': 'results/minimal_pairs.tsv',
-          'condfpath': 'stimuli/minimal_pairs.tsv',
+             {'hf_token_classification_model':
+              ["stevhliu/my_awesome_wnut_model"]},
           'device': 'mps', 
           'batchSize': 10}
 
-classifier = load_classifiers(config)[0]
+classifier = load_models(config)[0]
 premise = ["A man inspects the uniform of a figure in some East Asian country.", 
            "An older and younger man smiling.", 
            "A black race car starts up in front of a crowd of people.", 
@@ -26,7 +23,19 @@ hypothesis = ["The man is sleeping.",
               "Some men are playing a sport.",
               "A happy woman in a fairy costume holds an umbrella."]
 
-print(classifier.get_text_predictions(premise, hypothesis))
+text = ["The Golden State Warriors are an American professional basketball "\
+        "team based in San Francisco.", "Kleinfeltersville is a town in "\
+        "Pennsylvania."]
+
+output = classifier.get_by_token_predictions(text)
+
+for batch in output:
+    for word in batch:
+        print(classifier.tokenizer.convert_ids_to_tokens(word['token_id']), 
+              word['label'],
+              word['probability'])
+    print('-'*80)
+
 
 print()
 
@@ -35,3 +44,23 @@ classifier = load_classifiers(config)[0]
 print(classifier.get_predictions(text))
 
 '''
+
+config = {'models': 
+             {'hf_token_classification_model':
+              ["QCRI/bert-base-multilingual-cased-pos-english"]},
+          'device': 'mps', 
+          'batchSize': 10}
+
+text = ["The Golden State Warriors are an American professional basketball "\
+        "team based in San Francisco.", "Noam Chomsky is a soft revolution."]
+
+classifier = load_models(config)[0]
+output = classifier.get_token_predictions(text)
+
+for batch in output:
+    for word in batch:
+        print(classifier.tokenizer.convert_ids_to_tokens(word['token_id']), 
+              word['label'],
+              word['probability'])
+    print('-'*80)
+

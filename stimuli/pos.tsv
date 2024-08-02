@@ -1,0 +1,3 @@
+textid	text	condition	target
+1	The Golden State Warrirors are an American professional basketball team based in San Francisco.	random	DT NNP NNP NNPS VBP DT JJ JJ NN NN VBN IN NNP NNP .
+2	Noam Chomsky is a soft revolution.	random	NNP NNP VBZ DT JJ NN .

@@ -4,6 +4,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 from src.experiments.TSE import TSE
 from src.experiments.Interact import Interact
 from src.experiments.TextClassification import TextClassification
+from src.experiments.TokenClassification import TokenClassification
 
 config = {'models': 
              {'hf_masked_model': ['bert-base-cased']}, 
@@ -16,16 +17,17 @@ config = {'models':
           'batchSize': 10}
 
 config = {'models': 
-             {'hf_text_classification_model':
-              ['ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli']},
-          'predfpath': 'results/snli_paired_sentences.tsv',
-          'condfpath': 'stimuli/snli_paired_sentences.tsv',
+             {'hf_token_classification_model':
+              ["QCRI/bert-base-multilingual-cased-pos-english"]},
+          'predfpath': 'results/pos.tsv',
+          'condfpath': 'stimuli/pos.tsv',
           'device': 'mps', 
           'batchSize': 10}
 
 #experiment = TSE(config)
 #experiment = Interact(config)
-experiment = TextClassification(config)
+#experiment = TextClassification(config)
+experiment = TokenClassification(config)
 
 experiment.run()
 

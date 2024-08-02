@@ -109,3 +109,27 @@ class Classifier:
                          'probability': probability, 
                          'id': prediction})
         return data
+
+    def get_by_token_predictions(self, text: Union[str, List[str]]): 
+        output = self.get_token_output(text)
+        probabilities, predictions = \
+                self.convert_to_probability(output['logits']).max(-1)
+        
+        data = []
+        for batch in range(probabilities.size(0)):
+            batch_data = []
+            for token_id, probability, prediction in zip(
+                                                output['input_ids'][batch],
+                                                probabilities[batch],
+                                               predictions[batch], 
+                                              strict=True):
+                token_id = token_id.item()
+                prediction = prediction.item() 
+                probability = probability.item()
+                batch_data.append({
+                            'token_id': token_id,
+                            'label': self.id2label[prediction], 
+                             'probability': probability, 
+                             'id': prediction})
+            data.append(batch_data)
+        return data
