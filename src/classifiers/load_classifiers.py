@@ -1,20 +1,12 @@
-from ..models.LM import LM
-from ..models.hf_causal_model import HFCausalModel
-from ..models.hf_masked_model import HFMaskedModel
-
-from ..classifiers.Classifier import Classifier
-from ..classifiers.hf_text_classification_model import HFTextClassificationModel
-
-from typing import List, Union, Tuple
+from .Classifier import Classifier
+from .hf_text_classification_model import HFTextClassificationModel
+from typing import List
 
 model_nickname_to_model_class = {
-    'hf_causal_model': HFCausalModel,
-    'hf_masked_model': HFMaskedModel,
-    'hf_text_classification_model': HFTextClassificationModel, 
+    'hf_text_classification_model': HFTextClassificationModel,
     }
 
-def get_model_instance(model_type: str, config: dict
-                      ) -> Tuple[Union[LM,Classifier], dict]:
+def get_model_instance(model_type: str, config: dict): 
     """ Returns the relevant model class and sets the kwargs from config.
 
     Args:
@@ -22,16 +14,14 @@ def get_model_instance(model_type: str, config: dict
         config (`dict`): config file with model and tokenizer fields (see README)
 
     Returns:
-        `Tuple[Union[LM, Classifier], dict]`: Tuple of LM or Classifier class
-                                and dictionary with optional parameters. 
+        `Tuple[Classifier, dict]`: Tuple of Classifier class and dictionary with
+                                    optional parameters. 
 
     """
     model_cls = model_nickname_to_model_class[model_type]
-    assert issubclass(model_cls, LM) or issubclass(model_cls, Classifier)
+    assert issubclass(model_cls, Classifier)
 
     kwargs = {}
-    if 'getHidden' in config:
-        kwargs['getHidden'] = True
     if 'precision' in config:
         kwargs['precision'] = config['precision']
     if 'device' in config:
@@ -56,14 +46,14 @@ def create_tokenizer_configs(config: dict) -> List[dict]:
                                                      [tokenizer_instance]}})
     return tokenizer_configs
 
-def load_models(config: dict) -> List[Union[LM, Classifier]]:
-    """ Loads instances of models specified in config.
+def load_classifiers(config: dict) -> List[Classifier]:
+    """ Loads instances of classifiers specified in config.
 
     Args:
         config (`dict`): config file with model and tokenizer fields (see README)
 
     Returns:
-        `List[Union[LM, Classifier]]`: List of model or classifier instances 
+        `List[Classifier]`: List of model instances 
     """
     return_models = []
     tokenizer_configs = create_tokenizer_configs(config)
@@ -81,14 +71,14 @@ def load_models(config: dict) -> List[Union[LM, Classifier]]:
                                                **kwargs))
     return return_models
     
-def yield_models(config: dict):
+def yield_classifiers(config: dict):
     """ Yield instances of models specified in config.
 
     Args:
         config (`dict`): config file with model and tokenizer fields (see README)
 
     Yields:
-        `Union[LM, Classifier]`: model or classifier instances 
+        `Classifier`: model instances 
     """
     tokenizer_configs = create_tokenizer_configs(config)
     for model_type in config['models']:
