@@ -21,9 +21,14 @@ class HFMaskedModel(LM):
                          offset=offset,
                          **kwargs)
 
+        self.PLL_type = "within_word_l2r"
+        if 'PLL_type' in kwargs:
+            self.PLL_type = kwargs['PLL_type']
+
         # Load tokenizer
         if tokenizer_config is None:
-            tokenizer_config = {'tokenizers': {'hf': [modelname]}}
+            tokenizer_config = {'tokenizers': {'hf_tokenizer': [modelname]}}
+        tokenizer_config = {**tokenizer_config, **kwargs}
         self.tokenizer = load_tokenizers(tokenizer_config)[0]
 
 
@@ -51,10 +56,9 @@ class HFMaskedModel(LM):
         self.model.eval()
 
     @torch.no_grad()
-    def get_output(self, texts: Union[str, List[str]], 
-                   PLL_type: str = "within_word_l2r"):
+    def get_output(self, texts: Union[str, List[str]]):
         
-        assert PLL_type in {'original', 'within_word_l2r'}, f"PLL metric {PLL_type} not supported"
+        assert self.PLL_type in {'original', 'within_word_l2r'}, f"PLL metric {PLL_type} not supported"
 
         # batchify 
         if isinstance(texts, str):
@@ -98,7 +102,7 @@ class HFMaskedModel(LM):
             assert masked_input[0,idx] == self.tokenizer.mask_token_id
 
             # Following Kauf & Ivanova (2023) https://arxiv.org/abs/2305.10588
-            if PLL_type == 'within_word_l2r':
+            if self.PLL_type == 'within_word_l2r':
                 # For each batch, we look at the words after the
                 # target word, if it is part of the same word as
                 # the target word (souvenir -> so ##uven ##ir)

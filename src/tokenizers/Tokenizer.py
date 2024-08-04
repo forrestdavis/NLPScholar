@@ -11,15 +11,18 @@ from typing import Union, Dict, List, Tuple, Optional
 
 class Tokenizer: 
 
-    def __init__(self, version: str, doLower: bool = False,
-                 addPrefixSpace: bool = False,
-                 addPadToken: bool = True):
+    def __init__(self, tokenizername: str, 
+                 **kwargs): 
         """ Initialize a tokenizer. 
         """
-        self.tokenizername = version
-        self.doLower = doLower
-        self.addPrefixSpace = addPrefixSpace
-        self.addPadToken = addPadToken
+        self.tokenizername = tokenizername
+
+        # Default values
+        self.doLower = False
+        self.addPrefixSpace = False
+        self.addPadToken = True
+        for k, v in kwargs.items():
+            setattr(self, k, v)
 
     def __repr__(self):
         return self.tokenizername

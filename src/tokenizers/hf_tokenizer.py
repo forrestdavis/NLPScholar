@@ -5,11 +5,13 @@ from .Tokenizer import Tokenizer
 
 class HFTokenizer(Tokenizer):
     """ Wraps Tokenizer class around HuggingFace AutoTokenizer """
-    def __init__(self, version, doLower=False, addPrefixSpace=False, 
-                addPadToken=True):
-        super().__init__(version, doLower, addPrefixSpace, addPadToken)
-        self._tokenizer = transformers.AutoTokenizer.from_pretrained(version,
-                                            add_prefix_space=addPrefixSpace)
+    def __init__(self, tokenizername: str, 
+                 **kwargs):
+
+        super().__init__(tokenizername, **kwargs)
+        self._tokenizer = \
+            transformers.AutoTokenizer.from_pretrained(tokenizername,
+                                        add_prefix_space=self.addPrefixSpace)
         self.convert_ids_to_tokens = self._tokenizer.convert_ids_to_tokens
         self.all_special_tokens = self._tokenizer.all_special_tokens
         self.model_max_length = self._tokenizer.model_max_length
@@ -17,14 +19,23 @@ class HFTokenizer(Tokenizer):
         self.batch_decode = self._tokenizer.batch_decode
 
         # deal with pad token 
-        if self.addPadToken:
-            if not self._tokenizer.pad_token:
+        if not self._tokenizer.pad_token:
+            if self.addPadToken == True or self.addPadToken == 'eos_token':
                 if self._tokenizer.eos_token_id is not None:
                     self._tokenizer.pad_token = self._tokenizer.eos_token
                     sys.stderr.write(f"Using {self._tokenizer.eos_token} as pad token\n")
                 else:
-                    sys.stderr.write(f"Need to specify a pad token\n")
+                    sys.stderr.write(f"There is no eos token for the "\
+                                     "tokenizer\n")
+            elif self.addPadToken:
+                token_id = self.encode(self.addPadToken)
+                if len(token_id) != 1:
+                    sys.stderr.write(f"{self.addPadToken} is not a single " \
+                                     "token so it cannot be a pad token\n")
+                    sys.exit(1)
 
+                self._tokenizer.pad_token = self.addPadToken
+                    
     @property 
     def pad_token_id(self) -> int:
         return self._tokenizer.pad_token_id
