@@ -3,66 +3,15 @@
 # (https://github.com/forrestdavis)
 # August 2024
 
-from ..utils.load_models import load_models, yield_models
+from .Evaluation import Evaluation
 import pandas as pd
 
-class TextClassification:
+class TextClassification(Evaluation):
 
-    def __init__(self, config: dict):
-
-        # Default values
-        self.saveMemory = True
-        self.checkFileFormat = True
-        self.batchSize = 1
-
-        # Check for necessary things 
-        assert 'predfpath' in config, "Must pass in predfpath"
-        assert 'condfpath' in config, "Must pass in condfpath"
-        self.predfpath = config['predfpath']
-        self.condfpath = config['condfpath']
-
-        if 'loadAll' in config:
-            setattr(self, "saveMemory", False)
-        if 'batchSize' in config:
-            setattr(self, "batchSize", config['batchSize'])
-
-        # Load models
-        if self.saveMemory:
-            self.Classifiers = yield_models(config)
-        else:
-            self.Classifiers = load_models(config)
-
-        # Load data 
-        self.data = self.load_cond()
-        if self.checkFileFormat:
-            self.formatCheck()
-
-
-    def load_cond(self):
-        """ Load condition file 
-
-        Returns:
-            `pd.DataFrame`: pandas dataframe of data
-        """
-        return pd.read_csv(self.condfpath, sep='\t')
-
-    def formatCheck(self):
-        """ Ensure that condition file has the expected format. As in, 
-
-        - `textid`: the ID of the specific pair of text being compared;
-                    matches what is in `predictability.tsv`
-        - `text`: the full text
-        - `pair`: *optional* second sentence to use as a pair 
-        - `condition`: the specific conditions or group that the text
-                    belongs to
-        - `target`: the target label that this text belongs to 
-        """
-
-        NEEDS = ['textid', 'text', 'condition', 'target']
-
-        columns = self.data.columns
-        for need in NEEDS:
-            assert need in columns, f"Missing {need} in {self.condfpath}"
+    def __init__(self, config: dict, 
+                **kwargs):
+        super().__init__(config, **kwargs)
+        self.NEEDS = ['textid', 'text', 'condition', 'target']
 
     def gather_labeled_output(self, Classifier):
         """ Returns the outputs and word alignments for a langaguage model for
@@ -90,7 +39,7 @@ class TextClassification:
             batch = text[batch_idx:batch_idx+self.batchSize]
             if pair is not None:
                 batch_pair = pair[batch_idx:batch_idx+self.batchSize]
-            outputs.extend(Classifier.get_text_predictions(batch, pair))
+            outputs.extend(Classifier.get_text_predictions(batch, batch_pair))
         return outputs
 
     def add_entries(self, entriesDict, outputs, Classifier):
@@ -112,7 +61,7 @@ class TextClassification:
         return 
 
 
-    def run(self):
+    def evaluate(self):
         """ Run text classification and save result to predfpath. 
 
         The output has the following information. 
@@ -124,6 +73,14 @@ class TextClassification:
         - `predicted`: the predicted label for this text belong
         - `prob`: the predicted label's probability
         """
+        # Load data 
+        assert self.condfpath is not None, "Missing a condfpath value\n"
+        assert self.predfpath is not None, "Missing a condfpath value\n"
+
+        self.data = self.load_cond()
+        if self.checkFileColumns:
+            self.columnCheck()
+
         predictData = {'textid': [], 
                        'target': [], 
                        'model': [], 
@@ -131,11 +88,52 @@ class TextClassification:
                        'predicted': [], 
                        'prob': [],
                       }
-        for Classifier in self.Classifiers:
+        for Classifier in self.Models:
             outputs = self.gather_labeled_output(Classifier)
             self.add_entries(predictData, outputs, Classifier)
 
         predictData = pd.DataFrame.from_dict(predictData)
-        predictData.to_csv(self.predfpath, index=False, sep='\t')
+        self.save_evaluation(predictData)
 
+    def interact(self):
+        """ Run interactive mode with TextClassification. User is asked to input
+        a text and an optional pair (for tasks like natural language inference).
 
+        Prints:
+            `text`: The text inputted (shortened to fit on screen)
+            `ModelName`: Name of the model (shortened to fit on screen)
+            `label`: The most likely classification label 
+            `prob`: Probability of the label of the text 
+        """
+
+        text = "text" + ' '*20
+        model = "ModelName" + ' '*16
+        label = "label" + ' '*6
+        prob = "prob" + ' '*6
+        header = f"{text} | {model} | {label} | {prob}"
+
+        # Only consider the first model
+        if self.loadAll:
+            Classifier = self.Models[0]
+        else:
+            Classifier = next(self.Models)
+
+        while True:
+            text = input('text (or STOP): ').strip()
+            if text == 'STOP':
+                break
+            pair = input('pair (optional): ').strip()
+            print(header)
+            print('-'*len(header))
+            if pair == '':
+                pair = None
+            output = Classifier.get_text_predictions(text, pair)[0]
+            if len(text) > 24:
+                text = text[:21] + '...'
+            modelName = str(Classifier)
+            if len(modelName) > 24:
+                modelName = modelName[:21] + '...'
+            prob = round(output['probability'], 5)
+            print_out = f"{text: <24} | {modelName: <24}"\
+                        f" | {output['label']: <11} | {prob: >10}"
+            print(print_out)

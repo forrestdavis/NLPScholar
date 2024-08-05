@@ -1,11 +1,13 @@
-exp: MinimalPair
+exp: TokenClassification
+
+mode: 
+    - interact
+    - evaluate
 
 models: 
-      hf_causal_model:
-          - gpt2
+      hf_token_classification_model:
+          - QCRI/bert-base-multilingual-cased-pos-english
 
-predfpath: predictions/minimal_pairs.tsv
+condfpath: conditions/pos.tsv
 
-condfpath: conditions/minimal_pairs.tsv
-
-verbose: False
+predfpath: predictions/pos.tsv

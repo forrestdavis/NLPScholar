@@ -1,4 +1,3 @@
-from ..evaluations.Interact import Interact
 from ..evaluations.MinimalPair import MinimalPair
 from ..evaluations.TokenClassification import TokenClassification
 from ..evaluations.TextClassification import TextClassification
@@ -6,7 +5,6 @@ from .load_kwargs import load_kwargs
 
 evaluation_nickname_to_evaluation_class = {
     'MinimalPair': MinimalPair, 
-    'Interact': Interact, 
     'TokenClassification': TokenClassification, 
     'TextClassification': TextClassification,
     }
@@ -17,7 +15,7 @@ def load_evaluation(config: dict):
     Args:
         config (`dict`): config file with tokenizer fields (see README)
     Returns:
-        `Union[Interact, MinimalPair, TokenClassification, TextClassification]`:
+        `Union[MinimalPair, TokenClassification, TextClassification]`:
             Evaluation Instance
     """
     evaluation_type = config['exp']

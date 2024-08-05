@@ -21,7 +21,7 @@ class HFTokenClassificationModel(Classifier):
 
         # Load tokenizer
         if tokenizer_config is None:
-            tokenizer_config = {'tokenizers': {'hf': [modelname]}}
+            tokenizer_config = {'tokenizers': {'hf_tokenizer': [modelname]}}
         self.tokenizer = load_tokenizers(tokenizer_config)[0]
 
         if self.precision == '16bit':

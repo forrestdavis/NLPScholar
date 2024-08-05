@@ -1,0 +1,6 @@
+textid	target	model	tokenizer	predicted	prob
+1	contradiction	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	contradiction	0.9991848468780518
+2	neutral	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	neutral	0.9771305918693542
+3	contradiction	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	contradiction	0.9990367293357849
+4	entailment	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	entailment	0.9510875940322876
+5	neutral	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	neutral	0.9674780964851379

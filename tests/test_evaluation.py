@@ -1,18 +1,23 @@
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from src.evaluations.TSE import TSE
-from src.evaluations.Interact import Interact
+from src.evaluations.MinimalPair import MinimalPair
 from src.evaluations.TextClassification import TextClassification
 from src.evaluations.TokenClassification import TokenClassification
 
 config = {'models': 
              {'hf_masked_model': ['bert-base-cased']}, 
-          'tokenizers':
-            {'hf': ['bert-base-cased']}, 
           'ignorePunct': None, 
           'predfpath': 'results/minimal_pairs.tsv',
-          'condfpath': 'stimuli/minimal_pairs.tsv',
+          'condfpath': 'stimuli/minimal_pairs.tsv'}
+
+config = {'models': 
+          {'hf_text_classification_model':
+           ["ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli"]}}
+
+kwargs = {
+        'showSpecialTokens': False,
+          'loadAll': True,
           'device': 'mps', 
           'batchSize': 10}
 
@@ -24,10 +29,12 @@ config = {'models':
           'device': 'mps', 
           'batchSize': 10}
 
-#evaluation = TSE(config)
+#evaluation = TextClassification(config, **kwargs)
+#evaluation = MinimalPair(config, **kwargs)
 #evaluation = Interact(config)
 #evaluation = TextClassification(config)
+config = {**config, **kwargs}
 evaluation = TokenClassification(config)
 
-evaluation.run()
+evaluation.interact()
 

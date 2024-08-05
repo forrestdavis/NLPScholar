@@ -17,7 +17,10 @@ Interacting with the toolkit is facilitated by config files. An example one is
 copied below showing how to run GPT2 in interactive mode. 
 
 ```yaml
-exp: Interact
+exp: MinimalPair
+
+mode: 
+    - interact
 
 models: 
       hf_causal_model:
@@ -26,20 +29,30 @@ models:
 
 #### `exp`
 
-There are currently 4 experiments: `Interact`, `TSE`, `TextClassification`, and
-`TokenClassification`. `Interact` allows you to test out sentences on the
-command line and see the by-word surprisal and probability values for each word.
-`TSE` yields by-token (that is, including subwords) surprisal and probability
-measures for a minimal-pair experiment (i.e., targeted syntactic evaluations).
-`TextClassification` is for classification over texts. In other words, one label
-is returned for each text inputted (e.g., sentiment analysis, natural language
-inference). `TokenClassification` is for classification over tokens in a text.
-In other words, one label is returned for each token (i.e., subword) in a text
-(e.g., part of speech tagging, named entity recognition). 
+There are three experiments: `MinimalPair`, `TextClassification`, and
+`TokenClassification`. `MinimalPair` is for by-token (that is, including
+subword) predictability measures for minimal pair experiments (i.e., targeted
+syntactic evaluations). `TextClassification` is for classification over texts.
+In other words, one label is returned for each text inputted (e.g., sentiment
+analysis, natural language inference). `TokenClassification` is for
+classification over tokens in a text.  In other words, one label is returned for
+each token (i.e., subword) in a text (e.g., part of speech tagging, named entity
+recognition). 
+
+#### `mode`
+
+Each experiment has `mode`s. There are two modes: `interact`, and `evaluate`.
+For `MinimalPair`, `interact` yields by-word (combining subword tokens)
+predictability measures for an inputted sentence and `evaluate` returns by-token
+predictability measures for a dataset.  For `TextClassification`, `interact`
+yields by-text classification labels for inputted text and `evaluate` returns
+by-text labels for a dataset.  For `TokenClassification`, `interact` yields
+by-token classification labels for inputted text and `evaluate` returns by-token
+classification labels for a dataset. 
 
 #### `models`
 
-There are currently 4 types of models supported (all building on HuggingFace's
+There are 4 types of models supported (all building on HuggingFace's
 transformers library): causal language models (`hf_causal_model`), masked
 language models (`hf_masked_model`), text classification models
 (`hf_text_classification_model`), and token classification models
@@ -228,10 +241,42 @@ the model, an error may be thrown during tokenization.
 addPadToken: True
 ```
 
-#### loadAll
+#### `loadAll`
 
-#### batchSize
+In evaluating models (in `evaluate` mode), more than one model can be evaluated.
+`loadAll` controls memory usage, with `True` for loading all models to memory at
+once and `False` for loading one model at a time into memory. The default
+behavior is `False`. 
 
-#### checkFileFormat
+```yaml
+loadAll: False
+```
 
-#### verbose
+#### `batchSize`
+
+In evaluating models (in `evaluate` mode), you can control the batch size of the
+model with `batchSize`. The default size is 1. 
+
+```yaml
+batchSize: 1
+```
+
+#### `checkFileColumns`
+
+In evaluating models (in `evaluate` mode), you can check that the necessary
+columns for the broader experiment are included in the file indexed with
+`condfpath`. The default value is `True`, meaning the columns are checked. 
+
+```yaml
+checkFileColumns: True
+```
+
+#### `verbose`
+
+In evaluating models (in `evaluate` mode), you can control verbosity with
+`verbose`. When set to `True`, it prints some more information to the screen.
+The default behavior is `True`. 
+
+```yaml
+verbose: True
+```

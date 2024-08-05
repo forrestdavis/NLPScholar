@@ -55,7 +55,7 @@ text = ["The Golden State Warriors are an American professional basketball "\
         "team based in San Francisco.", "Noam Chomsky is a soft revolution."]
 
 classifier = load_models(config)[0]
-output = classifier.get_token_predictions(text)
+output = classifier.get_by_token_predictions(text)
 
 for batch in output:
     for word in batch:
@@ -64,3 +64,14 @@ for batch in output:
               word['probability'])
     print('-'*80)
 
+
+print()
+config = {'models': 
+          {'hf_text_classification_model':
+           ["ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli"]}}
+
+text = "A black race car starts up in front of a crowd of people."
+pair = "A man is driving down a lonely road."
+
+classifier = load_models(config)[0]
+print(classifier.get_text_predictions(text, pair))

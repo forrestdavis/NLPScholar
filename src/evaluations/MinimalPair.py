@@ -3,74 +3,16 @@
 # (https://github.com/forrestdavis)
 # August 2024
 
-from ..utils.load_models import load_models, yield_models
-import sys
+from .Evaluation import Evaluation
 import pandas as pd
 
-class MinimalPair:
+class MinimalPair(Evaluation):
 
     def __init__(self, config: dict, 
                 **kwargs):
-
-        # Default values
-        self.loadAll = False
-        self.checkFileFormat = True
-        self.batchSize = 1
-        self.verbose = True
-        for k, v in kwargs.items():
-            setattr(self, k, v)
-
-        # Check for necessary things 
-        assert 'predfpath' in config, "Must pass in predfpath"
-        assert 'condfpath' in config, "Must pass in condfpath"
-        self.predfpath = config['predfpath']
-        self.condfpath = config['condfpath']
-
-        # Load models
-        if self.loadAll:
-            if self.verbose:
-                sys.stderr.write('Loading all models to memory...\n')
-            self.LMs = load_models(config)
-        else:
-            self.LMs = yield_models(config)
-
-        # Load data 
-        self.data = self.load_cond()
-        if self.checkFileFormat:
-            self.formatCheck()
-
-
-    def load_cond(self):
-        """ Load condition file 
-
-        Returns:
-            `pd.DataFrame`: pandas dataframe of data
-        """
-        if self.verbose:
-            sys.stderr.write(f"Loading data from {self.condfpath}...\n")
-        return pd.read_csv(self.condfpath, sep='\t')
-
-    def formatCheck(self):
-        """ Ensure that condition file has the expected format. As in, 
-
-        - `sentid`: the ID of the specific pair of sentences being compared;
-                    matches what is in `predictability.tsv`
-        - `sentence`: the full sentence
-        - `comparison`: expected and unexpected
-        - `lemma`: the word lemma
-        - `pairid`: the ID of the specific pair of sentences being compared
-        - `contextid`: the ID of context shared across all lemmas
-        - `condition`: the specific conditions or group that the sentence
-                    belongs to
-        - `ROI`: the specific word positions that are of interest
-        """
-
-        NEEDS = ['sentid', 'sentence', 'lemma', 'comparison', 
-                 'contextid', 'pairid', 'condition', 'ROI']
-
-        columns = self.data.columns
-        for need in NEEDS:
-            assert need in columns, f"Missing {need} in {self.condfpath}"
+        super().__init__(config, **kwargs)
+        self.NEEDS = ['sentid', 'sentence', 'lemma', 'comparison', 'contextid',
+                      'pairid', 'condition', 'ROI']
 
     def gather_token_output(self, LM):
         """ Returns the outputs and word alignments for a langaguage model for
@@ -143,8 +85,8 @@ class MinimalPair:
         return 
 
 
-    def run(self):
-        """ Run MinimalPair and save result to predfpath. 
+    def evaluate(self):
+        """ Evaluate MinimalPair and save result to predfpath. 
 
         The output has the following information. 
         - `token`: the subword token
@@ -158,6 +100,14 @@ class MinimalPair:
         - `surp`: the surprisal of the token given the context; log base 2
 
         """
+        # Load data 
+        assert self.condfpath is not None, "Missing a condfpath value\n"
+        assert self.predfpath is not None, "Missing a condfpath value\n"
+
+        self.data = self.load_cond()
+        if self.checkFileColumns:
+            self.columnCheck()
+
         predictData = {'token': [], 
                        'sentid': [], 
                        'word': [],
@@ -168,17 +118,25 @@ class MinimalPair:
                        'prob': [], 
                        'surp': [],
                       }
-        for LM in self.LMs:
+        for LM in self.Models:
             outputs, word_alignments = self.gather_token_output(LM)
             self.add_entries(predictData, outputs, word_alignments, LM)
 
         predictData = pd.DataFrame.from_dict(predictData)
-        if self.verbose:
-            sys.stderr.write(f"Saving evaluations to {self.predfpath}...\n")
-        predictData.to_csv(self.predfpath, index=False, sep='\t')
-
+        self.save_evaluation(predictData)
 
     def interact(self):
+        """ Run interactive mode with MinimalPair. User is asked to input a text
+        and the by-word predictability measures are given.
+
+        Prints:
+            `word`: The word given by tokenizer 
+            `Split`: Whether the word was split 
+            `Unk`: Whether the word is an unk token
+            `ModelName`: Name of the model (shortened to fit on screen)
+            `surp`: Surprisal of the word (joint over subword tokens)
+            `prob`: Probability of the word (joint over subword tokens)
+        """
 
         word = "word" + ' '*16
         split = "Split" 
@@ -188,11 +146,19 @@ class MinimalPair:
         prob = "prob" + ' '*6
         header = f"{word} | {split} | {unk} | {model} | {surp} | {prob}"
 
+        # Only consider the first model
+        if self.loadAll:
+            LM = self.Models[0]
+        else:
+            LM = next(self.Models)
+
         while True:
-            sent = input('string: ').strip()
+            sent = input('text (or STOP): ').strip()
+            if sent == 'STOP':
+                break
             print(header)
             print('-'*len(header))
-            output = self.LMs[0].get_aligned_words_predictabilities(sent)[0]
+            output = LM.get_aligned_words_predictabilities(sent)[0]
             for word in output:
                 surp = round(word.surp, 3)
                 prob = round(word.prob, 5)

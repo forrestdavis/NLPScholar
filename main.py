@@ -12,5 +12,11 @@ else:
 with open(configfname, 'r') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
 
-exp = load_evaluation(config)
-exp.run()
+modes = config['mode']
+for mode in modes:
+    if mode == 'interact':
+        exp = load_evaluation(config)
+        exp.interact()
+    if mode == 'evaluate':
+        exp = load_evaluation(config)
+        exp.evaluate()
