@@ -1,10 +1,10 @@
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from src.experiments.TSE import TSE
-from src.experiments.Interact import Interact
-from src.experiments.TextClassification import TextClassification
-from src.experiments.TokenClassification import TokenClassification
+from src.evaluations.TSE import TSE
+from src.evaluations.Interact import Interact
+from src.evaluations.TextClassification import TextClassification
+from src.evaluations.TokenClassification import TokenClassification
 
 config = {'models': 
              {'hf_masked_model': ['bert-base-cased']}, 
@@ -24,10 +24,10 @@ config = {'models':
           'device': 'mps', 
           'batchSize': 10}
 
-#experiment = TSE(config)
-#experiment = Interact(config)
-#experiment = TextClassification(config)
-experiment = TokenClassification(config)
+#evaluation = TSE(config)
+#evaluation = Interact(config)
+#evaluation = TextClassification(config)
+evaluation = TokenClassification(config)
 
-experiment.run()
+evaluation.run()
 

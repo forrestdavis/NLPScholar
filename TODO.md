@@ -5,3 +5,7 @@
 - [ ] Add ngram 
 - [ ] Add custom tokenizer 
 - [ ] Add compatibility with marty's neural-complexity
+- [ ] rename experiment to evaluate
+- [ ] rename TSE to MinimalPair
+- [ ] add mode flag 
+- [ ] interactive mode with classification

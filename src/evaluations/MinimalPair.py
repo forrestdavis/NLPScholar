@@ -1,20 +1,24 @@
-# Basic class for targeted syntactic evaluations (TSE; or minimal pair)
-# experiments 
+# Basic class for minimal pair evaluations (or TSE)
 # Implemented by Forrest Davis 
 # (https://github.com/forrestdavis)
 # August 2024
 
 from ..utils.load_models import load_models, yield_models
+import sys
 import pandas as pd
 
-class TSE:
+class MinimalPair:
 
-    def __init__(self, config: dict):
+    def __init__(self, config: dict, 
+                **kwargs):
 
         # Default values
-        self.saveMemory = True
+        self.loadAll = False
         self.checkFileFormat = True
         self.batchSize = 1
+        self.verbose = True
+        for k, v in kwargs.items():
+            setattr(self, k, v)
 
         # Check for necessary things 
         assert 'predfpath' in config, "Must pass in predfpath"
@@ -22,16 +26,13 @@ class TSE:
         self.predfpath = config['predfpath']
         self.condfpath = config['condfpath']
 
-        if 'loadAll' in config:
-            setattr(self, "saveMemory", False)
-        if 'batchSize' in config:
-            setattr(self, "batchSize", config['batchSize'])
-
         # Load models
-        if self.saveMemory:
-            self.LMs = yield_models(config)
-        else:
+        if self.loadAll:
+            if self.verbose:
+                sys.stderr.write('Loading all models to memory...\n')
             self.LMs = load_models(config)
+        else:
+            self.LMs = yield_models(config)
 
         # Load data 
         self.data = self.load_cond()
@@ -45,6 +46,8 @@ class TSE:
         Returns:
             `pd.DataFrame`: pandas dataframe of data
         """
+        if self.verbose:
+            sys.stderr.write(f"Loading data from {self.condfpath}...\n")
         return pd.read_csv(self.condfpath, sep='\t')
 
     def formatCheck(self):
@@ -53,18 +56,17 @@ class TSE:
         - `sentid`: the ID of the specific pair of sentences being compared;
                     matches what is in `predictability.tsv`
         - `sentence`: the full sentence
+        - `comparison`: expected and unexpected
         - `lemma`: the word lemma
+        - `pairid`: the ID of the specific pair of sentences being compared
         - `contextid`: the ID of context shared across all lemmas
         - `condition`: the specific conditions or group that the sentence
                     belongs to
         - `ROI`: the specific word positions that are of interest
-        - `expected`: the comparison that is predicted to have higher
-                    probability; comparison should match what is in
-                    `predictability.tsv`
         """
 
-        NEEDS = ['sentid', 'sentence', 'lemma', 'contextid', 
-                 'condition', 'ROI', 'expected']
+        NEEDS = ['sentid', 'sentence', 'lemma', 'comparison', 
+                 'contextid', 'pairid', 'condition', 'ROI']
 
         columns = self.data.columns
         for need in NEEDS:
@@ -101,12 +103,10 @@ class TSE:
         """
         sentences = self.data['sentence'].tolist()
         sentids = self.data['sentid'].tolist()
-        conditions = self.data['condition'].tolist()
 
         for batch in range(len(sentences)):
             output = outputs[batch]
             sentid = sentids[batch]
-            condition = conditions[batch]
             alignments = word_alignments[batch]['mapping_to_words']
             words = word_alignments[batch]['words']
 
@@ -135,7 +135,6 @@ class TSE:
                 entriesDict['sentid'].append(sentid)
                 entriesDict['word'].append(word)
                 entriesDict['wordpos'].append(alignment)
-                entriesDict['condition'].append(condition)
                 entriesDict['model'].append(LM.modelname)
                 entriesDict['tokenizer'].append(LM.tokenizer.tokenizername)
                 entriesDict['punctuation'].append(isPunct)
@@ -145,14 +144,13 @@ class TSE:
 
 
     def run(self):
-        """ Run TSE and save result to predfpath. 
+        """ Run MinimalPair and save result to predfpath. 
 
         The output has the following information. 
         - `token`: the subword token
         - `sentid`: the ID of the specific pair of sentences being compared
         - `word`: the word the subword token belongs to
         - `wordpos`: the specific word in the context sentence that the subword token belongs to
-        - `condition`: the specific condition, e.g., "grammatical" or "ungrammatical"
         - `model`: the name of the language model
         - `tokenizer`: the name of the tokenizer
         - `punctuation`: is the token punctuation?
@@ -164,7 +162,6 @@ class TSE:
                        'sentid': [], 
                        'word': [],
                        'wordpos': [], 
-                       'condition': [], 
                        'model': [],
                        'tokenizer': [],
                        'punctuation': [],
@@ -176,6 +173,28 @@ class TSE:
             self.add_entries(predictData, outputs, word_alignments, LM)
 
         predictData = pd.DataFrame.from_dict(predictData)
+        if self.verbose:
+            sys.stderr.write(f"Saving evaluations to {self.predfpath}...\n")
         predictData.to_csv(self.predfpath, index=False, sep='\t')
 
 
+    def interact(self):
+
+        word = "word" + ' '*16
+        split = "Split" 
+        unk = "Unk"
+        model = "ModelName" + ' '*11
+        surp = "surp" + ' '*4
+        prob = "prob" + ' '*6
+        header = f"{word} | {split} | {unk} | {model} | {surp} | {prob}"
+
+        while True:
+            sent = input('string: ').strip()
+            print(header)
+            print('-'*len(header))
+            output = self.LMs[0].get_aligned_words_predictabilities(sent)[0]
+            for word in output:
+                surp = round(word.surp, 3)
+                prob = round(word.prob, 5)
+                print_out = f"{word.word: <20} | {word.isSplit:5} | {word.isUnk:3} | {word.modelName.split('/')[-1]: <20} | {surp: >8} | {prob: >10}"
+                print(print_out)        

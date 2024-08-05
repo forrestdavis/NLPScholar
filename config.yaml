@@ -1,5 +1,11 @@
-exp: Interact
+exp: MinimalPair
 
 models: 
       hf_causal_model:
           - gpt2
+
+predfpath: predictions/minimal_pairs.tsv
+
+condfpath: conditions/minimal_pairs.tsv
+
+verbose: False

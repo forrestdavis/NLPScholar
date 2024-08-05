@@ -1,4 +1,4 @@
-name: nlp-test
+name: nlp
 channels:
   - conda-forge
 dependencies:

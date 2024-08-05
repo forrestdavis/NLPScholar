@@ -227,3 +227,11 @@ the model, an error may be thrown during tokenization.
 ```yaml
 addPadToken: True
 ```
+
+#### loadAll
+
+#### batchSize
+
+#### checkFileFormat
+
+#### verbose
