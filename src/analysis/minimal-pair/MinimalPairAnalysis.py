@@ -35,7 +35,6 @@ class MinimalPairAnalysis:
 
         # Load data
         self.preddat = pd.read_csv(self.predfpath, sep='\t')
-        self.preddat = self.preddat.drop('condition', axis=1) # remove when condition is deleted from predictions tsv
 
         self.conddat = pd.read_csv(self.condfpath, sep='\t')
 
@@ -205,9 +204,9 @@ class MinimalPairAnalysis:
 ## Tests
 
 config = {
-    'predfpath': '../../../results/minimal_pairs.tsv',
-    'condfpath': '../../../stimuli/minimal_pairs.tsv',
-    'resultsfpath': '../../../results/minimal_pairs_analysis.tsv',
+    'predfpath': '../../../predictions/minimal_pairs.tsv',
+    'condfpath': '../../../conditions/minimal_pairs.tsv',
+    'resultsfpath': '../../../results/minimal_pairs.tsv',
     'pred_measure': 'surp',
     'roi_summary': 'micro',
     'k_lemmas': '1'
@@ -220,4 +219,3 @@ x = MinimalPairAnalysis(config)
 
 x.run()
 
-    
