@@ -62,15 +62,10 @@ class HFTokenClassificationModel(Classifier):
 
         inputs_dict = self.tokenizer(texts, 
                                      padding=True,
+                                     truncation=True,
                                      return_tensors='pt').to(self.device)
         inputs = inputs_dict['input_ids']
         attn_mask = inputs_dict['attention_mask']
-
-        # if input is longer than maximum allowed stop 
-        if inputs.shape[1] > MAX_LENGTH:
-            sys.stderr.write(f"Input is {inputs.shape[1]} while max is"\
-                             f" {MAX_LENGTH}\n")
-            sys.exit(1)
 
         # Mark last position without padding
         # this works because transformers tokenizer flags 

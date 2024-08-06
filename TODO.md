@@ -1,11 +1,13 @@
-- [ ] Handle longer sequences in classification (truncate?)
-- [ ] Handle longer sequences in language models (sliding window?)
+- [ ] Add in pretrained vs. new model loading
 - [ ] Add classification trainer 
 - [ ] Add language model trainer 
+- [ ] Add hyperparameter search 
 - [ ] Add ngram 
 - [ ] Add custom tokenizer 
 - [ ] Add compatibility with marty's neural-complexity
-- [ ] rename experiment to evaluate
-- [ ] rename TSE to MinimalPair
-- [ ] add mode flag 
-- [ ] interactive mode with classification
+- [ ] Handle longer sequences in language models (sliding window?)
+- [X] rename experiment to evaluate
+- [X] rename TSE to MinimalPair
+- [X] add mode flag 
+- [X] interactive mode with classification
+- [X] Handle longer sequences in classification (truncate)

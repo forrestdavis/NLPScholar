@@ -4,12 +4,25 @@ sys.path.append(str(Path(__file__).parent.parent))
 from src.utils.load_models import load_models
 
 config = {'models': 
+          {'hf_text_classification_model':
+           ["distilbert/distilbert-base-uncased"]},
+          'loadPretrained': False,
+          'num_labels': 5,
+         }
+
+classifier = load_models(config)[0]
+print(classifier.get_text_output('he is so so happy')['logits'])
+sys.exit(1)
+
+config = {'models': 
              {'hf_token_classification_model':
               ["stevhliu/my_awesome_wnut_model"]},
           'device': 'mps', 
+          'precision': '16bit',
           'batchSize': 10}
 
 classifier = load_models(config)[0]
+
 premise = ["A man inspects the uniform of a figure in some East Asian country.", 
            "An older and younger man smiling.", 
            "A black race car starts up in front of a crowd of people.", 
