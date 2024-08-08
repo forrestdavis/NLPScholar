@@ -37,3 +37,11 @@ Next, activate the new environment:
 
     conda activate nlp
 
+## Add `nlp` as a kernel on Turing
+
+If you are using `nlp` on Turning and want to code in a jupyter notebook
+environment, you need to add it as a kernel. You can do so with: 
+
+    python -m ipykernel install --user --name=nlp 
+
+Then, when you open a notebook, select nlp as your kernel.

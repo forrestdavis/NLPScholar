@@ -1,5 +1,6 @@
 - [ ] Add in pretrained vs. new model loading
 - [ ] Add classification trainer 
+- [ ] Update environment.yaml with the correct version of transformers
 - [ ] Add language model trainer 
 - [ ] Add hyperparameter search 
 - [ ] Add ngram 

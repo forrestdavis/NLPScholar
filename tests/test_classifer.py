@@ -3,15 +3,22 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from src.utils.load_models import load_models
 
+accuracy = evaluate.load('precision')
+
 config = {'models': 
           {'hf_text_classification_model':
+           #["imdb_model"]},
            ["distilbert/distilbert-base-uncased"]},
           'loadPretrained': False,
           'num_labels': 5,
          }
 
 classifier = load_models(config)[0]
-print(classifier.get_text_output('he is so so happy')['logits'])
+text = ['he is so so happy', 'he is so so happy']
+predictions =  classifier.get_text_output(text)['logits']
+print(predictions)
+
+
 sys.exit(1)
 
 config = {'models': 

@@ -22,6 +22,7 @@ class HFTextClassificationModel(Classifier):
         # Load tokenizer
         if tokenizer_config is None:
             tokenizer_config = {'tokenizers': {'hf_tokenizer': [modelname]}}
+        tokenizer_config = {**tokenizer_config, **kwargs}
         self.tokenizer = load_tokenizers(tokenizer_config)[0]
 
         modelkwargs = {'pretrained_model_name_or_path': modelname,
