@@ -14,26 +14,21 @@ f1 = evaluate.load('f1')
 
 def compute_metrics(eval_pred):
     predictions, labels = eval_pred
-    predictions = np.argmax(predictions, axis=1)
+    predictions = np.argmax(predictions, axis=-1)
 
-    results = {}
     acc = accuracy.compute(predictions=predictions, references=labels)
     p = precision.compute(predictions=predictions, 
                                     references=labels,
-                                    average='micro', 
+                                    average='weighted', 
                                     zero_division=0)
     r = recall.compute(predictions=predictions, 
                                     references=labels,
-                                    average='micro', 
+                                    average='weighted', 
                                     zero_division=0)
     f = f1.compute(predictions=predictions, 
                                     references=labels,
-                                    average='micro')
-    results.update(acc)
-    results.update(p)
-    results.update(r)
-    results.update(f)
-    return results
+                                    average='weighted')
+    return {**acc, **p, **r, **f}
 
 class HFTextClassificationTrainer(Trainer): 
 
@@ -60,7 +55,7 @@ class HFTextClassificationTrainer(Trainer):
             # Set up raw dataset
             self.set_dataset()
 
-        if 'token_id' not in self.dataset['train']:
+        if 'input_ids' not in self.dataset['train'].features:
             # Preprocess_dataset
             self.preprocess_dataset()
 
@@ -99,3 +94,4 @@ class HFTextClassificationTrainer(Trainer):
         if self.verbose: 
             sys.stderr.write(f"Saving final model to {self.modelfpath}...\n")
         trainer.save_model()
+

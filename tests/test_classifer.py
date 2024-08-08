@@ -3,6 +3,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from src.utils.load_models import load_models
 
+'''
 accuracy = evaluate.load('precision')
 
 config = {'models': 
@@ -20,13 +21,43 @@ print(predictions)
 
 
 sys.exit(1)
+'''
+id2label = {
+
+    0: "O",
+
+    1: "B-corporation",
+
+    2: "I-corporation",
+
+    3: "B-creative-work",
+
+    4: "I-creative-work",
+
+    5: "B-group",
+
+    6: "I-group",
+
+    7: "B-location",
+
+    8: "I-location",
+
+    9: "B-person",
+
+    10: "I-person",
+
+    11: "B-product",
+
+    12: "I-product",
+
+}
 
 config = {'models': 
              {'hf_token_classification_model':
-              ["stevhliu/my_awesome_wnut_model"]},
+              ["ner_model"]},
           'device': 'mps', 
-          'precision': '16bit',
-          'batchSize': 10}
+          'batchSize': 10, 
+          "id2label": id2label}
 
 classifier = load_models(config)[0]
 
@@ -58,6 +89,8 @@ for batch in output:
 
 
 print()
+import sys
+sys.exit()
 
 '''
 classifier = load_classifiers(config)[0]

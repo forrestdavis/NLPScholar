@@ -3,7 +3,7 @@
 # (https://github.com/forrestdavis)
 # August 2024
 
-from ..utils.load_models import load_models, yield_models
+from ..utils.load_models import load_models
 import torch 
 from typing import Union, Dict, List, Tuple, Optional
 import sys
@@ -18,14 +18,16 @@ class Trainer:
         # Default values
         self.trainfpath = None
         self.validfpath = None
-        self.batchSize = 1
         self.verbose = True
 
         # Dataset defaults
         self.seed = 23
-        self.samplePercent = 100
+        self.samplePercent = 1
         self.textLabel = 'text'
         self.pairLabel = 'pair'
+        self.tokensLabel = 'tokens'
+        self.tagLabel = 'ner_tags'
+        self.dataset = None
 
         # Training defaults
         self.modelfpath = None
@@ -157,9 +159,9 @@ class Trainer:
         # Get k random indices
         idxs = []
         for _ in range(k):
-            idx = random.randint(0, len(self.dataset['train']))
+            idx = random.randint(0, len(self.dataset['train'])-1)
             while idx in idxs:
-                idx = random.randint(0, len(self.dataset['train']))
+                idx = random.randint(0, len(self.dataset['train'])-1)
             # Keep track of what we have seen
             idxs.append(idx)
 
