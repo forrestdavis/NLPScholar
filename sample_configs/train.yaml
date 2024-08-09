@@ -1,0 +1,22 @@
+exp: TextClassification
+
+mode: 
+   - train
+
+models: 
+    hf_text_classification_model:
+        - distilbert-base-uncased
+
+trainfpath: imdb:train
+
+validfpath: imdb:test
+
+modelfpath: imdb_model
+
+loadPretrained: False
+
+numLabels: 2
+
+samplePercent: 10
+
+

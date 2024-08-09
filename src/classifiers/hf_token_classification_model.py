@@ -22,29 +22,34 @@ class HFTokenClassificationModel(Classifier):
         # Load tokenizer
         if tokenizer_config is None:
             tokenizer_config = {'tokenizers': {'hf_tokenizer': [modelname]}}
+
+        tokenizer_config = {**tokenizer_config, **kwargs}
         self.tokenizer = load_tokenizers(tokenizer_config)[0]
 
+        modelkwargs = {'pretrained_model_name_or_path': modelname,
+            'trust_remote_code': True}
+
         if self.precision == '16bit':
-            self.model = \
-                AutoModelForTokenClassification.from_pretrained(modelname, 
-                                        torch_dtype=torch.float16, 
-                                       low_cpu_mem_usage=True, 
-                                       trust_remote_code=True).to(self.device)
+            modelkwargs['torch_dtype'] = torch.float16
+            modelkwargs['low_cpu_mem_usage'] = True
         elif self.precision == '8bit':
-            self.model = \
-                AutoModelForTokenClassification.from_pretrained(modelname,
-                                        trust_remote_code=True,
-                                        load_in_8bit=True).to(self.device)
+            modelkwargs['load_in_8bit'] = True
 
         elif self.precision == '4bit':
-            self.model = \
-                AutoModelForTokenClassification.from_pretrained(modelname,
-                                        trust_remote_code=True,
-                                        load_in_4bit=True).to(self.device)
-        else:
-            self.model = \
-                AutoModelForTokenClassification.from_pretrained(modelname,
-                                           trust_remote_code=True).to(self.device)
+            modelkwargs['load_in_4bit'] = True
+
+        # If we are loading a new model to finetune we need to specify the
+        # number of labels for our classification head.
+        # Note that this assumes the base model has already been trained.
+        if not self.loadPretrained:
+            # Add the number of labels 
+            assert self.numLabels is not None, "You must specify numLabels" \
+                    " when loading a model for finetuning"
+            modelkwargs['num_labels'] = self.numLabels
+
+        self.model = \
+                AutoModelForTokenClassification.from_pretrained(
+                    **modelkwargs).to(self.device)
 
         self.model.eval()
 
@@ -62,15 +67,10 @@ class HFTokenClassificationModel(Classifier):
 
         inputs_dict = self.tokenizer(texts, 
                                      padding=True,
+                                     truncation=True,
                                      return_tensors='pt').to(self.device)
         inputs = inputs_dict['input_ids']
         attn_mask = inputs_dict['attention_mask']
-
-        # if input is longer than maximum allowed stop 
-        if inputs.shape[1] > MAX_LENGTH:
-            sys.stderr.write(f"Input is {inputs.shape[1]} while max is"\
-                             f" {MAX_LENGTH}\n")
-            sys.exit(1)
 
         # Mark last position without padding
         # this works because transformers tokenizer flags 

@@ -35,6 +35,17 @@ class HFTokenizer(Tokenizer):
                     sys.exit(1)
 
                 self._tokenizer.pad_token = self.addPadToken
+
+    def __len__(self):
+        return len(self._tokenizer)
+
+    @property 
+    def bos_token_id(self) -> int:
+        return self._tokenizer.bos_token_id
+
+    @property 
+    def eos_token_id(self) -> int:
+        return self._tokenizer.eos_token_id
                     
     @property 
     def pad_token_id(self) -> int:

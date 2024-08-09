@@ -10,14 +10,17 @@ config = {'models':
           'device': 'mps'}
 
 config = {'models': 
-            {'hf_masked_model': ['bert-base-cased'],
-            'hf_causal_model': ['gpt2-medium']},
+            {'hf_causal_model': ['wiki2model']},
+          'loadPretrained': True,
          }
 
 models = load_models(config)
 
 for model in models:
     print(model, model.tokenizer)
+    print(model.model)
+    print(model.get_aligned_words_predictabilities(['the boy is', 
+                                                    'the boy are']))
 
 import sys
 sys.exit()

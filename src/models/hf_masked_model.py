@@ -6,7 +6,7 @@
 from .LM import LM
 from ..utils.load_tokenizers import load_tokenizers
 import torch
-from transformers import AutoModelForMaskedLM
+from transformers import AutoModelForMaskedLM, AutoConfig
 from typing import Union, Dict, List, Tuple, Optional
 import sys
 
@@ -21,6 +21,7 @@ class HFMaskedModel(LM):
                          offset=offset,
                          **kwargs)
 
+        self.isMaskedModel = True
         self.PLL_type = "within_word_l2r"
         if 'PLL_type' in kwargs:
             self.PLL_type = kwargs['PLL_type']
@@ -31,28 +32,36 @@ class HFMaskedModel(LM):
         tokenizer_config = {**tokenizer_config, **kwargs}
         self.tokenizer = load_tokenizers(tokenizer_config)[0]
 
+        modelkwargs = {'pretrained_model_name_or_path': modelname,
+            'trust_remote_code': True, 
+            'output_hidden_states': self.getHidden}
 
         if self.precision == '16bit':
-            self.model = AutoModelForMaskedLM.from_pretrained(modelname, 
-                                            torch_dtype=torch.float16, 
-                                           low_cpu_mem_usage=True, 
-                                           output_hidden_states=self.getHidden, 
-                                           trust_remote_code=True).to(self.device)
+            modelkwargs['torch_dtype'] = torch.float16
+            modelkwargs['low_cpu_mem_usage'] = True
         elif self.precision == '8bit':
-            self.model = AutoModelForMaskedLM.from_pretrained(modelname,
-                                                    output_hidden_states=self.getHidden,
-                                                        trust_remote_code=True,
-                                                        load_in_8bit=True).to(self.device)
+            modelkwargs['load_in_8bit'] = True
 
         elif self.precision == '4bit':
-            self.model = AutoModelForMaskedLM.from_pretrained(modelname,
-                                                    output_hidden_states=self.getHidden,
-                                                        trust_remote_code=True,
-                                                        load_in_4bit=True).to(self.device)
+            modelkwargs['load_in_4bit'] = True
+
+        # If we are loading a new model to train, we need to grab the config
+        if not self.loadPretrained:
+            auto_config = AutoConfig.from_pretrained(
+                            modelname, 
+                            vocab_size = len(self.tokenizer), 
+                            n_positions = self.maxSequenceLength,
+                            max_position_embeddings = self.maxSequenceLength,
+                            bos_token_id = self.tokenizer.bos_token_id, 
+                            eos_token_id = self.tokenizer.eos_token_id,
+                        )
+            self.model = \
+                    AutoModelForMaskedLM.from_config(auto_config).to(self.device)
+
         else:
-            self.model = AutoModelForMaskedLM.from_pretrained(modelname, 
-                                           output_hidden_states=self.getHidden, 
-                                           trust_remote_code=True).to(self.device)
+            self.model = \
+                    AutoModelForMaskedLM.from_pretrained(
+                            **modelkwargs).to(self.device)
         self.model.eval()
 
     @torch.no_grad()

@@ -32,6 +32,25 @@ class Tokenizer:
     def __call__(self):
         raise NotImplementedError
 
+    def __len__(self):
+        raise NotImplementedError
+
+    @property
+    def bos_token_id(self):
+        raise NotImplementedError
+
+    @property
+    def eos_token_id(self):
+        raise NotImplementedError
+
+    @property
+    def pad_token_id(self):
+        raise NotImplementedError
+
+    @property
+    def mask_token_id(self):
+        raise NotImplementedError
+
     def all_special_tokens(self):
         """ List of all special tokens """ 
         return None

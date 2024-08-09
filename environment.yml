@@ -7,11 +7,15 @@ dependencies:
   - pip:
     - accelerate==0.33.0
     - bitsandbytes==0.42.0
+    - datasets==2.20.0
+    - evaluate==0.4.2
+    - jupyterlab==4.2.4
     - numpy==1.26.4
     - pandas==2.2.2
     - scipy==1.14.0
     - sentencepiece==0.2.0
     - tokenizers==0.19.1
     - torch==2.4.0
-    - transformers==4.43.3
+    - transformers==4.44.0
     - typing-extensions==4.12.2
+
