@@ -163,46 +163,56 @@ class LM:
 
     @torch.no_grad()
     def get_by_sentence_perplexity(self, text: Union[str, List[str]]
-                                  ) -> List[Tuple[str, float]]:
-        """ Returns perplexity of each sentence for inputted text.
-           Note that this requires that you've implemented `get_output`.
+                                  ) -> dict:
+        """ Returns perplexity of each batch (e.g., sentence) for inputted text.
+            Note that this requires that you've implemented `get_output`.
 
-           PPL for autoregressive models is defined as: 
+           Perpelixty for autoregressive models is defined as: 
             .. math::
                 2^{-\\frac{1}{N} \\sum_{i}^{N} log p_{\\theta}(x_i|x_{<i})
 
-            perplexity for bidirectional models uses psuedo-likelihoods
+           Perplexity for bidirectional models uses psuedo-likelihoods
             (Salazar et al., 2020 https://aclanthology.org/2020.acl-main.240/)
+            with PLL_type in config set to 'original', else a modified version
+            of pseudo-likelihood is calcuated. See the README.md
 
         Args: 
             text (`Union[str, List[str]]`): A (batch of) strings.
 
         Returns:
-            `List[Tuple[str, float]]`: List of the tuples of each string and
-                perplexity. Padding, the first token for causal models,  and
-                some special tokens are ignored in the calculation.  
+            `dict`: Dictionary with two keys: text, which contains the text,
+                        and perplexity, which contains the perplexities.
+                        Padding, the first token for causal models, and some
+                        special tokens (e.g., [CLS], [SEP]) are ignored in the
+                        calculation.  
         """
 
-        # batchify
         if isinstance(text, str):
             text = [text]
-        by_token_measures = self.get_by_token_predictability(text)
-        return_data = []
-        for idx in range(len(by_token_measures)):
+        all_ppls = []
+        batched_token_predicts = self.get_by_token_predictability(text)
+        batched_alignments = self.tokenizer.align_words_ids(text)
+        for token_predicts, alignments_words in zip(batched_token_predicts,
+                                                    batched_alignments,
+                                                    strict=True):
+
+            alignments = alignments_words['mapping_to_words']
+            words = alignments_words['words']
+
             total_surprisal = 0
             length = 0
-            # If offset, the first token should be ignored
-            if self.offset:
-                length = -1
-            for token_measure in by_token_measures[idx]:
-                if self.tokenizer.IsSkipTokenID(token_measure['token_id']):
+            for idx, (measure, alignment, word) in enumerate(zip(token_predicts,
+                                                                 alignments,
+                                                                 words,
+                                                                 strict=True)):
+                # Skip initial words or pad/special tokens
+                if measure['probability'] == 1 or word is None:
                     continue
-                total_surprisal += token_measure['surprisal']
+                total_surprisal += measure['surprisal']
                 length += 1
-            avg_surprisal = total_surprisal/length
-            ppl = 2**avg_surprisal
-            return_data.append((text[idx], ppl))
-        return return_data
+            ppl = 2**(total_surprisal/length)
+            all_ppls.append(float(ppl))
+        return {'text': text, 'perplexity': all_ppls}
 
     @torch.no_grad()
     def get_aligned_words_predictabilities(self, text: Union[str, List[str]], 

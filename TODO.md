@@ -1,4 +1,6 @@
 # Short Term
+- [ ] Add in LanguageModel experiment with evaluate being perplexity, train
+  being like MinimalPair, and interact being ppl for inputted text
 
 # Mid Term
 - [ ] Add ngram 
