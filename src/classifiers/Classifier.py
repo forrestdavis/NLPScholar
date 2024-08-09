@@ -26,7 +26,7 @@ class Classifier:
         self.device = 'best' 
         self.id2label = None
         self.loadPretrained = True
-        self.num_labels = None
+        self.numLabels = None
         for k, v in kwargs.items():
             setattr(self, k, v)
 

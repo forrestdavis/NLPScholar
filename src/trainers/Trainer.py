@@ -18,6 +18,7 @@ class Trainer:
         # Default values
         self.trainfpath = None
         self.validfpath = None
+        self.modelfpath = None
         self.verbose = True
 
         # Dataset defaults
@@ -26,15 +27,14 @@ class Trainer:
         self.textLabel = 'text'
         self.pairLabel = 'pair'
         self.tokensLabel = 'tokens'
-        self.tagLabel = 'tags'
+        self.tagsLabel = 'tags'
         self.dataset = None
 
         # Training defaults
-        self.modelfpath = None
         self.epochs = 2
         self.eval_strategy = 'epoch'
         self.eval_steps = 500
-        self.batchSize = 8
+        self.batchSize = 16
         self.learning_rate = 5e-5
         self.weight_decay = 0.01
         self.save_strategy = 'epoch'
@@ -46,6 +46,14 @@ class Trainer:
 
         for k, v in kwargs.items():
             setattr(self, k, v)
+
+        # Check for paths necessary for trainer
+        if 'trainfpath' in config:
+            self.trainfpath = config['trainfpath']
+        if 'validfpath' in config:
+            self.validfpath = config['validfpath']
+        if 'modelfpath' in config:
+            self.modelfpath = config['modelfpath']
 
         # Set up model
         config = {**config, **kwargs}
@@ -72,26 +80,30 @@ class Trainer:
                                 " for validation during training"
 
         def get_info(name: str) -> tuple:
+            if ':' not in name:
+                return name, None, None
             info = name.split(':')
             if len(info) == 3:
-                path, task, split = info
-            else:
-                task = None
-                path, split = info
-            return path, task, split
+                return info
+            return info[0], None, info[1]
 
-            
-        if ':' in self.trainfpath: 
-            path, task, split = get_info(self.trainfpath)
-            train = self.load_from_hf_dataset(path, task, split)
-        else:
-            train = self.load_from_tsv(self.trainfpath)
+        def file_loader(name: str) -> object:
+            path, task, split = get_info(name)
+            if split is None:
+                extension = name.split('.')[-1]
+                if extension == 'json':
+                    return self.load_from_json
+                else:
+                    return self.load_from_tsv
+            return self.load_from_hf_dataset
 
-        if ':' in self.validfpath:
-            path, task, split = get_info(self.validfpath)
-            valid = self.load_from_hf_dataset(path, task, split)
-        else:
-            valid = self.load_from_tsv(self.validfpath)
+        loader = file_loader(self.trainfpath)
+        path, task, split = get_info(self.trainfpath)
+        train = loader(path, task, split)
+
+        loader = file_loader(self.validfpath)
+        path, task, split = get_info(self.validfpath)
+        valid = loader(path, task, split)
 
         # Shuffle dataset, which is necessary if we are selecting a subset
         # (e.g., what if all the 1 labels occur in the last 20% of the data?
@@ -101,6 +113,9 @@ class Trainer:
         if self.samplePercent is not None:
             if self.samplePercent >= 1:
                 self.samplePercent = self.samplePercent/100
+            if self.verbose:
+                sys.stderr.write(f"Selecting {self.samplePercent*100:.2f}% of "\
+                                 "the data\n")
             train = train.select(range(int(self.samplePercent*len(train))))
             valid = valid.select(range(int(self.samplePercent*len(valid))))
 
@@ -120,11 +135,14 @@ class Trainer:
         """
         return datasets.load_dataset(path, name=task, split=split)
 
-    def load_from_tsv(self, path: str) -> datasets.Dataset:
+    def load_from_tsv(self, path: str, task: str = None, 
+                      split: str = None) -> datasets.Dataset:
         """ Returns a hf dataset from a tsv file. 
 
         Args:
             path (`str`): Path of dataset
+            task (`str`): *optional* not used by from tsv
+            split (`str`): *optional* not used by from tsv
 
         Returns:
             `dataset.Dataset`: Dataset instance
@@ -132,11 +150,14 @@ class Trainer:
         return datasets.load_dataset('csv', data_files=path, delimiter="\t",
                                      split='train')
 
-    def load_from_json(self, path: str) -> datasets.Dataset:
+    def load_from_json(self, path: str, task: str = None, 
+                      split: str = None) -> datasets.Dataset:
         """ Returns a hf dataset from a json file. 
 
         Args:
             path (`str`): Path of dataset
+            task (`str`): *optional* not used by from tsv
+            split (`str`): *optional* not used by from tsv
 
         Returns:
             `dataset.Dataset`: Dataset instance
@@ -207,5 +228,7 @@ class Trainer:
             `self.load_best_model_at_end`: Whether or not to load the best model
                             at the end of training. If True, the best model will
                             be saved as the model at the end. Default is False.
+            `self.maskProbability`: The rate of dynamic masking for masked
+                            language modeling. The default is 0.15. 
         """
         raise NotImplementedError

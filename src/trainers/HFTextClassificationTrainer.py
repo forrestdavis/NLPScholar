@@ -1,3 +1,8 @@
+# Basic trainer child class for text classification
+# building on HuggingFace models
+# Implemented by Forrest Davis 
+# (https://github.com/forrestdavis)
+# August 2024
 from .Trainer import Trainer
 import datasets
 import transformers 
@@ -63,7 +68,7 @@ class HFTextClassificationTrainer(Trainer):
         self.dataset = self.dataset.shuffle(seed=42)
 
         use_cpu = False
-        if self.device == 'cpu': 
+        if self.Model.device == 'cpu': 
             use_cpu = True
 
         training_args = transformers.TrainingArguments(

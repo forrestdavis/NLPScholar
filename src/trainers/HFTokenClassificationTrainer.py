@@ -1,3 +1,8 @@
+# Basic trainer child class for token classification
+# building on HuggingFace models
+# Implemented by Forrest Davis 
+# (https://github.com/forrestdavis)
+# August 2024
 from .Trainer import Trainer
 import datasets
 import transformers 
@@ -52,7 +57,7 @@ class HFTokenClassificationTrainer(Trainer):
                                                 truncation=True,
                                                 is_split_into_words=True)
         labels = []
-        for i, label in enumerate(examples[self.tagLabel]):
+        for i, label in enumerate(examples[self.tagsLabel]):
             word_ids = tokenized_inputs.word_ids(batch_index=i)
             previous_word_idx = None
             label_ids = []
@@ -90,7 +95,7 @@ class HFTokenClassificationTrainer(Trainer):
         self.dataset = self.dataset.shuffle(seed=42)
 
         use_cpu = False
-        if self.device == 'cpu': 
+        if self.Model.device == 'cpu': 
             use_cpu = True
 
         training_args = transformers.TrainingArguments(

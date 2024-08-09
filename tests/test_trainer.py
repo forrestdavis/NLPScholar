@@ -7,15 +7,16 @@ from src.trainers.HFLanguageModelTrainer import HFLanguageModelTrainer
 import torch
 
 config = {'models': 
-          {'hf_causal_model': ['gpt2']},
-          #{'hf_masked_model':['distilbert-base-uncased']},
+          #{'hf_causal_model': ['gpt2']},
+          {'hf_masked_model':['distilbert-base-uncased']},
          }
 
 kwargs = {'device': 'mps', 
           'loadPretrained': False, 
-          #'num_labels': 13,
+          #'numLabels': 13,
           'batchSize': 64, 
           'epochs': 3,
+          'precision': '16bit',
           #'textLabel': 'premise', 
           #'pairLabel': 'hypothesis',
           #'trainfpath': 'imdb:train', 

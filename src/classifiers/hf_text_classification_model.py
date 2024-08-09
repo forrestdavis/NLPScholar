@@ -42,9 +42,9 @@ class HFTextClassificationModel(Classifier):
         # Note that this assumes the base model has already been trained.
         if not self.loadPretrained:
             # Add the number of labels 
-            assert self.num_labels is not None, "You must specify num_labels" \
+            assert self.numLabels is not None, "You must specify numLabels" \
                     " when loading a model for finetuning"
-            modelkwargs['num_labels'] = self.num_labels
+            modelkwargs['num_labels'] = self.numLabels
 
         self.model = \
                 AutoModelForSequenceClassification.from_pretrained(

@@ -1,3 +1,8 @@
+# Basic trainer child class for language modeling
+# building on HuggingFace models
+# Implemented by Forrest Davis 
+# (https://github.com/forrestdavis)
+# August 2024
 from .Trainer import Trainer
 import datasets
 import transformers 
@@ -60,8 +65,13 @@ class HFLanguageModelTrainer(Trainer):
         self.dataset = self.dataset.shuffle(seed=42)
 
         use_cpu = False
-        if self.device == 'cpu': 
+        if self.Model.device == 'cpu': 
             use_cpu = True
+
+        if self.precision == '16bit':
+            fp16 = True
+        else:
+            fp16 = False
 
         training_args = transformers.TrainingArguments(
             output_dir=self.modelfpath,
@@ -76,6 +86,7 @@ class HFLanguageModelTrainer(Trainer):
             save_steps=self.save_steps,
             load_best_model_at_end=self.load_best_model_at_end,
             use_cpu=use_cpu,
+            fp16=fp16,
             )
 
         trainer = transformers.Trainer(

@@ -11,7 +11,7 @@ config = {'models':
            #["imdb_model"]},
            ["distilbert/distilbert-base-uncased"]},
           'loadPretrained': False,
-          'num_labels': 5,
+          'numLabels': 5,
          }
 
 classifier = load_models(config)[0]

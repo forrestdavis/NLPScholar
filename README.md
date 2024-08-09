@@ -6,12 +6,12 @@ Install the `nlp` environment (see Install.md). Ensure you have run
 
     conda activate nlp
 
-## Running Models
+## Running
 
 You can run experiments via `main.py` with the relevant config file. See below
 for details on the structure of the config files. 
 
-### Basic Config Files
+## Basic Config Files
 
 Interacting with the toolkit is facilitated by config files. An example one is
 copied below showing how to run GPT2 in interactive mode. 
@@ -41,14 +41,18 @@ recognition).
 
 #### `mode`
 
-Each experiment has `mode`s. There are two modes: `interact`, and `evaluate`.
-For `MinimalPair`, `interact` yields by-word (combining subword tokens)
-predictability measures for an inputted sentence and `evaluate` returns by-token
+Each experiment has `mode`s. There are three modes: `interact`, `train`, and
+`evaluate`.  For `MinimalPair`, `interact` yields by-word (combining subword
+tokens) predictability measures for an inputted sentence, `train` finetunes a
+language model using the relevant language modeling objective (i.e.,
+auto-regressive or masked language modeling), and `evaluate` returns by-token
 predictability measures for a dataset.  For `TextClassification`, `interact`
-yields by-text classification labels for inputted text and `evaluate` returns
-by-text labels for a dataset.  For `TokenClassification`, `interact` yields
-by-token classification labels for inputted text and `evaluate` returns by-token
-classification labels for a dataset. 
+yields by-text classification labels for inputted text, `train` finetunes a
+pretrained model for text classification, and `evaluate` returns by-text labels
+for a dataset.  For `TokenClassification`, `interact` yields by-token
+classification labels for inputted text, `train` finetunes a pretrained model
+for token classification, and `evaluate` returns by-token classification labels
+for a dataset. 
 
 #### `models`
 
@@ -76,11 +80,13 @@ models:
 Will load one causal language model (GPT2) and two masked language models (BERT
 and RoBERTa).
 
-#### other important options
+### Config Details for `evaluate`
 
-In running the non-interactive experiments, you need to specify the path to the
-file with the data you will be running the model on (the `condfpath`) and the
-path to where you want to save the predictions (the `predfpath`). For example, 
+#### `condfpath` and `predfpath`
+
+In running in `evaluate` mode, you need to specify the path to the file with the
+data you will be running the model on (the `condfpath`) and the path to where
+you want to save the predictions (the `predfpath`). For example, 
 
 ```yaml
 exp: TSE
@@ -91,15 +97,186 @@ models:
       hf_masked_model:
           - bert-base-cased
 
-condfpath: stimuli/minimal_pairs.tsv
+condfpath: conditions/minimal_pairs.tsv
 
-predfpath: results/minimal_pairs.tsv
+predfpath: predictions/minimal_pairs.tsv
 ```
 
-Runs GPT2 and BERT on the minimal pairs in `stimuli/minimal_pairs` and saves the
-output to `results/minimal_pairs.tsv`.
+Runs GPT2 and BERT on the minimal pairs in `conditions/minimal_pairs` and saves the
+output to `predictions/minimal_pairs.tsv`.
 
-### Additional Details 
+#### `checkFileColumns`
+
+In evaluating models (in `evaluate` mode), you can check that the necessary
+columns for the broader experiment are included in the file indexed with
+`condfpath`. The default value is `True`, meaning the columns are checked. 
+
+```yaml
+checkFileColumns: True
+```
+
+#### `loadAll`
+
+In evaluating models (in `evaluate` mode), more than one model can be evaluated.
+`loadAll` controls memory usage, with `True` for loading all models to memory at
+once and `False` for loading one model at a time into memory. The default
+behavior is `False`. 
+
+```yaml
+loadAll: False
+```
+
+### Config Details for `train`
+
+#### `trainfpath`, `validfpath`, and `modelfpath`
+
+In `train` mode you need to specify training data, validation data, and an
+output directory for the final model. Training and validation data can either be
+from HuggingFace's dataset options on their hub or local json or tsv files. To
+specify a HuggingFace remote dataset specify the name, task (if applicable), and
+split with colon seperators. See below for two examples, one loading 
+[imdb data](https://huggingface.co/datasets/stanfordnlp/imdb), which doesn't
+have subtasks: 
+
+```yaml
+trainfpath: imdb:train
+validfpath: imdb:test
+modelfpath: imdb_model
+```
+
+and one loading mnli from [glue](https://huggingface.co/datasets/nyu-mll/glue): 
+
+```yaml
+trainfpath: nyu-mll/glue:mnli:train
+validfpath: nyu-mll/glue:mnli:validation_matched
+modelfpath: mnli_model
+```
+
+#### `loadPretrained`
+
+You can specify if you want to load the pretrained weights of a model or
+randomly initialize a model with the same architecture as the model name with
+`loadPretrained`. If set to `False` and training for classification you must
+specify the number of labels with `numLabels`. The default is `True`. 
+
+```yaml
+loadPretrained: True
+```
+
+#### `numLabels`
+
+You can specify the number of classification labels for token or text
+classification with `numLabels`. Note: you must specify a value if
+`loadPretrained` is `False`. 
+
+```yaml
+numLabels: 5
+```
+
+#### `maxSequenceLength`
+
+In loading a model, you can specify the maximum sequence length (i.e., the
+context size) with `maxSequenceLength`. This changes the sequence length of the
+model when loading not from a pretrained model and controls the sequence length
+in a batch during training. The default is 128. 
+
+```yaml
+maxSequenceLength: 128
+```
+
+#### `seed`
+
+You can specify the seed for shuffling the dataset initially with `seed`. The
+default value is 23.
+
+```yaml
+seed: 23
+```
+
+#### `samplePercent`
+
+It is often helpful to run training code with a subset of your data (e.g., for
+debugging). You can specify what percent of your data to use with
+`samplePercent'. This can either be a whole number between 0 and 100 (which is
+converted to a percent; for example, 10 translates to 0.10), or a float (e.g.,
+0.001). The default is None, which results in no sampling (i.e., all data is
+used). 
+
+```yaml
+samplePercent: 10
+```
+
+#### `textLabel`
+
+For training either with language model objectives or text/token classification,
+your data needs to point to the text. The column with this information is
+specified with `textLabel`. The default is `"text"` which means your text data
+for training should be labeled with a column with that name. 
+
+```yaml
+textLabel: text
+```
+
+#### `pairLabel`
+
+For text classification, you can specify two sentences for tasks like natural
+language inference and paraphrase detection. You can specify the column with the
+second sentence using `pairLabel`. The default is `"pair"`. The example below
+shows how to specify the correct columns for glue's mnli task. 
+
+```yaml
+textLabel: premise
+pairLabel: hypothesis
+```
+
+#### `tokensLabel`
+
+For token classification, the dataset must also provide the tokens (e.g., the
+words). You can specify the column with this data with `tokensLabel`. The
+default is `"tokens"`. 
+
+```yaml
+tokensLabel: tokens
+```
+
+#### `tagsLabel`
+
+For token classification, the dataset must also provide the per-token tags
+(e.g., the named-entity tags). You can specify the column with this data with
+`tagsLabel`.  The default is `"tags"`. 
+
+```yaml
+tagsLabel: tags
+```
+
+#### Extra Training Settings
+
+You can specify the following additional training settings using the config file
+(lightly adapted from HuggingFace's Trainer arguments and [Trainer
+class](https://huggingface.co/docs/transformers/main_classes/trainer#trainer)):
+
+    modelfpath: The output directory where the model is saved
+    epochs: Number of training epochs. The default is 2. 
+    eval_strategy: The evaluation strategy to use ('no' | 'steps'
+                    | 'epoch'). The default is 'epoch'.
+    eval_steps: Number of update steps between two evaluations.
+                        The default is 500. 
+    batchSize: The per-device batch size for train/eval. The
+                        default is 8. 
+    learning_rate: The initial learning rate for AdamW. Default
+                            is 5e-5. 
+    weight_decay: Weight decay. The default is 0.01.
+    save_strategy: The checkpoint save strategy to use ('no'
+                    | 'steps' | 'epoch'). The default is 'epoch'.
+    save_steps: Number of update steps between saves. Default is
+                        500.
+    load_best_model_at_end: Whether or not to load the best model
+                    at the end of training. If True, the best model will
+                    be saved as the model at the end. Default is False.
+    maskProbability: The rate of dynamic masking for masked
+                    language modeling. The default is 0.15. 
+
+### Additional Config Settings
 
 There are further parameters that can be specified, detailed below. 
 
@@ -125,7 +302,9 @@ precision: 16bit
 ```
 
  The options are `full`, `16bit`, `8bit`, and `4bit`. The default behavior is
-`full`, which loads the model without changing its precision. 
+`full`, which loads the model without changing its precision. Selecting `16bit`
+with `train` will train a lower precision model (note: you need to use a GPU for
+this). 
 
 #### `showSpecialTokens`
 
@@ -241,42 +420,22 @@ the model, an error may be thrown during tokenization.
 addPadToken: True
 ```
 
-#### `loadAll`
-
-In evaluating models (in `evaluate` mode), more than one model can be evaluated.
-`loadAll` controls memory usage, with `True` for loading all models to memory at
-once and `False` for loading one model at a time into memory. The default
-behavior is `False`. 
-
-```yaml
-loadAll: False
-```
-
 #### `batchSize`
 
-In evaluating models (in `evaluate` mode), you can control the batch size of the
-model with `batchSize`. The default size is 1. 
+In experiments, you can control the batch size of the model with `batchSize`.
+The default size is 1 in `evaluate` mode and 16 in `train` mode.
 
-```yaml
-batchSize: 1
-```
-
-#### `checkFileColumns`
-
-In evaluating models (in `evaluate` mode), you can check that the necessary
-columns for the broader experiment are included in the file indexed with
-`condfpath`. The default value is `True`, meaning the columns are checked. 
-
-```yaml
-checkFileColumns: True
+```yaml 
+batchSize: 1 
 ```
 
 #### `verbose`
 
-In evaluating models (in `evaluate` mode), you can control verbosity with
-`verbose`. When set to `True`, it prints some more information to the screen.
-The default behavior is `True`. 
+In running experiments, you can control verbosity with `verbose`. When set to
+`True`, it prints some more information to the screen.  The default behavior is
+`True`. 
 
 ```yaml
 verbose: True
 ```
+
