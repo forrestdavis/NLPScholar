@@ -22,11 +22,11 @@ class Trainer:
 
         # Dataset defaults
         self.seed = 23
-        self.samplePercent = 1
+        self.samplePercent = 10
         self.textLabel = 'text'
         self.pairLabel = 'pair'
         self.tokensLabel = 'tokens'
-        self.tagLabel = 'ner_tags'
+        self.tagLabel = 'tags'
         self.dataset = None
 
         # Training defaults
@@ -40,6 +40,9 @@ class Trainer:
         self.save_strategy = 'epoch'
         self.save_steps = 500
         self.load_best_model_at_end = False
+        self.wholeWordMasking = False
+        self.maskProbability = 0.15
+        self.maxSequenceLength = 128
 
         for k, v in kwargs.items():
             setattr(self, k, v)
@@ -158,15 +161,11 @@ class Trainer:
         """
         # Get k random indices
         idxs = []
-        for _ in range(k):
-            idx = random.randint(0, len(self.dataset['train'])-1)
-            while idx in idxs:
-                idx = random.randint(0, len(self.dataset['train'])-1)
-            # Keep track of what we have seen
-            idxs.append(idx)
-
-            sample = self.dataset['train'].select([idx])
-            print(sample[0])
+        assert k < len(self.dataset['train']), f"There are less than {k}"\
+                                            " samples"
+        random_ints = random.sample(range(len(self.dataset['train'])), k=k)
+        for idx in random_ints:
+            print(self.dataset['train'].select([idx]))
 
     def preprocess_dataset(self):
         """ Tokenize the input as necessary for the task. This should update the

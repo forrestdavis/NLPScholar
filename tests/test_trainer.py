@@ -3,30 +3,34 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from src.trainers.HFTokenClassificationTrainer import HFTokenClassificationTrainer
 from src.trainers.HFTextClassificationTrainer import HFTextClassificationTrainer
+from src.trainers.HFLanguageModelTrainer import HFLanguageModelTrainer
 import torch
 
 config = {'models': 
-          {'hf_token_classification_model':
-           ["distilbert/distilbert-base-uncased"]}, 
+          {'hf_causal_model': ['gpt2']},
+          #{'hf_masked_model':['distilbert-base-uncased']},
          }
 
 kwargs = {'device': 'mps', 
           'loadPretrained': False, 
-          'num_labels': 13,
+          #'num_labels': 13,
           'batchSize': 64, 
-          'epochs': 10,
+          'epochs': 3,
           #'textLabel': 'premise', 
           #'pairLabel': 'hypothesis',
           #'trainfpath': 'imdb:train', 
           #'validfpath': 'imdb:test',
           #'modelfpath': 'imdb_model',
-          'trainfpath': 'wnut_17:train',
-          'validfpath': 'wnut_17:test',
-          'modelfpath': 'ner_model',
+          #'trainfpath': 'wnut_17:train',
+          #'validfpath': 'wnut_17:test',
+          #'modelfpath': 'ner_model',
+          'trainfpath': 'wikitext:wikitext-2-raw-v1:train',
+          'validfpath': 'wikitext:wikitext-2-raw-v1:validation',
+          'modelfpath': 'wiki2model',
           'device': 'mps',
          }
 
-trainer = HFTokenClassificationTrainer(config, 
+trainer = HFLanguageModelTrainer(config, 
                                     **kwargs)
 
 #trainer.set_dataset()

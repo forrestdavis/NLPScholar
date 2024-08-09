@@ -27,6 +27,8 @@ class LM:
         self.precision = None
         self.showSpecialTokens = False
         self.device = 'best' 
+        self.loadPretrained = True
+        self.maxSequenceLength = 128
         for k, v in kwargs.items():
             setattr(self, k, v)
 
