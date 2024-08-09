@@ -80,7 +80,7 @@ models:
 Will load one causal language model (GPT2) and two masked language models (BERT
 and RoBERTa).
 
-### Config Details for `evaluate`
+## Config Details for `evaluate`
 
 #### `condfpath` and `predfpath`
 
@@ -126,7 +126,7 @@ behavior is `False`.
 loadAll: False
 ```
 
-### Config Details for `train`
+## Config Details for `train`
 
 #### `trainfpath`, `validfpath`, and `modelfpath`
 
@@ -249,7 +249,7 @@ For token classification, the dataset must also provide the per-token tags
 tagsLabel: tags
 ```
 
-#### Extra Training Settings
+### Extra Training Settings
 
 You can specify the following additional training settings using the config file
 (lightly adapted from HuggingFace's Trainer arguments and [Trainer
@@ -276,7 +276,7 @@ class](https://huggingface.co/docs/transformers/main_classes/trainer#trainer)):
     maskProbability: The rate of dynamic masking for masked
                     language modeling. The default is 0.15. 
 
-### Additional Config Settings
+## Additional Config Settings
 
 There are further parameters that can be specified, detailed below. 
 
