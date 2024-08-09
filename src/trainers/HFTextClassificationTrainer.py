@@ -42,12 +42,32 @@ class HFTextClassificationTrainer(Trainer):
         super().__init__(config, **kwargs)
 
     def preprocess_function(self, examples):
+
         if self.pairLabel in examples:
-            return self.Model.tokenizer(examples[self.textLabel],
-                                        examples[self.pairLabel], truncation=True)
-        return self.Model.tokenizer(examples[self.textLabel], truncation=True)
+            pairs = examples[self.pairLabel]
+        else:
+            pairs = None
+
+        tokenized_inputs = self.Model.tokenizer(examples[self.textLabel],
+                                    pairs, truncation=True)
+        # Update labels if not ints
+        labels = []
+        for label in examples['label']:
+            if not isinstance(label, int):
+                if label not in self.Model.label2id:
+                    sys.stderr.write(f"The labels must be ints. You can add "\
+                                     "mappings via id2label in the config\n")
+                labels.append(self.Model.label2id[label])
+            else:
+                labels.append(label)
+        tokenized_inputs['label'] = labels
+
+        return tokenized_inputs
 
     def preprocess_dataset(self):
+        if self.dataset is None:
+            self.set_dataset()
+
         if self.verbose:
             sys.stderr.write("Tokenizing the dataset...\n")
         self.dataset = self.dataset.map(self.preprocess_function, batched=True)

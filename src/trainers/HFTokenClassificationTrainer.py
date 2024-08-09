@@ -65,7 +65,15 @@ class HFTokenClassificationTrainer(Trainer):
                 if word_idx is None:
                     label_ids.append(-100)
                 elif word_idx != previous_word_idx:
-                    label_ids.append(label[word_idx])
+                    word_label = label[word_idx]
+                    # Update label if not an int
+                    if not isinstance(word_label, int):
+                        if word_label not in self.Model.label2id:
+                            sys.stderr.write(f"The labels must be ints. "\
+                                             "You can add mappings via "\
+                                             "id2label in the config\n")
+                        word_label = self.Model.label2id[word_label]
+                    label_ids.append(word_label)
                 else:
                     label_ids.append(-100)
                 previous_word_idx = word_idx

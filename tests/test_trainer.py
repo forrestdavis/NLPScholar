@@ -1,44 +1,30 @@
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from src.trainers.HFTokenClassificationTrainer import HFTokenClassificationTrainer
-from src.trainers.HFTextClassificationTrainer import HFTextClassificationTrainer
-from src.trainers.HFLanguageModelTrainer import HFLanguageModelTrainer
+from src.utils.load_trainers import load_trainer
 import torch
 
-config = {'models': 
-          #{'hf_causal_model': ['gpt2']},
-          {'hf_masked_model':['distilbert-base-uncased']},
-         }
-
-kwargs = {'device': 'mps', 
+config = {'exp': 'TextClassification', 
+          'mode': ['train'], 
+          'models': 
+              {'hf_text_classification_model': ['distilbert-base-uncased']}, 
+          'trainfpath': 'imdb:train',
+          'validfpath': 'imdb:test',
+          'modelfpath': 'imdb_model',
           'loadPretrained': False, 
-          #'numLabels': 13,
-          'batchSize': 64, 
-          'epochs': 3,
-          'precision': '16bit',
-          #'textLabel': 'premise', 
-          #'pairLabel': 'hypothesis',
-          #'trainfpath': 'imdb:train', 
-          #'validfpath': 'imdb:test',
-          #'modelfpath': 'imdb_model',
-          #'trainfpath': 'wnut_17:train',
-          #'validfpath': 'wnut_17:test',
-          #'modelfpath': 'ner_model',
-          'trainfpath': 'wikitext:wikitext-2-raw-v1:train',
-          'validfpath': 'wikitext:wikitext-2-raw-v1:validation',
-          'modelfpath': 'wiki2model',
-          'device': 'mps',
-         }
+          'textLabel': 'premise', 
+          'pairLabel': 'hypothesis', 
+          'numLabels': 3,
+          'device': 'cpu',
+          'samplePercent': 10}
 
-trainer = HFLanguageModelTrainer(config, 
-                                    **kwargs)
-
-#trainer.set_dataset()
+trainer = load_trainer(config)
+trainer.set_dataset()
+print(trainer.dataset)
 #trainer.preprocess_dataset()
 #trainer.show_k_samples(3)
 #print('ok')
-trainer.train()
+#trainer.train()
 #dataset = trainer.load_from_hf_dataset('imdb', 'train').to_pandas()
 #dataset.to_csv('imdb_train.tsv', sep='\t', index=False)
 

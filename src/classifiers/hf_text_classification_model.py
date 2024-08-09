@@ -46,6 +46,15 @@ class HFTextClassificationModel(Classifier):
                     " when loading a model for finetuning"
             modelkwargs['num_labels'] = self.numLabels
 
+        # Load label mappings 
+        if self.id2label is not None:
+            modelkwargs['id2label'] = self.id2label
+            if self.label2id is None:
+                self.label2id = {}
+                for i, l in self.id2label.items():
+                    self.label2id[l] = i
+            modelkwargs['label2id'] = self.label2id
+
         self.model = \
                 AutoModelForSequenceClassification.from_pretrained(
                     **modelkwargs).to(self.device)
@@ -54,6 +63,8 @@ class HFTextClassificationModel(Classifier):
 
         if self.id2label is None:
             self.id2label = self.model.config.id2label
+        if self.label2id is None:
+            self.label2id = self.model.config.label2id
 
     @torch.no_grad()
     def get_text_output(self, texts: Union[str, List[str]], 

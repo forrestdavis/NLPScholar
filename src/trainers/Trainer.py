@@ -91,7 +91,7 @@ class Trainer:
             path, task, split = get_info(name)
             if split is None:
                 extension = name.split('.')[-1]
-                if extension == 'json':
+                if extension in ['json', 'jsonl']:
                     return self.load_from_json
                 else:
                     return self.load_from_tsv
