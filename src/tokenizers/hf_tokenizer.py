@@ -34,7 +34,8 @@ class HFTokenizer(Tokenizer):
                                      "token so it cannot be a pad token\n")
                     sys.exit(1)
 
-                self._tokenizer.pad_token = self.addPadToken
+                self._tokenizer.add_special_tokens(
+                    {'pad_token': self.addPadToken})
 
     def __len__(self):
         return len(self._tokenizer)

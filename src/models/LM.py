@@ -51,18 +51,23 @@ class LM:
         return self.modelname
 
     @torch.no_grad()
-    def get_output(self, text: Union[str, List[str]]) -> dict:
+    def get_output(self, text: Union[str, List[str]], 
+                   stride: int = None) -> dict:
         """ Returns model output for text
 
         Args:
             text (`Union[str, List[str]]`): A (batch of) strings.
+            stride (`int`): *optional* stride to use for sequences longer than
+                            maximum length allowed by model. Default is half of
+                            the max length.
 
         Returns:
-            `dict`: Dictionary with input_ids, last_non_masked_idx, and logits.
-                    input_ids are the input ids from the tokenizer.
+            `dict`: Dictionary with input_ids, last_non_masked_idx, logits, and
+                    perplexity. input_ids are the input ids from the tokenizer.
                     last_non_masked_idx is the index right before padding starts
-                    of shape batch_size. Logits has shape (batch_size, number of
-                    tokens, vocab_size).
+                    of shape batch_size. logits has shape (batch_size, number of
+                    tokens, vocab_size). perplexity is the perplexity (averaged
+                    over batches).
         """
         raise NotImplementedError
 
