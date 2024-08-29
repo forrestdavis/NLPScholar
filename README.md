@@ -1,4 +1,4 @@
-# NLPToolKit
+# NLPScholar
 
 ## Environment
 
