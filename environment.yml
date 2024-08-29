@@ -12,10 +12,11 @@ dependencies:
     - jupyterlab==4.2.4
     - numpy==1.26.4
     - pandas==2.2.2
+    - scikit-learn==1.5.1
     - scipy==1.14.0
+    - seaborn==0.13.2
     - sentencepiece==0.2.0
     - tokenizers==0.19.1
     - torch==2.4.0
     - transformers==4.44.0
     - typing-extensions==4.12.2
-
