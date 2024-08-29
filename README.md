@@ -313,8 +313,8 @@ device: mps
 ```
 
 The options are `best`, `mps`, `cuda`, or `cpu` (specific devices can also be
-specified). The default is `best`, which prioritizes `cuda`, then `mps`, then
-`cpu`. 
+specified). The default is `best`, which prioritizes `mps` and then `cpu`. (You
+must specify `cuda` or similar to use GPUs). 
 
 #### `precision`
 

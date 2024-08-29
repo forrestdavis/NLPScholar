@@ -32,9 +32,7 @@ class Classifier:
             setattr(self, k, v)
 
         if self.device == 'best':
-            if torch.cuda.is_available():
-                self.device = 'cuda'
-            elif torch.backends.mps.is_built():
+            if torch.backends.mps.is_built():
                 self.device = 'mps'
             else:
                 self.device = 'cpu'
