@@ -221,7 +221,7 @@ seed: 23
 
 It is often helpful to run training code with a subset of your data (e.g., for
 debugging). You can specify what percent of your data to use with
-`samplePercent'. This can either be a whole number between 0 and 100 (which is
+`samplePercent`. This can either be a whole number between 0 and 100 (which is
 converted to a percent; for example, 10 translates to 0.10), or a float (e.g.,
 0.001). The default is None, which results in no sampling (i.e., all data is
 used). 
