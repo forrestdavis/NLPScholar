@@ -102,6 +102,23 @@ models:
 Will load one causal language model (GPT2) and two masked language models (BERT
 and RoBERTa).
 
+## Config Details for `interact`
+
+The `interact` mode builds on the `evaluate` mode and allows you to interact
+with a model before running it. You simply specify a model (and any additional
+config settings): 
+
+```yaml
+exp: TSE
+
+mode: 
+    - interact
+
+models: 
+      hf_masked_model:
+          - bert-base-cased
+```
+
 ## Config Details for `evaluate`
 
 #### `datafpath` and `predfpath`
@@ -112,6 +129,9 @@ you want to save the predictions (the `predfpath`). For example,
 
 ```yaml
 exp: TSE
+
+mode:
+    - evaluate
 
 models: 
       hf_causal_model:
