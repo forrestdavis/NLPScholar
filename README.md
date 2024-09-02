@@ -104,10 +104,10 @@ and RoBERTa).
 
 ## Config Details for `evaluate`
 
-#### `condfpath` and `predfpath`
+#### `datafpath` and `predfpath`
 
 In running in `evaluate` mode, you need to specify the path to the file with the
-data you will be running the model on (the `condfpath`) and the path to where
+data you will be running the model on (the `datafpath`) and the path to where
 you want to save the predictions (the `predfpath`). For example, 
 
 ```yaml
@@ -119,19 +119,19 @@ models:
       hf_masked_model:
           - bert-base-cased
 
-condfpath: conditions/minimal_pairs.tsv
+datafpath: data/minimal_pairs.tsv
 
 predfpath: predictions/minimal_pairs.tsv
 ```
 
-Runs GPT2 and BERT on the minimal pairs in `conditions/minimal_pairs` and saves the
+Runs GPT2 and BERT on the minimal pairs in `data/minimal_pairs` and saves the
 output to `predictions/minimal_pairs.tsv`.
 
 #### `checkFileColumns`
 
 In evaluating models (in `evaluate` mode), you can check that the necessary
 columns for the broader experiment are included in the file indexed with
-`condfpath`. The default value is `True`, meaning the columns are checked. 
+`datafpath`. The default value is `True`, meaning the columns are checked. 
 
 ```yaml
 checkFileColumns: True

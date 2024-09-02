@@ -67,7 +67,7 @@ In many cases, ROIs are just single words, in which case this field is filled wi
 ### Required parameters
 
 - `predfpath`: File path and name for predictability TSV
-- `condfpath`: File path and name for conditons TSV
+- `datafpath`: File path and name for data TSV
 - `resultsfpath`: File path and name for output TSV
 - `pred_measure`: `probability`, `surprisal`, `perplexity` (which measure to use in the output results; perplexity is sentence level)
 

@@ -9,7 +9,7 @@ config = {'models':
              {'hf_masked_model': ['bert-base-cased']}, 
           'ignorePunct': None, 
           'predfpath': 'results/minimal_pairs.tsv',
-          'condfpath': 'stimuli/minimal_pairs.tsv'}
+          'datafpath': 'data/minimal_pairs.tsv'}
 
 config = {'models': 
           {'hf_text_classification_model':
@@ -25,7 +25,7 @@ config = {'models':
              {'hf_token_classification_model':
               ["QCRI/bert-base-multilingual-cased-pos-english"]},
           'predfpath': 'results/pos.tsv',
-          'condfpath': 'stimuli/pos.tsv',
+          'datafpath': 'data/pos.tsv',
           'device': 'mps', 
           'batchSize': 10}
 

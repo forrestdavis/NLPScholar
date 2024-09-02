@@ -12,7 +12,7 @@ class MinimalPairAnalysis:
 
         # Check for necessary parameters 
 
-        for arg in ['predfpath', 'condfpath', 'resultsfpath', 'pred_measure']:
+        for arg in ['predfpath', 'datafpath', 'resultsfpath', 'pred_measure']:
             assert arg in config, f"Must pass in {arg}"
             val = config[arg]
             exec(f"self.{arg} = '{val}'")
@@ -36,7 +36,7 @@ class MinimalPairAnalysis:
         # Load data
         self.preddat = pd.read_csv(self.predfpath, sep='\t')
 
-        self.conddat = pd.read_csv(self.condfpath, sep='\t')
+        self.conddat = pd.read_csv(self.datafpath, sep='\t')
 
         # Set topk
 
@@ -205,7 +205,7 @@ class MinimalPairAnalysis:
 
 config = {
     'predfpath': '../../../predictions/minimal_pairs.tsv',
-    'condfpath': '../../../conditions/minimal_pairs.tsv',
+    'datafpath': '../../../data/minimal_pairs.tsv',
     'resultsfpath': '../../../results/minimal_pairs.tsv',
     'pred_measure': 'surp',
     'roi_summary': 'micro',

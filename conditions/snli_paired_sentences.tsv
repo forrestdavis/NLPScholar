@@ -1,6 +1,0 @@
-textid	text	pair	condition	target
-1	A man inspects the uniform of a figure in some East Asian country.	The man is sleeping.	snli	contradiction
-2	An older and younger man smiling.	Two men are smiling and laughing at the cats playing on the floor.	snli	neutral
-3	A black race car starts up in front of a crowd of people.	A man is driving down a lonely road.	snli	contradiction
-4	A soccer game with multiple males playing.	Some men are playing a sport.	snli	entailment
-5	A smiling costumed woman is holding an umbrella.	A happy woman in a fairy costume holds an umbrella.	snli	neutral

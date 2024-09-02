@@ -14,7 +14,7 @@ class Evaluation:
 
         # Default values
         self.predfpath = False
-        self.condfpath = False
+        self.datafpath = False
         self.loadAll = False
         self.checkFileColumns = True
         self.batchSize = 1
@@ -25,8 +25,8 @@ class Evaluation:
         # Check for paths necessary for evaluation
         if 'predfpath' in config:
             self.predfpath = config['predfpath']
-        if 'condfpath' in config:
-            self.condfpath = config['condfpath']
+        if 'datafpath' in config:
+            self.datafpath = config['datafpath']
 
         # Set up models
         if self.loadAll:
@@ -44,7 +44,7 @@ class Evaluation:
         """
         columns = self.data.columns
         for need in self.NEEDS:
-            assert need in columns, f"Missing {need} in {self.condfpath}"
+            assert need in columns, f"Missing {need} in {self.datafpath}"
 
     def load_cond(self):
         """ Load condition file 
@@ -53,8 +53,8 @@ class Evaluation:
             `pd.DataFrame`: pandas dataframe of data
         """
         if self.verbose:
-            sys.stderr.write(f"Loading data from {self.condfpath}...\n")
-        return pd.read_csv(self.condfpath, sep='\t')
+            sys.stderr.write(f"Loading data from {self.datafpath}...\n")
+        return pd.read_csv(self.datafpath, sep='\t')
 
     def save_evaluation(self, results: pd.DataFrame):
         """ Save evaluation results

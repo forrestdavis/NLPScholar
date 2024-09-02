@@ -8,6 +8,6 @@ models:
       hf_token_classification_model:
           - QCRI/bert-base-multilingual-cased-pos-english
 
-condfpath: conditions/pos.tsv
+datafpath: data/pos.tsv
 
 predfpath: predictions/pos.tsv

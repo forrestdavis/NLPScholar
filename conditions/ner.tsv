@@ -1,3 +1,0 @@
-textid	text	condition	target
-1	The Golden State Warrirors are an American professional basketball team based in San Francisco.	random	O B-location I-location B-group O O O O O O O O B-location B-location 
-2	Kleinfeltersville is a town in Pennsylvania.	random	O O O O O O

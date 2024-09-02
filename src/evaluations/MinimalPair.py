@@ -101,8 +101,8 @@ class MinimalPair(Evaluation):
 
         """
         # Load data 
-        assert self.condfpath is not None, "Missing a condfpath value\n"
-        assert self.predfpath is not None, "Missing a condfpath value\n"
+        assert self.datafpath is not None, "Missing a datafpath value\n"
+        assert self.predfpath is not None, "Missing a predfpath value\n"
 
         self.data = self.load_cond()
         if self.checkFileColumns:
