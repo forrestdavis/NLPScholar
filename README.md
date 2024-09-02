@@ -65,6 +65,18 @@ recognition).
 
 #### `mode`
 
+| Experiment        | Mode       | Description                                    | 
+| -------           | -----------| --------------                                 | 
+| MinimalPair       | Interact   | Returns by-word predictability for an inputted sentence (combining subword tokens)|
+|                   | Train      | Finetunes LM using relevant objective (e.g., autoregressive, MLM) |
+|                   | Evaluate   | Returns by-token predictability measures for each input  in a dataset |
+|TextClassification | Interact   | Returns by-text classification labels for some inputted text | 
+|                   | Train      | Finetunes a pretrained model for text classification |
+|                   | Evaluate   | Returns by-text labels for each input in a dataset | 
+|TokenClassification| Interact   | Returns by-token classification labels for an inputted text | 
+|                   | Train      | Finetunes a pretrained model for token classification |
+|                   | Evaluate   | Returns by-token labels for each input in a dataset | 
+
 Each experiment has `mode`s. There are three modes: `interact`, `train`, and
 `evaluate`.  For `MinimalPair`, `interact` yields by-word (combining subword
 tokens) predictability measures for an inputted sentence, `train` finetunes a
