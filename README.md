@@ -65,18 +65,6 @@ recognition).
 
 #### `mode`
 
-| Experiment        | Mode       | Description                                    | 
-| -------           | -----------| --------------                                 | 
-| MinimalPair       | Interact   | Returns by-word predictability for an inputted sentence (combining subword tokens)|
-|                   | Train      | Finetunes LM using relevant objective (e.g., autoregressive, MLM) |
-|                   | Evaluate   | Returns by-token predictability measures for each input  in a dataset |
-|TextClassification | Interact   | Returns by-text classification labels for some inputted text | 
-|                   | Train      | Finetunes a pretrained model for text classification |
-|                   | Evaluate   | Returns by-text labels for each input in a dataset | 
-|TokenClassification| Interact   | Returns by-token classification labels for an inputted text | 
-|                   | Train      | Finetunes a pretrained model for token classification |
-|                   | Evaluate   | Returns by-token labels for each input in a dataset | 
-
 
 |Experiment | Interact | Train | Evaluate |
 | ----------| ---------| ------| --------- |
@@ -84,18 +72,7 @@ recognition).
 |TextClassification |Returns by-text classification labels for some inputted text | Finetunes a pretrained model for text classification |Returns by-text labels for each input in a dataset |
 |TokenClassification | Returns by-token classification labels for an inputted text | Finetunes a pretrained model for token classification | Returns by-token labels for each input in a dataset |
 
-Each experiment has `mode`s. There are three modes: `interact`, `train`, and
-`evaluate`.  For `MinimalPair`, `interact` yields by-word (combining subword
-tokens) predictability measures for an inputted sentence, `train` finetunes a
-language model using the relevant language modeling objective (i.e.,
-auto-regressive or masked language modeling), and `evaluate` returns by-token
-predictability measures for a dataset.  For `TextClassification`, `interact`
-yields by-text classification labels for inputted text, `train` finetunes a
-pretrained model for text classification, and `evaluate` returns by-text labels
-for a dataset.  For `TokenClassification`, `interact` yields by-token
-classification labels for inputted text, `train` finetunes a pretrained model
-for token classification, and `evaluate` returns by-token classification labels
-for a dataset. 
+
 
 #### `models`
 
