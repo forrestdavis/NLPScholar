@@ -105,8 +105,8 @@ and RoBERTa).
 ## Config Details for `interact`
 
 The `interact` mode builds on the `evaluate` mode and allows you to interact
-with a model before running it. You simply specify a model (and any additional
-config settings): 
+with a model before running it. You simply specify a model (and any [additional
+config settings](#additional-config-settings)): 
 
 ```yaml
 exp: TSE
