@@ -35,6 +35,8 @@ run the toolkit.
 
     conda env create -f environment.yml
 
+**If you run into errors while installing torch when you run this command, change** `torch==2.4.0` **to** `torch==2.2.0`  **in** `environment.yml` 
+
 Next, activate the new environment:
 
     conda activate nlp
