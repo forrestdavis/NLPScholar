@@ -24,6 +24,8 @@ Once Anaconda is installed, run the following command to update
 the `conda` packaging tool to the latest version:
 
     conda update -n base -c defaults conda
+    conda update conda 
+    pip install --upgrade pip
 
 ## Create the `nlp` Environment
 

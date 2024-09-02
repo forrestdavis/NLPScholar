@@ -3,7 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.10
-  - pip=22.2.2
+  - pip=24.2
   - pip:
     - accelerate==0.33.0
     - bitsandbytes==0.42.0
