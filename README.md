@@ -65,15 +65,17 @@ recognition).
 
 #### `mode`
 
-Each experiment has three `mode`s: `interact`, `train`, and
-`evaluate`. 
+Each experiment has four `mode`s: `interact`, `train`,
+`evaluate`, and `analyze`.
 
 
-|Experiment | Interact | Train | Evaluate |
-| ----------| ---------| ------| --------- |
-| MinimalPair |  Returns by-word predictability for an inputted sentence (combining subword tokens) | Finetunes LM using relevant objective (e.g., autoregressive, MLM) |Returns by-token predictability measures for each input  in a dataset |
-|TextClassification |Returns by-text classification labels for some inputted text | Finetunes a pretrained model for text classification |Returns by-text labels for each input in a dataset |
-|TokenClassification | Returns by-token classification labels for an inputted text | Finetunes a pretrained model for token classification | Returns by-token labels for each input in a dataset |
+|Experiment | Interact | Train | Evaluate | Analyze |
+| ----------| ---------| ------| --------- | ------- | 
+| MinimalPair |  Returns by-word predictability for an inputted sentence (combining subword tokens) | Finetunes LM using relevant objective (e.g., autoregressive, MLM) |Returns by-token predictability measures for each input  in a dataset | Returns average difference in predictability between expected and unexpected for each condition and model |  
+<!--  -->
+|TextClassification |Returns by-text classification labels for some inputted text | Finetunes a pretrained model for text classification |Returns by-text labels for each input in a dataset | Returns average accuracy, precision and recall for each class in each condition | 
+<!--  -->
+|TokenClassification | Returns by-token classification labels for an inputted text | Finetunes a pretrained model for token classification | Returns by-token labels for each input in a dataset | Returns average accuracy, precision and recall for each class in each condition | 
 
 
 #### `models`
