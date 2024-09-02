@@ -10,7 +10,13 @@
 # Long Term
 - [ ] Handle longer sequences in language models (sliding window?)
 - [ ] Add hyperparameter search 
-- [ ] Add whole word masking 
+- [ ] Add whole word masking
+- [ ] Some tutorials 
+
+# Dreams 
+- [ ] Make documentation page
+- [ ] Make a package on pip
+- [ ] Add unit tests 
 
 # Done 
 
