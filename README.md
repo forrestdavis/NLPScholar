@@ -68,17 +68,12 @@ recognition).
 Each experiment has three `mode`s: `interact`, `train`, and
 `evaluate`. 
 
-| Experiment        | Mode       | Description                                    | 
-| -------           | -----------| --------------                                 | 
-| MinimalPair       | Interact   | Returns by-word predictability for an inputted sentence (combining subword tokens)|
-|                   | Train      | Finetunes LM using relevant objective (e.g., autoregressive, MLM) |
-|                   | Evaluate   | Returns by-token predictability measures for each input  in a dataset |
-|TextClassification | Interact   | Returns by-text classification labels for some inputted text | 
-|                   | Train      | Finetunes a pretrained model for text classification |
-|                   | Evaluate   | Returns by-text labels for each input in a dataset | 
-|TokenClassification| Interact   | Returns by-token classification labels for an inputted text | 
-|                   | Train      | Finetunes a pretrained model for token classification |
-|                   | Evaluate   | Returns by-token labels for each input in a dataset | 
+
+|Experiment | Interact | Train | Evaluate |
+| ----------| ---------| ------| --------- |
+| MinimalPair |  Returns by-word predictability for an inputted sentence (combining subword tokens) | Finetunes LM using relevant objective (e.g., autoregressive, MLM) |Returns by-token predictability measures for each input  in a dataset |
+|TextClassification |Returns by-text classification labels for some inputted text | Finetunes a pretrained model for text classification |Returns by-text labels for each input in a dataset |
+|TokenClassification | Returns by-token classification labels for an inputted text | Finetunes a pretrained model for token classification | Returns by-token labels for each input in a dataset |
 
 
 #### `models`
