@@ -1,6 +1,8 @@
 # Short Term
 - [ ] Add in LanguageModel experiment with evaluate being perplexity, train
   being like MinimalPair, and interact being ppl for inputted text
+- [ ] Add explanation of analysis to README
+- [ ] Set up config files for analysis 
 
 # Mid Term
 - [ ] Add ngram 
