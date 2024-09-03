@@ -23,19 +23,15 @@ whenever you want to use Anaconda.
 After the installation, you must close your terminal and open a new
 one for the changes to take effect.
 
-
-## Create the `nlp` Environment
-
-First, run the following command to update the `conda` packaging tool to the
-latest version:
-
     conda update -n base -c defaults conda
     conda update conda 
     pip install --upgrade pip
 
-Next, make sure you're in the toolkit directory and run the following command.
-It will create a new `conda` environment containing the libraries you need to
-run the toolkit.  
+## Create the `nlp` Environment
+
+Make sure you're in the toolkit directory and run the following command.  It
+will create a new `conda` environment containing the libraries you need to run
+the toolkit.  
 
     conda env create -f environment.yml
 
