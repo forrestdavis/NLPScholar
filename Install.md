@@ -3,7 +3,7 @@
 ## Install Anaconda
 
 You will need Python 3 and some libraries. First, [download and install
-Anaconda](https://www.anaconda.com/distribution/) to manage the packages. You
+Anaconda](https://www.anaconda.com/download) to manage the packages. You
 should install the latest version of Anaconda (or Miniconda) available.
 
 During the installation on MacOSX and Linux, you will be asked whether to
