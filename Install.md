@@ -72,7 +72,7 @@ This is my mistake. I forgot to add it to the packages. Please run:
 
     pip install ipykernel 
 
-### You want to try creating the environment
+### You want to try re-creating the environment (prefix already found)
 
 Sometimes the environment is created, but something has gone wrong. That is when
 you run: 
