@@ -109,7 +109,7 @@ with a model before running it. You simply specify a model (and any [additional
 config settings](#additional-config-settings)): 
 
 ```yaml
-exp: TSE
+exp: MinimalPair
 
 mode: 
     - interact
@@ -128,7 +128,7 @@ data you will be running the model on (the `datafpath`) and the path to where
 you want to save the predictions (the `predfpath`). For example, 
 
 ```yaml
-exp: TSE
+exp: MinimalPair
 
 mode:
     - evaluate
