@@ -31,6 +31,7 @@ class Trainer:
         self.dataset = None
 
         # Training defaults
+        self.precision = None
         self.epochs = 2
         self.eval_strategy = 'epoch'
         self.eval_steps = 500
