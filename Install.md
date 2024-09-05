@@ -72,6 +72,12 @@ This is my mistake. I forgot to add it to the packages. Please run:
 
     pip install ipykernel 
 
+### Conda activate doesn't work
+
+You will see a longer message about setting up conda for your shell. Run 
+
+    conda init --all
+
 ### You want to try re-creating the environment (prefix already found)
 
 Sometimes the environment is created, but something has gone wrong. That is when
