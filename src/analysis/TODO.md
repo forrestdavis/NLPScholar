@@ -1,0 +1,1 @@
+- [ ] Implement straightforward way of having importing functions for summaries/aggregation from a separately specified file. 
