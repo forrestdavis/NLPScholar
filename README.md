@@ -39,7 +39,7 @@ example, you can try a sample config for interact:
 python main.py sample_configs/interact.yaml
 ```
 
-If no config is provided as an argument, config.yaml is used.  See below for
+If no config is provided as an argument, `config.yaml` is used.  See below for
 details on the structure of the config files. 
 
 ## Basic Config Files
