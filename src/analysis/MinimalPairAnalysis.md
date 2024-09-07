@@ -1,4 +1,4 @@
-# Defining Minimal-pair analysis [SHOULD THIS BE TSE ANALYSIS ??]
+# Defining MinimalPair Analysis
 
 We define a minimal pair analysis as any analysis that either: 
 
@@ -15,17 +15,16 @@ In this toolkit:
 
 - "predictability" can either refer to conditional probability --- $P(word | context)$ --- or surprisal --- $-\log P(word | context)$
 
-- In measuring predictability of a "word" we either average or sum across the predictability of all the sub-word tokens depending on what is specified in `params.py` (see below). 
+- In measuring predictability of a "word" we either average or sum across the predictability of all the sub-word tokens depending on the specified parameters (see below). 
 
 - "context" can either be just the left context (autoregressive LMs) or both left and right context (Masked LMs). 
 
 - What counts as "minimally different" is specified by the experimenter. 
 
 
-
 # Input requirements
 
-## TSV file with predictability
+## TSV file with predictability (file passed into predfpath)
 This has one sub-word token per line for every pair of sentences that needs to be compared. The tsv has the following columns. 
 
 - `token` (the subword token)
@@ -38,10 +37,7 @@ This has one sub-word token per line for every pair of sentences that needs to b
 - `prob` (the probability of the token given the context)
 - `surp` (the surprisal of the token given the context; log base 2)
 
-
-
-
-## TSV file with conditions
+## TSV file with conditions (file passed into datafpath)
 
 - `sentid` (the ID of the specific sentence; matches what is in `predictability.tsv`)
 - `comparison` (expected and unexpected)
@@ -62,35 +58,18 @@ All sentences for a given `model` in a given `condition` will be averaged togeth
 
 In many cases, ROIs are just single words, in which case this field is filled with just one integer corresponding to the target word position. Some experiments might have multiple words of interest. In such cases, each of the words should be comma separated. Note: it is ok for the ROIs to differ across pairs. 
 
-## Other parameters to be included in the config:
+## Parameters to be included in the config:
 
 ### Required parameters
 
 - `predfpath`: File path and name for predictability TSV
 - `datafpath`: File path and name for data TSV
 - `resultsfpath`: File path and name for output TSV
-- `pred_measure`: `probability`, `surprisal`, `perplexity` (which measure to use in the output results; perplexity is sentence level)
 
 ### Optional parameters
+- `pred_measure`: `prob`, `surp`, `perplexity`. Specfies which measure to use in the output results; perplexity is sentence level. (Default is `surp`)
 - `word_summary`: `sum` or `mean` predictability across all sub-word tokens. (Default is mean; Probability always uses `sum`)
 - `k_lemmas`: number of lemmas to include in the summary; positive integer k for the top-k lemmas, negative integer k for bottom-k lemmas; `all` to include all lemmas (Default is `all`). 
 - `punctuation`: `previous`, `next`, `separate`, `ignore` (how to handle punctation tokens; fold into previous word, next word, treat as a separate word or ignore from computation. If it is treated as separate token, this will influence ROIs.)
-
-
-# Output
-
-Saves a TSV file with the following columns: 
-
-- `condition`
-- `model`
-- `microdiff`: average difference in predictability computed by comparing each individual ROI for every pair. (Will be NA for perplexity)
-- `macrodiff`: average predictability across all ROIs in a sentence computed before pairwise difference is calculated. 
-- `acc`: Proportion of times Pred(expected) > Pred(unexpected)
-
-Note, the directionality for probability is different from that for surprisal and perplexity: higher probability means more predictable, whereas higher surprisal or perplexity means less predictable. 
-
-For the difference metrics, the smaller (predicted) values are subtracted from the larger ones:
-- Expected - Unexpected for probability
-- Unexpected - Expected for surprisal and perplexity
 
 

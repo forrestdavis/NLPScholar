@@ -30,6 +30,16 @@ def load_kwargs(config: dict) -> dict:
                 'wholeWordMasking',
                 'maskProbability',
                 'maxSequenceLength',
+                # analysis args
+                'predfpath',
+                'datafpath',
+                'resultsfpath',
+                'sep',
+                'pred_measure',
+                'word_summary',
+                'roi_summary',
+                'k_lemmas',
+                'punctuation'
                ]
     for option in optional:
         if option in config:

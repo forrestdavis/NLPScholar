@@ -3,40 +3,15 @@
 # (https://github.com/grushaprasad)
 # August 2024
 
+from .Analysis import Analysis
 import pandas as pd
 pd.options.mode.chained_assignment = None  # default='warn' 
 
-class MinimalPairAnalysis:
-    def __init__(self, config: dict):
+class MinimalPair(Analysis):
 
-
-        # Check for necessary parameters 
-
-        for arg in ['predfpath', 'datafpath', 'resultsfpath', 'pred_measure']:
-            assert arg in config, f"Must pass in {arg}"
-            val = config[arg]
-            exec(f"self.{arg} = '{val}'")
-        
-        # Assign optional parameters
-        defaults = {
-            'word_summary': 'mean',
-            'roi_summary': 'micro',
-            'k_lemmas': 'inf', ## include all lemmas
-            'punctuation': 'previous'
-        }
-
-        for arg in defaults:
-            if arg in config:
-                val = config[arg]
-            else:
-                val = defaults[arg]
-            exec(f"self.{arg} = '{val}'")
-
-
-        # Load data
-        self.preddat = pd.read_csv(self.predfpath, sep='\t')
-
-        self.conddat = pd.read_csv(self.datafpath, sep='\t')
+    def __init__(self, config: dict, 
+                **kwargs):
+        super().__init__(config, **kwargs)
 
         # Set topk
 
@@ -44,11 +19,9 @@ class MinimalPairAnalysis:
             self.topk = int(self.k_lemmas.strip())
         except:
             if self.k_lemmas != 'all':
-                print('\nINVALID TOP-K LEMMAS, USING ALL LEMMAS IN CALCULATION\n')
+                print('\n**Invalid top-k lemmas. Using all lemmas in calculation**\n')
 
             self.topk = len(self.conddat['lemma'].unique())
-
-
 
     def token_to_word(self, preddat):
 
@@ -99,7 +72,6 @@ class MinimalPairAnalysis:
 
         # Get consistent ROI mapping across comparisons
         target['mapping'] = target.apply(lambda x: {curr:new for new, curr in enumerate(x['ROI'])}, axis=1)
-        # target['wordpos_mod'] = target['wordpos_mod'].apply(lambda x: str(x))
         target['pos'] = target.apply(lambda x: x['mapping'][x['wordpos_mod']], axis=1)
 
         # Specify pred measure
@@ -159,8 +131,6 @@ class MinimalPairAnalysis:
 
         groupby_cols = ['contextid','model', 'condition']
 
-        print('PRINTING TOP K', self.topk)
-
         by_lemma = by_pair.sort_values(by=['expected'], ascending=ascending).groupby(groupby_cols).head(self.topk).reset_index(drop=True)
 
 
@@ -176,7 +146,7 @@ class MinimalPairAnalysis:
         return by_cond
 
 
-    def run(self):
+    def analyze(self):
         """ Run Minimal Pair analysis and save result to resultsfpath
 
         The output has the following information. 
@@ -199,23 +169,3 @@ class MinimalPairAnalysis:
         by_cond = self.summarize_context(by_context)
 
         by_cond.to_csv(self.resultsfpath, sep = '\t', na_rep='NA')
-
-
-## Tests
-
-config = {
-    'predfpath': '../../../predictions/minimal_pairs.tsv',
-    'datafpath': '../../../data/minimal_pairs.tsv',
-    'resultsfpath': '../../../results/minimal_pairs.tsv',
-    'pred_measure': 'surp',
-    'roi_summary': 'micro',
-    'k_lemmas': '1'
-}
-
-x = MinimalPairAnalysis(config)
-
-# from pprint import pprint
-# pprint(vars(x))
-
-x.run()
-

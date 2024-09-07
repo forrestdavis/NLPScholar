@@ -27,3 +27,6 @@ for mode in modes:
     if mode == 'train':
         exp = load_trainer(config)
         exp.train()
+    if mode == 'analyze':
+        exp = load_analysis(config)
+        exp.analyze()
