@@ -4,6 +4,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from src.utils.load_evaluations import load_evaluation
 from src.utils.load_trainers import load_trainer
+from src.utils.load_analysis import load_analysis
 
 
 if len(sys.argv) > 1:
