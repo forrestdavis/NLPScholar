@@ -62,6 +62,7 @@ class MinimalPair(Analysis):
 
     def summarize_roi(self, by_word):
         merged = pd.merge(by_word,self.conddat, on='sentid')
+        merged = merged.astype({'ROI': 'string'}) # to avoid autocasting if ROIs have only one val
 
         # Exclude non ROI words
         merged['ROI'] = merged['ROI'].apply(lambda x: [int(item.strip()) for item in x.split(',')])
