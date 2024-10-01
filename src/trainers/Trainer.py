@@ -23,7 +23,7 @@ class Trainer:
 
         # Dataset defaults
         self.seed = 23
-        self.samplePercent = 10
+        self.samplePercent = None
         self.textLabel = 'text'
         self.pairLabel = 'pair'
         self.tokensLabel = 'tokens'
