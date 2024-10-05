@@ -84,7 +84,7 @@ class HFTextClassificationModel(Classifier):
                             f"sentences and {len(pairs)} second sentences"
             inputs_dict = self.tokenizer(texts, pairs, 
                                          padding=True, 
-                                         trunctation=True,
+                                         truncation=True,
                                          return_tensors='pt').to(self.device)
         else:
             inputs_dict = self.tokenizer(texts, 
