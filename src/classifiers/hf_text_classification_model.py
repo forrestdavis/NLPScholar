@@ -66,6 +66,9 @@ class HFTextClassificationModel(Classifier):
         if self.label2id is None:
             self.label2id = self.model.config.label2id
 
+        # Set model pad_token_id to tokenizer's
+        self.model.config.pad_token_id = self.tokenizer.pad_token_id
+
     @torch.no_grad()
     def get_text_output(self, texts: Union[str, List[str]], 
                             pairs: Union[str, List[str]] = None):
