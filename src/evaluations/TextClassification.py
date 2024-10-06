@@ -37,6 +37,7 @@ class TextClassification(Evaluation):
         outputs = []
         for batch_idx in range(0, len(text), self.batchSize):
             batch = text[batch_idx:batch_idx+self.batchSize]
+            batch_pair = None
             if pair is not None:
                 batch_pair = pair[batch_idx:batch_idx+self.batchSize]
             outputs.extend(Classifier.get_text_predictions(batch, batch_pair))
