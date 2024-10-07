@@ -73,3 +73,9 @@ In many cases, ROIs are just single words, in which case this field is filled wi
 - `punctuation`: `previous`, `next`, `separate`, `ignore` (how to handle punctation tokens; fold into previous word, next word, treat as a separate word or ignore from computation. If it is treated as separate token, this will influence ROIs.)
 
 
+# Output
+
+The analyze mode for the MinimalPair experiment returns two files: 
+
+1. A TSV file with one row for each sentence. The columns are the mean and probability and surprisal aggregated over the ROI for the corresponding sentence. 
+2. A TSV file with one row for each condition and model combination. The columns are the micro and macro average difference in predictability between expected and unexpected as well as the accuracy (proportion of times expected is more predictable than unexpected)

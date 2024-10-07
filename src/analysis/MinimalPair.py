@@ -60,6 +60,18 @@ class MinimalPair(Analysis):
         return grouped_df
 
 
+    def save_interim(self,target_df):
+        
+        cols = ['model','sentid', 'pairid', 'contextid', 'lemma', 'condition', 'comparison', 'sentence']
+        summ = target_df.groupby(cols).agg({'prob': ['sum','mean'], 'surp': ['sum','mean']}).reset_index()
+        summ.columns = list(map(''.join, summ.columns.values))
+        fname = f"{self.resultsfpath.replace('.tsv', '')}_byROI.tsv"
+        print(f"Saving interim file: {fname}")
+        summ.to_csv(fname, sep = '\t', na_rep='NA')
+
+
+
+
     def summarize_roi(self, by_word):
         merged = pd.merge(by_word,self.conddat, on='sentid')
         merged = merged.astype({'ROI': 'string'}) # to avoid autocasting if ROIs have only one val
@@ -74,6 +86,9 @@ class MinimalPair(Analysis):
         # Get consistent ROI mapping across comparisons
         target['mapping'] = target.apply(lambda x: {curr:new for new, curr in enumerate(x['ROI'])}, axis=1)
         target['pos'] = target.apply(lambda x: x['mapping'][x['wordpos_mod']], axis=1)
+
+        # Save interim state before computing difference
+        self.save_interim(target)
 
         # Specify pred measure
         pred_measure = self.get_measure()
@@ -169,4 +184,6 @@ class MinimalPair(Analysis):
         # summarize over contexts
         by_cond = self.summarize_context(by_context)
 
+        print(f'Creating {self.resultsfpath}\n')
         by_cond.to_csv(self.resultsfpath, sep = '\t', na_rep='NA')
+        
