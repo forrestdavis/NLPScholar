@@ -16,8 +16,9 @@ class MinimalPair(Analysis):
         # Set topk
 
         try:
-            self.topk = int(self.k_lemmas.strip())
+            self.topk = int(str(self.k_lemmas).strip())
         except:
+            print(self.k_lemmas)
             if self.k_lemmas != 'all':
                 print('\n**Invalid top-k lemmas. Using all lemmas in calculation**\n')
 
