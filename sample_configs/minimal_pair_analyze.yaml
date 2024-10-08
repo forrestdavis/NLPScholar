@@ -1,0 +1,12 @@
+exp: MinimalPair
+
+mode: 
+    - analyze
+
+predfpath: ./predictions/minimal_pairs.tsv
+
+datafpath: ./data/minimal_pairs.tsv
+
+resultsfpath: ./results/minimal_pairs.tsv
+
+k_lemmas: 1
