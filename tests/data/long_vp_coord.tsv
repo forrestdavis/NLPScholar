@@ -1,0 +1,801 @@
+sentid	pairid	contextid	lemma	condition	comparison	sentence	ROI
+0	0	0	likes	long_vp_coord	expected	the author knows many different foreign languages and likes to watch television shows	8
+1	0	0	likes	long_vp_coord	unexpected	the author knows many different foreign languages and like to watch television shows	8
+1	1	1	is	long_vp_coord	expected	the author knows many different foreign languages and is twenty three years old	8
+2	1	1	is	long_vp_coord	unexpected	the author knows many different foreign languages and are twenty three years old	8
+2	2	2	enjoys	long_vp_coord	expected	the author knows many different foreign languages and enjoys playing tennis with colleagues	8
+3	2	2	enjoys	long_vp_coord	unexpected	the author knows many different foreign languages and enjoy playing tennis with colleagues	8
+3	3	3	writes	long_vp_coord	expected	the author knows many different foreign languages and writes in a journal every day	8
+4	3	3	writes	long_vp_coord	unexpected	the author knows many different foreign languages and write in a journal every day	8
+4	4	4	knows	long_vp_coord	expected	the author likes to watch television shows and knows many different foreign languages	8
+5	4	4	knows	long_vp_coord	unexpected	the author likes to watch television shows and know many different foreign languages	8
+5	5	5	is	long_vp_coord	expected	the author likes to watch television shows and is twenty three years old	8
+6	5	5	is	long_vp_coord	unexpected	the author likes to watch television shows and are twenty three years old	8
+6	6	6	enjoys	long_vp_coord	expected	the author likes to watch television shows and enjoys playing tennis with colleagues	8
+7	6	6	enjoys	long_vp_coord	unexpected	the author likes to watch television shows and enjoy playing tennis with colleagues	8
+7	7	7	writes	long_vp_coord	expected	the author likes to watch television shows and writes in a journal every day	8
+8	7	7	writes	long_vp_coord	unexpected	the author likes to watch television shows and write in a journal every day	8
+8	8	8	knows	long_vp_coord	expected	the author is twenty three years old and knows many different foreign languages	8
+9	8	8	knows	long_vp_coord	unexpected	the author is twenty three years old and know many different foreign languages	8
+9	9	9	likes	long_vp_coord	expected	the author is twenty three years old and likes to watch television shows	8
+10	9	9	likes	long_vp_coord	unexpected	the author is twenty three years old and like to watch television shows	8
+10	10	10	enjoys	long_vp_coord	expected	the author is twenty three years old and enjoys playing tennis with colleagues	8
+11	10	10	enjoys	long_vp_coord	unexpected	the author is twenty three years old and enjoy playing tennis with colleagues	8
+11	11	11	writes	long_vp_coord	expected	the author is twenty three years old and writes in a journal every day	8
+12	11	11	writes	long_vp_coord	unexpected	the author is twenty three years old and write in a journal every day	8
+12	12	12	knows	long_vp_coord	expected	the author enjoys playing tennis with colleagues and knows many different foreign languages	8
+13	12	12	knows	long_vp_coord	unexpected	the author enjoys playing tennis with colleagues and know many different foreign languages	8
+13	13	13	likes	long_vp_coord	expected	the author enjoys playing tennis with colleagues and likes to watch television shows	8
+14	13	13	likes	long_vp_coord	unexpected	the author enjoys playing tennis with colleagues and like to watch television shows	8
+14	14	14	is	long_vp_coord	expected	the author enjoys playing tennis with colleagues and is twenty three years old	8
+15	14	14	is	long_vp_coord	unexpected	the author enjoys playing tennis with colleagues and are twenty three years old	8
+15	15	15	writes	long_vp_coord	expected	the author enjoys playing tennis with colleagues and writes in a journal every day	8
+16	15	15	writes	long_vp_coord	unexpected	the author enjoys playing tennis with colleagues and write in a journal every day	8
+16	16	16	knows	long_vp_coord	expected	the author writes in a journal every day and knows many different foreign languages	9
+17	16	16	knows	long_vp_coord	unexpected	the author writes in a journal every day and know many different foreign languages	9
+17	17	17	likes	long_vp_coord	expected	the author writes in a journal every day and likes to watch television shows	9
+18	17	17	likes	long_vp_coord	unexpected	the author writes in a journal every day and like to watch television shows	9
+18	18	18	is	long_vp_coord	expected	the author writes in a journal every day and is twenty three years old	9
+19	18	18	is	long_vp_coord	unexpected	the author writes in a journal every day and are twenty three years old	9
+19	19	19	enjoys	long_vp_coord	expected	the author writes in a journal every day and enjoys playing tennis with colleagues	9
+20	19	19	enjoys	long_vp_coord	unexpected	the author writes in a journal every day and enjoy playing tennis with colleagues	9
+20	20	20	likes	long_vp_coord	expected	the pilot knows many different foreign languages and likes to watch television shows	8
+21	20	20	likes	long_vp_coord	unexpected	the pilot knows many different foreign languages and like to watch television shows	8
+21	21	21	is	long_vp_coord	expected	the pilot knows many different foreign languages and is twenty three years old	8
+22	21	21	is	long_vp_coord	unexpected	the pilot knows many different foreign languages and are twenty three years old	8
+22	22	22	enjoys	long_vp_coord	expected	the pilot knows many different foreign languages and enjoys playing tennis with colleagues	8
+23	22	22	enjoys	long_vp_coord	unexpected	the pilot knows many different foreign languages and enjoy playing tennis with colleagues	8
+23	23	23	writes	long_vp_coord	expected	the pilot knows many different foreign languages and writes in a journal every day	8
+24	23	23	writes	long_vp_coord	unexpected	the pilot knows many different foreign languages and write in a journal every day	8
+24	24	24	knows	long_vp_coord	expected	the pilot likes to watch television shows and knows many different foreign languages	8
+25	24	24	knows	long_vp_coord	unexpected	the pilot likes to watch television shows and know many different foreign languages	8
+25	25	25	is	long_vp_coord	expected	the pilot likes to watch television shows and is twenty three years old	8
+26	25	25	is	long_vp_coord	unexpected	the pilot likes to watch television shows and are twenty three years old	8
+26	26	26	enjoys	long_vp_coord	expected	the pilot likes to watch television shows and enjoys playing tennis with colleagues	8
+27	26	26	enjoys	long_vp_coord	unexpected	the pilot likes to watch television shows and enjoy playing tennis with colleagues	8
+27	27	27	writes	long_vp_coord	expected	the pilot likes to watch television shows and writes in a journal every day	8
+28	27	27	writes	long_vp_coord	unexpected	the pilot likes to watch television shows and write in a journal every day	8
+28	28	28	knows	long_vp_coord	expected	the pilot is twenty three years old and knows many different foreign languages	8
+29	28	28	knows	long_vp_coord	unexpected	the pilot is twenty three years old and know many different foreign languages	8
+29	29	29	likes	long_vp_coord	expected	the pilot is twenty three years old and likes to watch television shows	8
+30	29	29	likes	long_vp_coord	unexpected	the pilot is twenty three years old and like to watch television shows	8
+30	30	30	enjoys	long_vp_coord	expected	the pilot is twenty three years old and enjoys playing tennis with colleagues	8
+31	30	30	enjoys	long_vp_coord	unexpected	the pilot is twenty three years old and enjoy playing tennis with colleagues	8
+31	31	31	writes	long_vp_coord	expected	the pilot is twenty three years old and writes in a journal every day	8
+32	31	31	writes	long_vp_coord	unexpected	the pilot is twenty three years old and write in a journal every day	8
+32	32	32	knows	long_vp_coord	expected	the pilot enjoys playing tennis with colleagues and knows many different foreign languages	8
+33	32	32	knows	long_vp_coord	unexpected	the pilot enjoys playing tennis with colleagues and know many different foreign languages	8
+33	33	33	likes	long_vp_coord	expected	the pilot enjoys playing tennis with colleagues and likes to watch television shows	8
+34	33	33	likes	long_vp_coord	unexpected	the pilot enjoys playing tennis with colleagues and like to watch television shows	8
+34	34	34	is	long_vp_coord	expected	the pilot enjoys playing tennis with colleagues and is twenty three years old	8
+35	34	34	is	long_vp_coord	unexpected	the pilot enjoys playing tennis with colleagues and are twenty three years old	8
+35	35	35	writes	long_vp_coord	expected	the pilot enjoys playing tennis with colleagues and writes in a journal every day	8
+36	35	35	writes	long_vp_coord	unexpected	the pilot enjoys playing tennis with colleagues and write in a journal every day	8
+36	36	36	knows	long_vp_coord	expected	the pilot writes in a journal every day and knows many different foreign languages	9
+37	36	36	knows	long_vp_coord	unexpected	the pilot writes in a journal every day and know many different foreign languages	9
+37	37	37	likes	long_vp_coord	expected	the pilot writes in a journal every day and likes to watch television shows	9
+38	37	37	likes	long_vp_coord	unexpected	the pilot writes in a journal every day and like to watch television shows	9
+38	38	38	is	long_vp_coord	expected	the pilot writes in a journal every day and is twenty three years old	9
+39	38	38	is	long_vp_coord	unexpected	the pilot writes in a journal every day and are twenty three years old	9
+39	39	39	enjoys	long_vp_coord	expected	the pilot writes in a journal every day and enjoys playing tennis with colleagues	9
+40	39	39	enjoys	long_vp_coord	unexpected	the pilot writes in a journal every day and enjoy playing tennis with colleagues	9
+40	40	40	likes	long_vp_coord	expected	the surgeon knows many different foreign languages and likes to watch television shows	8
+41	40	40	likes	long_vp_coord	unexpected	the surgeon knows many different foreign languages and like to watch television shows	8
+41	41	41	is	long_vp_coord	expected	the surgeon knows many different foreign languages and is twenty three years old	8
+42	41	41	is	long_vp_coord	unexpected	the surgeon knows many different foreign languages and are twenty three years old	8
+42	42	42	enjoys	long_vp_coord	expected	the surgeon knows many different foreign languages and enjoys playing tennis with colleagues	8
+43	42	42	enjoys	long_vp_coord	unexpected	the surgeon knows many different foreign languages and enjoy playing tennis with colleagues	8
+43	43	43	writes	long_vp_coord	expected	the surgeon knows many different foreign languages and writes in a journal every day	8
+44	43	43	writes	long_vp_coord	unexpected	the surgeon knows many different foreign languages and write in a journal every day	8
+44	44	44	knows	long_vp_coord	expected	the surgeon likes to watch television shows and knows many different foreign languages	8
+45	44	44	knows	long_vp_coord	unexpected	the surgeon likes to watch television shows and know many different foreign languages	8
+45	45	45	is	long_vp_coord	expected	the surgeon likes to watch television shows and is twenty three years old	8
+46	45	45	is	long_vp_coord	unexpected	the surgeon likes to watch television shows and are twenty three years old	8
+46	46	46	enjoys	long_vp_coord	expected	the surgeon likes to watch television shows and enjoys playing tennis with colleagues	8
+47	46	46	enjoys	long_vp_coord	unexpected	the surgeon likes to watch television shows and enjoy playing tennis with colleagues	8
+47	47	47	writes	long_vp_coord	expected	the surgeon likes to watch television shows and writes in a journal every day	8
+48	47	47	writes	long_vp_coord	unexpected	the surgeon likes to watch television shows and write in a journal every day	8
+48	48	48	knows	long_vp_coord	expected	the surgeon is twenty three years old and knows many different foreign languages	8
+49	48	48	knows	long_vp_coord	unexpected	the surgeon is twenty three years old and know many different foreign languages	8
+49	49	49	likes	long_vp_coord	expected	the surgeon is twenty three years old and likes to watch television shows	8
+50	49	49	likes	long_vp_coord	unexpected	the surgeon is twenty three years old and like to watch television shows	8
+50	50	50	enjoys	long_vp_coord	expected	the surgeon is twenty three years old and enjoys playing tennis with colleagues	8
+51	50	50	enjoys	long_vp_coord	unexpected	the surgeon is twenty three years old and enjoy playing tennis with colleagues	8
+51	51	51	writes	long_vp_coord	expected	the surgeon is twenty three years old and writes in a journal every day	8
+52	51	51	writes	long_vp_coord	unexpected	the surgeon is twenty three years old and write in a journal every day	8
+52	52	52	knows	long_vp_coord	expected	the surgeon enjoys playing tennis with colleagues and knows many different foreign languages	8
+53	52	52	knows	long_vp_coord	unexpected	the surgeon enjoys playing tennis with colleagues and know many different foreign languages	8
+53	53	53	likes	long_vp_coord	expected	the surgeon enjoys playing tennis with colleagues and likes to watch television shows	8
+54	53	53	likes	long_vp_coord	unexpected	the surgeon enjoys playing tennis with colleagues and like to watch television shows	8
+54	54	54	is	long_vp_coord	expected	the surgeon enjoys playing tennis with colleagues and is twenty three years old	8
+55	54	54	is	long_vp_coord	unexpected	the surgeon enjoys playing tennis with colleagues and are twenty three years old	8
+55	55	55	writes	long_vp_coord	expected	the surgeon enjoys playing tennis with colleagues and writes in a journal every day	8
+56	55	55	writes	long_vp_coord	unexpected	the surgeon enjoys playing tennis with colleagues and write in a journal every day	8
+56	56	56	knows	long_vp_coord	expected	the surgeon writes in a journal every day and knows many different foreign languages	9
+57	56	56	knows	long_vp_coord	unexpected	the surgeon writes in a journal every day and know many different foreign languages	9
+57	57	57	likes	long_vp_coord	expected	the surgeon writes in a journal every day and likes to watch television shows	9
+58	57	57	likes	long_vp_coord	unexpected	the surgeon writes in a journal every day and like to watch television shows	9
+58	58	58	is	long_vp_coord	expected	the surgeon writes in a journal every day and is twenty three years old	9
+59	58	58	is	long_vp_coord	unexpected	the surgeon writes in a journal every day and are twenty three years old	9
+59	59	59	enjoys	long_vp_coord	expected	the surgeon writes in a journal every day and enjoys playing tennis with colleagues	9
+60	59	59	enjoys	long_vp_coord	unexpected	the surgeon writes in a journal every day and enjoy playing tennis with colleagues	9
+60	60	60	likes	long_vp_coord	expected	the farmer knows many different foreign languages and likes to watch television shows	8
+61	60	60	likes	long_vp_coord	unexpected	the farmer knows many different foreign languages and like to watch television shows	8
+61	61	61	is	long_vp_coord	expected	the farmer knows many different foreign languages and is twenty three years old	8
+62	61	61	is	long_vp_coord	unexpected	the farmer knows many different foreign languages and are twenty three years old	8
+62	62	62	enjoys	long_vp_coord	expected	the farmer knows many different foreign languages and enjoys playing tennis with colleagues	8
+63	62	62	enjoys	long_vp_coord	unexpected	the farmer knows many different foreign languages and enjoy playing tennis with colleagues	8
+63	63	63	writes	long_vp_coord	expected	the farmer knows many different foreign languages and writes in a journal every day	8
+64	63	63	writes	long_vp_coord	unexpected	the farmer knows many different foreign languages and write in a journal every day	8
+64	64	64	knows	long_vp_coord	expected	the farmer likes to watch television shows and knows many different foreign languages	8
+65	64	64	knows	long_vp_coord	unexpected	the farmer likes to watch television shows and know many different foreign languages	8
+65	65	65	is	long_vp_coord	expected	the farmer likes to watch television shows and is twenty three years old	8
+66	65	65	is	long_vp_coord	unexpected	the farmer likes to watch television shows and are twenty three years old	8
+66	66	66	enjoys	long_vp_coord	expected	the farmer likes to watch television shows and enjoys playing tennis with colleagues	8
+67	66	66	enjoys	long_vp_coord	unexpected	the farmer likes to watch television shows and enjoy playing tennis with colleagues	8
+67	67	67	writes	long_vp_coord	expected	the farmer likes to watch television shows and writes in a journal every day	8
+68	67	67	writes	long_vp_coord	unexpected	the farmer likes to watch television shows and write in a journal every day	8
+68	68	68	knows	long_vp_coord	expected	the farmer is twenty three years old and knows many different foreign languages	8
+69	68	68	knows	long_vp_coord	unexpected	the farmer is twenty three years old and know many different foreign languages	8
+69	69	69	likes	long_vp_coord	expected	the farmer is twenty three years old and likes to watch television shows	8
+70	69	69	likes	long_vp_coord	unexpected	the farmer is twenty three years old and like to watch television shows	8
+70	70	70	enjoys	long_vp_coord	expected	the farmer is twenty three years old and enjoys playing tennis with colleagues	8
+71	70	70	enjoys	long_vp_coord	unexpected	the farmer is twenty three years old and enjoy playing tennis with colleagues	8
+71	71	71	writes	long_vp_coord	expected	the farmer is twenty three years old and writes in a journal every day	8
+72	71	71	writes	long_vp_coord	unexpected	the farmer is twenty three years old and write in a journal every day	8
+72	72	72	knows	long_vp_coord	expected	the farmer enjoys playing tennis with colleagues and knows many different foreign languages	8
+73	72	72	knows	long_vp_coord	unexpected	the farmer enjoys playing tennis with colleagues and know many different foreign languages	8
+73	73	73	likes	long_vp_coord	expected	the farmer enjoys playing tennis with colleagues and likes to watch television shows	8
+74	73	73	likes	long_vp_coord	unexpected	the farmer enjoys playing tennis with colleagues and like to watch television shows	8
+74	74	74	is	long_vp_coord	expected	the farmer enjoys playing tennis with colleagues and is twenty three years old	8
+75	74	74	is	long_vp_coord	unexpected	the farmer enjoys playing tennis with colleagues and are twenty three years old	8
+75	75	75	writes	long_vp_coord	expected	the farmer enjoys playing tennis with colleagues and writes in a journal every day	8
+76	75	75	writes	long_vp_coord	unexpected	the farmer enjoys playing tennis with colleagues and write in a journal every day	8
+76	76	76	knows	long_vp_coord	expected	the farmer writes in a journal every day and knows many different foreign languages	9
+77	76	76	knows	long_vp_coord	unexpected	the farmer writes in a journal every day and know many different foreign languages	9
+77	77	77	likes	long_vp_coord	expected	the farmer writes in a journal every day and likes to watch television shows	9
+78	77	77	likes	long_vp_coord	unexpected	the farmer writes in a journal every day and like to watch television shows	9
+78	78	78	is	long_vp_coord	expected	the farmer writes in a journal every day and is twenty three years old	9
+79	78	78	is	long_vp_coord	unexpected	the farmer writes in a journal every day and are twenty three years old	9
+79	79	79	enjoys	long_vp_coord	expected	the farmer writes in a journal every day and enjoys playing tennis with colleagues	9
+80	79	79	enjoys	long_vp_coord	unexpected	the farmer writes in a journal every day and enjoy playing tennis with colleagues	9
+80	80	80	likes	long_vp_coord	expected	the manager knows many different foreign languages and likes to watch television shows	8
+81	80	80	likes	long_vp_coord	unexpected	the manager knows many different foreign languages and like to watch television shows	8
+81	81	81	is	long_vp_coord	expected	the manager knows many different foreign languages and is twenty three years old	8
+82	81	81	is	long_vp_coord	unexpected	the manager knows many different foreign languages and are twenty three years old	8
+82	82	82	enjoys	long_vp_coord	expected	the manager knows many different foreign languages and enjoys playing tennis with colleagues	8
+83	82	82	enjoys	long_vp_coord	unexpected	the manager knows many different foreign languages and enjoy playing tennis with colleagues	8
+83	83	83	writes	long_vp_coord	expected	the manager knows many different foreign languages and writes in a journal every day	8
+84	83	83	writes	long_vp_coord	unexpected	the manager knows many different foreign languages and write in a journal every day	8
+84	84	84	knows	long_vp_coord	expected	the manager likes to watch television shows and knows many different foreign languages	8
+85	84	84	knows	long_vp_coord	unexpected	the manager likes to watch television shows and know many different foreign languages	8
+85	85	85	is	long_vp_coord	expected	the manager likes to watch television shows and is twenty three years old	8
+86	85	85	is	long_vp_coord	unexpected	the manager likes to watch television shows and are twenty three years old	8
+86	86	86	enjoys	long_vp_coord	expected	the manager likes to watch television shows and enjoys playing tennis with colleagues	8
+87	86	86	enjoys	long_vp_coord	unexpected	the manager likes to watch television shows and enjoy playing tennis with colleagues	8
+87	87	87	writes	long_vp_coord	expected	the manager likes to watch television shows and writes in a journal every day	8
+88	87	87	writes	long_vp_coord	unexpected	the manager likes to watch television shows and write in a journal every day	8
+88	88	88	knows	long_vp_coord	expected	the manager is twenty three years old and knows many different foreign languages	8
+89	88	88	knows	long_vp_coord	unexpected	the manager is twenty three years old and know many different foreign languages	8
+89	89	89	likes	long_vp_coord	expected	the manager is twenty three years old and likes to watch television shows	8
+90	89	89	likes	long_vp_coord	unexpected	the manager is twenty three years old and like to watch television shows	8
+90	90	90	enjoys	long_vp_coord	expected	the manager is twenty three years old and enjoys playing tennis with colleagues	8
+91	90	90	enjoys	long_vp_coord	unexpected	the manager is twenty three years old and enjoy playing tennis with colleagues	8
+91	91	91	writes	long_vp_coord	expected	the manager is twenty three years old and writes in a journal every day	8
+92	91	91	writes	long_vp_coord	unexpected	the manager is twenty three years old and write in a journal every day	8
+92	92	92	knows	long_vp_coord	expected	the manager enjoys playing tennis with colleagues and knows many different foreign languages	8
+93	92	92	knows	long_vp_coord	unexpected	the manager enjoys playing tennis with colleagues and know many different foreign languages	8
+93	93	93	likes	long_vp_coord	expected	the manager enjoys playing tennis with colleagues and likes to watch television shows	8
+94	93	93	likes	long_vp_coord	unexpected	the manager enjoys playing tennis with colleagues and like to watch television shows	8
+94	94	94	is	long_vp_coord	expected	the manager enjoys playing tennis with colleagues and is twenty three years old	8
+95	94	94	is	long_vp_coord	unexpected	the manager enjoys playing tennis with colleagues and are twenty three years old	8
+95	95	95	writes	long_vp_coord	expected	the manager enjoys playing tennis with colleagues and writes in a journal every day	8
+96	95	95	writes	long_vp_coord	unexpected	the manager enjoys playing tennis with colleagues and write in a journal every day	8
+96	96	96	knows	long_vp_coord	expected	the manager writes in a journal every day and knows many different foreign languages	9
+97	96	96	knows	long_vp_coord	unexpected	the manager writes in a journal every day and know many different foreign languages	9
+97	97	97	likes	long_vp_coord	expected	the manager writes in a journal every day and likes to watch television shows	9
+98	97	97	likes	long_vp_coord	unexpected	the manager writes in a journal every day and like to watch television shows	9
+98	98	98	is	long_vp_coord	expected	the manager writes in a journal every day and is twenty three years old	9
+99	98	98	is	long_vp_coord	unexpected	the manager writes in a journal every day and are twenty three years old	9
+99	99	99	enjoys	long_vp_coord	expected	the manager writes in a journal every day and enjoys playing tennis with colleagues	9
+100	99	99	enjoys	long_vp_coord	unexpected	the manager writes in a journal every day and enjoy playing tennis with colleagues	9
+100	100	100	likes	long_vp_coord	expected	the customer knows many different foreign languages and likes to watch television shows	8
+101	100	100	likes	long_vp_coord	unexpected	the customer knows many different foreign languages and like to watch television shows	8
+101	101	101	is	long_vp_coord	expected	the customer knows many different foreign languages and is twenty three years old	8
+102	101	101	is	long_vp_coord	unexpected	the customer knows many different foreign languages and are twenty three years old	8
+102	102	102	enjoys	long_vp_coord	expected	the customer knows many different foreign languages and enjoys playing tennis with colleagues	8
+103	102	102	enjoys	long_vp_coord	unexpected	the customer knows many different foreign languages and enjoy playing tennis with colleagues	8
+103	103	103	writes	long_vp_coord	expected	the customer knows many different foreign languages and writes in a journal every day	8
+104	103	103	writes	long_vp_coord	unexpected	the customer knows many different foreign languages and write in a journal every day	8
+104	104	104	knows	long_vp_coord	expected	the customer likes to watch television shows and knows many different foreign languages	8
+105	104	104	knows	long_vp_coord	unexpected	the customer likes to watch television shows and know many different foreign languages	8
+105	105	105	is	long_vp_coord	expected	the customer likes to watch television shows and is twenty three years old	8
+106	105	105	is	long_vp_coord	unexpected	the customer likes to watch television shows and are twenty three years old	8
+106	106	106	enjoys	long_vp_coord	expected	the customer likes to watch television shows and enjoys playing tennis with colleagues	8
+107	106	106	enjoys	long_vp_coord	unexpected	the customer likes to watch television shows and enjoy playing tennis with colleagues	8
+107	107	107	writes	long_vp_coord	expected	the customer likes to watch television shows and writes in a journal every day	8
+108	107	107	writes	long_vp_coord	unexpected	the customer likes to watch television shows and write in a journal every day	8
+108	108	108	knows	long_vp_coord	expected	the customer is twenty three years old and knows many different foreign languages	8
+109	108	108	knows	long_vp_coord	unexpected	the customer is twenty three years old and know many different foreign languages	8
+109	109	109	likes	long_vp_coord	expected	the customer is twenty three years old and likes to watch television shows	8
+110	109	109	likes	long_vp_coord	unexpected	the customer is twenty three years old and like to watch television shows	8
+110	110	110	enjoys	long_vp_coord	expected	the customer is twenty three years old and enjoys playing tennis with colleagues	8
+111	110	110	enjoys	long_vp_coord	unexpected	the customer is twenty three years old and enjoy playing tennis with colleagues	8
+111	111	111	writes	long_vp_coord	expected	the customer is twenty three years old and writes in a journal every day	8
+112	111	111	writes	long_vp_coord	unexpected	the customer is twenty three years old and write in a journal every day	8
+112	112	112	knows	long_vp_coord	expected	the customer enjoys playing tennis with colleagues and knows many different foreign languages	8
+113	112	112	knows	long_vp_coord	unexpected	the customer enjoys playing tennis with colleagues and know many different foreign languages	8
+113	113	113	likes	long_vp_coord	expected	the customer enjoys playing tennis with colleagues and likes to watch television shows	8
+114	113	113	likes	long_vp_coord	unexpected	the customer enjoys playing tennis with colleagues and like to watch television shows	8
+114	114	114	is	long_vp_coord	expected	the customer enjoys playing tennis with colleagues and is twenty three years old	8
+115	114	114	is	long_vp_coord	unexpected	the customer enjoys playing tennis with colleagues and are twenty three years old	8
+115	115	115	writes	long_vp_coord	expected	the customer enjoys playing tennis with colleagues and writes in a journal every day	8
+116	115	115	writes	long_vp_coord	unexpected	the customer enjoys playing tennis with colleagues and write in a journal every day	8
+116	116	116	knows	long_vp_coord	expected	the customer writes in a journal every day and knows many different foreign languages	9
+117	116	116	knows	long_vp_coord	unexpected	the customer writes in a journal every day and know many different foreign languages	9
+117	117	117	likes	long_vp_coord	expected	the customer writes in a journal every day and likes to watch television shows	9
+118	117	117	likes	long_vp_coord	unexpected	the customer writes in a journal every day and like to watch television shows	9
+118	118	118	is	long_vp_coord	expected	the customer writes in a journal every day and is twenty three years old	9
+119	118	118	is	long_vp_coord	unexpected	the customer writes in a journal every day and are twenty three years old	9
+119	119	119	enjoys	long_vp_coord	expected	the customer writes in a journal every day and enjoys playing tennis with colleagues	9
+120	119	119	enjoys	long_vp_coord	unexpected	the customer writes in a journal every day and enjoy playing tennis with colleagues	9
+120	120	120	likes	long_vp_coord	expected	the officer knows many different foreign languages and likes to watch television shows	8
+121	120	120	likes	long_vp_coord	unexpected	the officer knows many different foreign languages and like to watch television shows	8
+121	121	121	is	long_vp_coord	expected	the officer knows many different foreign languages and is twenty three years old	8
+122	121	121	is	long_vp_coord	unexpected	the officer knows many different foreign languages and are twenty three years old	8
+122	122	122	enjoys	long_vp_coord	expected	the officer knows many different foreign languages and enjoys playing tennis with colleagues	8
+123	122	122	enjoys	long_vp_coord	unexpected	the officer knows many different foreign languages and enjoy playing tennis with colleagues	8
+123	123	123	writes	long_vp_coord	expected	the officer knows many different foreign languages and writes in a journal every day	8
+124	123	123	writes	long_vp_coord	unexpected	the officer knows many different foreign languages and write in a journal every day	8
+124	124	124	knows	long_vp_coord	expected	the officer likes to watch television shows and knows many different foreign languages	8
+125	124	124	knows	long_vp_coord	unexpected	the officer likes to watch television shows and know many different foreign languages	8
+125	125	125	is	long_vp_coord	expected	the officer likes to watch television shows and is twenty three years old	8
+126	125	125	is	long_vp_coord	unexpected	the officer likes to watch television shows and are twenty three years old	8
+126	126	126	enjoys	long_vp_coord	expected	the officer likes to watch television shows and enjoys playing tennis with colleagues	8
+127	126	126	enjoys	long_vp_coord	unexpected	the officer likes to watch television shows and enjoy playing tennis with colleagues	8
+127	127	127	writes	long_vp_coord	expected	the officer likes to watch television shows and writes in a journal every day	8
+128	127	127	writes	long_vp_coord	unexpected	the officer likes to watch television shows and write in a journal every day	8
+128	128	128	knows	long_vp_coord	expected	the officer is twenty three years old and knows many different foreign languages	8
+129	128	128	knows	long_vp_coord	unexpected	the officer is twenty three years old and know many different foreign languages	8
+129	129	129	likes	long_vp_coord	expected	the officer is twenty three years old and likes to watch television shows	8
+130	129	129	likes	long_vp_coord	unexpected	the officer is twenty three years old and like to watch television shows	8
+130	130	130	enjoys	long_vp_coord	expected	the officer is twenty three years old and enjoys playing tennis with colleagues	8
+131	130	130	enjoys	long_vp_coord	unexpected	the officer is twenty three years old and enjoy playing tennis with colleagues	8
+131	131	131	writes	long_vp_coord	expected	the officer is twenty three years old and writes in a journal every day	8
+132	131	131	writes	long_vp_coord	unexpected	the officer is twenty three years old and write in a journal every day	8
+132	132	132	knows	long_vp_coord	expected	the officer enjoys playing tennis with colleagues and knows many different foreign languages	8
+133	132	132	knows	long_vp_coord	unexpected	the officer enjoys playing tennis with colleagues and know many different foreign languages	8
+133	133	133	likes	long_vp_coord	expected	the officer enjoys playing tennis with colleagues and likes to watch television shows	8
+134	133	133	likes	long_vp_coord	unexpected	the officer enjoys playing tennis with colleagues and like to watch television shows	8
+134	134	134	is	long_vp_coord	expected	the officer enjoys playing tennis with colleagues and is twenty three years old	8
+135	134	134	is	long_vp_coord	unexpected	the officer enjoys playing tennis with colleagues and are twenty three years old	8
+135	135	135	writes	long_vp_coord	expected	the officer enjoys playing tennis with colleagues and writes in a journal every day	8
+136	135	135	writes	long_vp_coord	unexpected	the officer enjoys playing tennis with colleagues and write in a journal every day	8
+136	136	136	knows	long_vp_coord	expected	the officer writes in a journal every day and knows many different foreign languages	9
+137	136	136	knows	long_vp_coord	unexpected	the officer writes in a journal every day and know many different foreign languages	9
+137	137	137	likes	long_vp_coord	expected	the officer writes in a journal every day and likes to watch television shows	9
+138	137	137	likes	long_vp_coord	unexpected	the officer writes in a journal every day and like to watch television shows	9
+138	138	138	is	long_vp_coord	expected	the officer writes in a journal every day and is twenty three years old	9
+139	138	138	is	long_vp_coord	unexpected	the officer writes in a journal every day and are twenty three years old	9
+139	139	139	enjoys	long_vp_coord	expected	the officer writes in a journal every day and enjoys playing tennis with colleagues	9
+140	139	139	enjoys	long_vp_coord	unexpected	the officer writes in a journal every day and enjoy playing tennis with colleagues	9
+140	140	140	likes	long_vp_coord	expected	the teacher knows many different foreign languages and likes to watch television shows	8
+141	140	140	likes	long_vp_coord	unexpected	the teacher knows many different foreign languages and like to watch television shows	8
+141	141	141	is	long_vp_coord	expected	the teacher knows many different foreign languages and is twenty three years old	8
+142	141	141	is	long_vp_coord	unexpected	the teacher knows many different foreign languages and are twenty three years old	8
+142	142	142	enjoys	long_vp_coord	expected	the teacher knows many different foreign languages and enjoys playing tennis with colleagues	8
+143	142	142	enjoys	long_vp_coord	unexpected	the teacher knows many different foreign languages and enjoy playing tennis with colleagues	8
+143	143	143	writes	long_vp_coord	expected	the teacher knows many different foreign languages and writes in a journal every day	8
+144	143	143	writes	long_vp_coord	unexpected	the teacher knows many different foreign languages and write in a journal every day	8
+144	144	144	knows	long_vp_coord	expected	the teacher likes to watch television shows and knows many different foreign languages	8
+145	144	144	knows	long_vp_coord	unexpected	the teacher likes to watch television shows and know many different foreign languages	8
+145	145	145	is	long_vp_coord	expected	the teacher likes to watch television shows and is twenty three years old	8
+146	145	145	is	long_vp_coord	unexpected	the teacher likes to watch television shows and are twenty three years old	8
+146	146	146	enjoys	long_vp_coord	expected	the teacher likes to watch television shows and enjoys playing tennis with colleagues	8
+147	146	146	enjoys	long_vp_coord	unexpected	the teacher likes to watch television shows and enjoy playing tennis with colleagues	8
+147	147	147	writes	long_vp_coord	expected	the teacher likes to watch television shows and writes in a journal every day	8
+148	147	147	writes	long_vp_coord	unexpected	the teacher likes to watch television shows and write in a journal every day	8
+148	148	148	knows	long_vp_coord	expected	the teacher is twenty three years old and knows many different foreign languages	8
+149	148	148	knows	long_vp_coord	unexpected	the teacher is twenty three years old and know many different foreign languages	8
+149	149	149	likes	long_vp_coord	expected	the teacher is twenty three years old and likes to watch television shows	8
+150	149	149	likes	long_vp_coord	unexpected	the teacher is twenty three years old and like to watch television shows	8
+150	150	150	enjoys	long_vp_coord	expected	the teacher is twenty three years old and enjoys playing tennis with colleagues	8
+151	150	150	enjoys	long_vp_coord	unexpected	the teacher is twenty three years old and enjoy playing tennis with colleagues	8
+151	151	151	writes	long_vp_coord	expected	the teacher is twenty three years old and writes in a journal every day	8
+152	151	151	writes	long_vp_coord	unexpected	the teacher is twenty three years old and write in a journal every day	8
+152	152	152	knows	long_vp_coord	expected	the teacher enjoys playing tennis with colleagues and knows many different foreign languages	8
+153	152	152	knows	long_vp_coord	unexpected	the teacher enjoys playing tennis with colleagues and know many different foreign languages	8
+153	153	153	likes	long_vp_coord	expected	the teacher enjoys playing tennis with colleagues and likes to watch television shows	8
+154	153	153	likes	long_vp_coord	unexpected	the teacher enjoys playing tennis with colleagues and like to watch television shows	8
+154	154	154	is	long_vp_coord	expected	the teacher enjoys playing tennis with colleagues and is twenty three years old	8
+155	154	154	is	long_vp_coord	unexpected	the teacher enjoys playing tennis with colleagues and are twenty three years old	8
+155	155	155	writes	long_vp_coord	expected	the teacher enjoys playing tennis with colleagues and writes in a journal every day	8
+156	155	155	writes	long_vp_coord	unexpected	the teacher enjoys playing tennis with colleagues and write in a journal every day	8
+156	156	156	knows	long_vp_coord	expected	the teacher writes in a journal every day and knows many different foreign languages	9
+157	156	156	knows	long_vp_coord	unexpected	the teacher writes in a journal every day and know many different foreign languages	9
+157	157	157	likes	long_vp_coord	expected	the teacher writes in a journal every day and likes to watch television shows	9
+158	157	157	likes	long_vp_coord	unexpected	the teacher writes in a journal every day and like to watch television shows	9
+158	158	158	is	long_vp_coord	expected	the teacher writes in a journal every day and is twenty three years old	9
+159	158	158	is	long_vp_coord	unexpected	the teacher writes in a journal every day and are twenty three years old	9
+159	159	159	enjoys	long_vp_coord	expected	the teacher writes in a journal every day and enjoys playing tennis with colleagues	9
+160	159	159	enjoys	long_vp_coord	unexpected	the teacher writes in a journal every day and enjoy playing tennis with colleagues	9
+160	160	160	likes	long_vp_coord	expected	the senator knows many different foreign languages and likes to watch television shows	8
+161	160	160	likes	long_vp_coord	unexpected	the senator knows many different foreign languages and like to watch television shows	8
+161	161	161	is	long_vp_coord	expected	the senator knows many different foreign languages and is twenty three years old	8
+162	161	161	is	long_vp_coord	unexpected	the senator knows many different foreign languages and are twenty three years old	8
+162	162	162	enjoys	long_vp_coord	expected	the senator knows many different foreign languages and enjoys playing tennis with colleagues	8
+163	162	162	enjoys	long_vp_coord	unexpected	the senator knows many different foreign languages and enjoy playing tennis with colleagues	8
+163	163	163	writes	long_vp_coord	expected	the senator knows many different foreign languages and writes in a journal every day	8
+164	163	163	writes	long_vp_coord	unexpected	the senator knows many different foreign languages and write in a journal every day	8
+164	164	164	knows	long_vp_coord	expected	the senator likes to watch television shows and knows many different foreign languages	8
+165	164	164	knows	long_vp_coord	unexpected	the senator likes to watch television shows and know many different foreign languages	8
+165	165	165	is	long_vp_coord	expected	the senator likes to watch television shows and is twenty three years old	8
+166	165	165	is	long_vp_coord	unexpected	the senator likes to watch television shows and are twenty three years old	8
+166	166	166	enjoys	long_vp_coord	expected	the senator likes to watch television shows and enjoys playing tennis with colleagues	8
+167	166	166	enjoys	long_vp_coord	unexpected	the senator likes to watch television shows and enjoy playing tennis with colleagues	8
+167	167	167	writes	long_vp_coord	expected	the senator likes to watch television shows and writes in a journal every day	8
+168	167	167	writes	long_vp_coord	unexpected	the senator likes to watch television shows and write in a journal every day	8
+168	168	168	knows	long_vp_coord	expected	the senator is twenty three years old and knows many different foreign languages	8
+169	168	168	knows	long_vp_coord	unexpected	the senator is twenty three years old and know many different foreign languages	8
+169	169	169	likes	long_vp_coord	expected	the senator is twenty three years old and likes to watch television shows	8
+170	169	169	likes	long_vp_coord	unexpected	the senator is twenty three years old and like to watch television shows	8
+170	170	170	enjoys	long_vp_coord	expected	the senator is twenty three years old and enjoys playing tennis with colleagues	8
+171	170	170	enjoys	long_vp_coord	unexpected	the senator is twenty three years old and enjoy playing tennis with colleagues	8
+171	171	171	writes	long_vp_coord	expected	the senator is twenty three years old and writes in a journal every day	8
+172	171	171	writes	long_vp_coord	unexpected	the senator is twenty three years old and write in a journal every day	8
+172	172	172	knows	long_vp_coord	expected	the senator enjoys playing tennis with colleagues and knows many different foreign languages	8
+173	172	172	knows	long_vp_coord	unexpected	the senator enjoys playing tennis with colleagues and know many different foreign languages	8
+173	173	173	likes	long_vp_coord	expected	the senator enjoys playing tennis with colleagues and likes to watch television shows	8
+174	173	173	likes	long_vp_coord	unexpected	the senator enjoys playing tennis with colleagues and like to watch television shows	8
+174	174	174	is	long_vp_coord	expected	the senator enjoys playing tennis with colleagues and is twenty three years old	8
+175	174	174	is	long_vp_coord	unexpected	the senator enjoys playing tennis with colleagues and are twenty three years old	8
+175	175	175	writes	long_vp_coord	expected	the senator enjoys playing tennis with colleagues and writes in a journal every day	8
+176	175	175	writes	long_vp_coord	unexpected	the senator enjoys playing tennis with colleagues and write in a journal every day	8
+176	176	176	knows	long_vp_coord	expected	the senator writes in a journal every day and knows many different foreign languages	9
+177	176	176	knows	long_vp_coord	unexpected	the senator writes in a journal every day and know many different foreign languages	9
+177	177	177	likes	long_vp_coord	expected	the senator writes in a journal every day and likes to watch television shows	9
+178	177	177	likes	long_vp_coord	unexpected	the senator writes in a journal every day and like to watch television shows	9
+178	178	178	is	long_vp_coord	expected	the senator writes in a journal every day and is twenty three years old	9
+179	178	178	is	long_vp_coord	unexpected	the senator writes in a journal every day and are twenty three years old	9
+179	179	179	enjoys	long_vp_coord	expected	the senator writes in a journal every day and enjoys playing tennis with colleagues	9
+180	179	179	enjoys	long_vp_coord	unexpected	the senator writes in a journal every day and enjoy playing tennis with colleagues	9
+180	180	180	likes	long_vp_coord	expected	the consultant knows many different foreign languages and likes to watch television shows	8
+181	180	180	likes	long_vp_coord	unexpected	the consultant knows many different foreign languages and like to watch television shows	8
+181	181	181	is	long_vp_coord	expected	the consultant knows many different foreign languages and is twenty three years old	8
+182	181	181	is	long_vp_coord	unexpected	the consultant knows many different foreign languages and are twenty three years old	8
+182	182	182	enjoys	long_vp_coord	expected	the consultant knows many different foreign languages and enjoys playing tennis with colleagues	8
+183	182	182	enjoys	long_vp_coord	unexpected	the consultant knows many different foreign languages and enjoy playing tennis with colleagues	8
+183	183	183	writes	long_vp_coord	expected	the consultant knows many different foreign languages and writes in a journal every day	8
+184	183	183	writes	long_vp_coord	unexpected	the consultant knows many different foreign languages and write in a journal every day	8
+184	184	184	knows	long_vp_coord	expected	the consultant likes to watch television shows and knows many different foreign languages	8
+185	184	184	knows	long_vp_coord	unexpected	the consultant likes to watch television shows and know many different foreign languages	8
+185	185	185	is	long_vp_coord	expected	the consultant likes to watch television shows and is twenty three years old	8
+186	185	185	is	long_vp_coord	unexpected	the consultant likes to watch television shows and are twenty three years old	8
+186	186	186	enjoys	long_vp_coord	expected	the consultant likes to watch television shows and enjoys playing tennis with colleagues	8
+187	186	186	enjoys	long_vp_coord	unexpected	the consultant likes to watch television shows and enjoy playing tennis with colleagues	8
+187	187	187	writes	long_vp_coord	expected	the consultant likes to watch television shows and writes in a journal every day	8
+188	187	187	writes	long_vp_coord	unexpected	the consultant likes to watch television shows and write in a journal every day	8
+188	188	188	knows	long_vp_coord	expected	the consultant is twenty three years old and knows many different foreign languages	8
+189	188	188	knows	long_vp_coord	unexpected	the consultant is twenty three years old and know many different foreign languages	8
+189	189	189	likes	long_vp_coord	expected	the consultant is twenty three years old and likes to watch television shows	8
+190	189	189	likes	long_vp_coord	unexpected	the consultant is twenty three years old and like to watch television shows	8
+190	190	190	enjoys	long_vp_coord	expected	the consultant is twenty three years old and enjoys playing tennis with colleagues	8
+191	190	190	enjoys	long_vp_coord	unexpected	the consultant is twenty three years old and enjoy playing tennis with colleagues	8
+191	191	191	writes	long_vp_coord	expected	the consultant is twenty three years old and writes in a journal every day	8
+192	191	191	writes	long_vp_coord	unexpected	the consultant is twenty three years old and write in a journal every day	8
+192	192	192	knows	long_vp_coord	expected	the consultant enjoys playing tennis with colleagues and knows many different foreign languages	8
+193	192	192	knows	long_vp_coord	unexpected	the consultant enjoys playing tennis with colleagues and know many different foreign languages	8
+193	193	193	likes	long_vp_coord	expected	the consultant enjoys playing tennis with colleagues and likes to watch television shows	8
+194	193	193	likes	long_vp_coord	unexpected	the consultant enjoys playing tennis with colleagues and like to watch television shows	8
+194	194	194	is	long_vp_coord	expected	the consultant enjoys playing tennis with colleagues and is twenty three years old	8
+195	194	194	is	long_vp_coord	unexpected	the consultant enjoys playing tennis with colleagues and are twenty three years old	8
+195	195	195	writes	long_vp_coord	expected	the consultant enjoys playing tennis with colleagues and writes in a journal every day	8
+196	195	195	writes	long_vp_coord	unexpected	the consultant enjoys playing tennis with colleagues and write in a journal every day	8
+196	196	196	knows	long_vp_coord	expected	the consultant writes in a journal every day and knows many different foreign languages	9
+197	196	196	knows	long_vp_coord	unexpected	the consultant writes in a journal every day and know many different foreign languages	9
+197	197	197	likes	long_vp_coord	expected	the consultant writes in a journal every day and likes to watch television shows	9
+198	197	197	likes	long_vp_coord	unexpected	the consultant writes in a journal every day and like to watch television shows	9
+198	198	198	is	long_vp_coord	expected	the consultant writes in a journal every day and is twenty three years old	9
+199	198	198	is	long_vp_coord	unexpected	the consultant writes in a journal every day and are twenty three years old	9
+199	199	199	enjoys	long_vp_coord	expected	the consultant writes in a journal every day and enjoys playing tennis with colleagues	9
+200	199	199	enjoys	long_vp_coord	unexpected	the consultant writes in a journal every day and enjoy playing tennis with colleagues	9
+200	200	200	like	long_vp_coord	expected	the authors know many different foreign languages and like to watch television shows	8
+201	200	200	like	long_vp_coord	unexpected	the authors know many different foreign languages and likes to watch television shows	8
+201	201	201	are	long_vp_coord	expected	the authors know many different foreign languages and are twenty three years old	8
+202	201	201	are	long_vp_coord	unexpected	the authors know many different foreign languages and is twenty three years old	8
+202	202	202	enjoy	long_vp_coord	expected	the authors know many different foreign languages and enjoy playing tennis with colleagues	8
+203	202	202	enjoy	long_vp_coord	unexpected	the authors know many different foreign languages and enjoys playing tennis with colleagues	8
+203	203	203	write	long_vp_coord	expected	the authors know many different foreign languages and write in a journal every day	8
+204	203	203	write	long_vp_coord	unexpected	the authors know many different foreign languages and writes in a journal every day	8
+204	204	204	know	long_vp_coord	expected	the authors like to watch television shows and know many different foreign languages	8
+205	204	204	know	long_vp_coord	unexpected	the authors like to watch television shows and knows many different foreign languages	8
+205	205	205	are	long_vp_coord	expected	the authors like to watch television shows and are twenty three years old	8
+206	205	205	are	long_vp_coord	unexpected	the authors like to watch television shows and is twenty three years old	8
+206	206	206	enjoy	long_vp_coord	expected	the authors like to watch television shows and enjoy playing tennis with colleagues	8
+207	206	206	enjoy	long_vp_coord	unexpected	the authors like to watch television shows and enjoys playing tennis with colleagues	8
+207	207	207	write	long_vp_coord	expected	the authors like to watch television shows and write in a journal every day	8
+208	207	207	write	long_vp_coord	unexpected	the authors like to watch television shows and writes in a journal every day	8
+208	208	208	know	long_vp_coord	expected	the authors are twenty three years old and know many different foreign languages	8
+209	208	208	know	long_vp_coord	unexpected	the authors are twenty three years old and knows many different foreign languages	8
+209	209	209	like	long_vp_coord	expected	the authors are twenty three years old and like to watch television shows	8
+210	209	209	like	long_vp_coord	unexpected	the authors are twenty three years old and likes to watch television shows	8
+210	210	210	enjoy	long_vp_coord	expected	the authors are twenty three years old and enjoy playing tennis with colleagues	8
+211	210	210	enjoy	long_vp_coord	unexpected	the authors are twenty three years old and enjoys playing tennis with colleagues	8
+211	211	211	write	long_vp_coord	expected	the authors are twenty three years old and write in a journal every day	8
+212	211	211	write	long_vp_coord	unexpected	the authors are twenty three years old and writes in a journal every day	8
+212	212	212	know	long_vp_coord	expected	the authors enjoy playing tennis with colleagues and know many different foreign languages	8
+213	212	212	know	long_vp_coord	unexpected	the authors enjoy playing tennis with colleagues and knows many different foreign languages	8
+213	213	213	like	long_vp_coord	expected	the authors enjoy playing tennis with colleagues and like to watch television shows	8
+214	213	213	like	long_vp_coord	unexpected	the authors enjoy playing tennis with colleagues and likes to watch television shows	8
+214	214	214	are	long_vp_coord	expected	the authors enjoy playing tennis with colleagues and are twenty three years old	8
+215	214	214	are	long_vp_coord	unexpected	the authors enjoy playing tennis with colleagues and is twenty three years old	8
+215	215	215	write	long_vp_coord	expected	the authors enjoy playing tennis with colleagues and write in a journal every day	8
+216	215	215	write	long_vp_coord	unexpected	the authors enjoy playing tennis with colleagues and writes in a journal every day	8
+216	216	216	know	long_vp_coord	expected	the authors write in a journal every day and know many different foreign languages	9
+217	216	216	know	long_vp_coord	unexpected	the authors write in a journal every day and knows many different foreign languages	9
+217	217	217	like	long_vp_coord	expected	the authors write in a journal every day and like to watch television shows	9
+218	217	217	like	long_vp_coord	unexpected	the authors write in a journal every day and likes to watch television shows	9
+218	218	218	are	long_vp_coord	expected	the authors write in a journal every day and are twenty three years old	9
+219	218	218	are	long_vp_coord	unexpected	the authors write in a journal every day and is twenty three years old	9
+219	219	219	enjoy	long_vp_coord	expected	the authors write in a journal every day and enjoy playing tennis with colleagues	9
+220	219	219	enjoy	long_vp_coord	unexpected	the authors write in a journal every day and enjoys playing tennis with colleagues	9
+220	220	220	like	long_vp_coord	expected	the pilots know many different foreign languages and like to watch television shows	8
+221	220	220	like	long_vp_coord	unexpected	the pilots know many different foreign languages and likes to watch television shows	8
+221	221	221	are	long_vp_coord	expected	the pilots know many different foreign languages and are twenty three years old	8
+222	221	221	are	long_vp_coord	unexpected	the pilots know many different foreign languages and is twenty three years old	8
+222	222	222	enjoy	long_vp_coord	expected	the pilots know many different foreign languages and enjoy playing tennis with colleagues	8
+223	222	222	enjoy	long_vp_coord	unexpected	the pilots know many different foreign languages and enjoys playing tennis with colleagues	8
+223	223	223	write	long_vp_coord	expected	the pilots know many different foreign languages and write in a journal every day	8
+224	223	223	write	long_vp_coord	unexpected	the pilots know many different foreign languages and writes in a journal every day	8
+224	224	224	know	long_vp_coord	expected	the pilots like to watch television shows and know many different foreign languages	8
+225	224	224	know	long_vp_coord	unexpected	the pilots like to watch television shows and knows many different foreign languages	8
+225	225	225	are	long_vp_coord	expected	the pilots like to watch television shows and are twenty three years old	8
+226	225	225	are	long_vp_coord	unexpected	the pilots like to watch television shows and is twenty three years old	8
+226	226	226	enjoy	long_vp_coord	expected	the pilots like to watch television shows and enjoy playing tennis with colleagues	8
+227	226	226	enjoy	long_vp_coord	unexpected	the pilots like to watch television shows and enjoys playing tennis with colleagues	8
+227	227	227	write	long_vp_coord	expected	the pilots like to watch television shows and write in a journal every day	8
+228	227	227	write	long_vp_coord	unexpected	the pilots like to watch television shows and writes in a journal every day	8
+228	228	228	know	long_vp_coord	expected	the pilots are twenty three years old and know many different foreign languages	8
+229	228	228	know	long_vp_coord	unexpected	the pilots are twenty three years old and knows many different foreign languages	8
+229	229	229	like	long_vp_coord	expected	the pilots are twenty three years old and like to watch television shows	8
+230	229	229	like	long_vp_coord	unexpected	the pilots are twenty three years old and likes to watch television shows	8
+230	230	230	enjoy	long_vp_coord	expected	the pilots are twenty three years old and enjoy playing tennis with colleagues	8
+231	230	230	enjoy	long_vp_coord	unexpected	the pilots are twenty three years old and enjoys playing tennis with colleagues	8
+231	231	231	write	long_vp_coord	expected	the pilots are twenty three years old and write in a journal every day	8
+232	231	231	write	long_vp_coord	unexpected	the pilots are twenty three years old and writes in a journal every day	8
+232	232	232	know	long_vp_coord	expected	the pilots enjoy playing tennis with colleagues and know many different foreign languages	8
+233	232	232	know	long_vp_coord	unexpected	the pilots enjoy playing tennis with colleagues and knows many different foreign languages	8
+233	233	233	like	long_vp_coord	expected	the pilots enjoy playing tennis with colleagues and like to watch television shows	8
+234	233	233	like	long_vp_coord	unexpected	the pilots enjoy playing tennis with colleagues and likes to watch television shows	8
+234	234	234	are	long_vp_coord	expected	the pilots enjoy playing tennis with colleagues and are twenty three years old	8
+235	234	234	are	long_vp_coord	unexpected	the pilots enjoy playing tennis with colleagues and is twenty three years old	8
+235	235	235	write	long_vp_coord	expected	the pilots enjoy playing tennis with colleagues and write in a journal every day	8
+236	235	235	write	long_vp_coord	unexpected	the pilots enjoy playing tennis with colleagues and writes in a journal every day	8
+236	236	236	know	long_vp_coord	expected	the pilots write in a journal every day and know many different foreign languages	9
+237	236	236	know	long_vp_coord	unexpected	the pilots write in a journal every day and knows many different foreign languages	9
+237	237	237	like	long_vp_coord	expected	the pilots write in a journal every day and like to watch television shows	9
+238	237	237	like	long_vp_coord	unexpected	the pilots write in a journal every day and likes to watch television shows	9
+238	238	238	are	long_vp_coord	expected	the pilots write in a journal every day and are twenty three years old	9
+239	238	238	are	long_vp_coord	unexpected	the pilots write in a journal every day and is twenty three years old	9
+239	239	239	enjoy	long_vp_coord	expected	the pilots write in a journal every day and enjoy playing tennis with colleagues	9
+240	239	239	enjoy	long_vp_coord	unexpected	the pilots write in a journal every day and enjoys playing tennis with colleagues	9
+240	240	240	like	long_vp_coord	expected	the surgeons know many different foreign languages and like to watch television shows	8
+241	240	240	like	long_vp_coord	unexpected	the surgeons know many different foreign languages and likes to watch television shows	8
+241	241	241	are	long_vp_coord	expected	the surgeons know many different foreign languages and are twenty three years old	8
+242	241	241	are	long_vp_coord	unexpected	the surgeons know many different foreign languages and is twenty three years old	8
+242	242	242	enjoy	long_vp_coord	expected	the surgeons know many different foreign languages and enjoy playing tennis with colleagues	8
+243	242	242	enjoy	long_vp_coord	unexpected	the surgeons know many different foreign languages and enjoys playing tennis with colleagues	8
+243	243	243	write	long_vp_coord	expected	the surgeons know many different foreign languages and write in a journal every day	8
+244	243	243	write	long_vp_coord	unexpected	the surgeons know many different foreign languages and writes in a journal every day	8
+244	244	244	know	long_vp_coord	expected	the surgeons like to watch television shows and know many different foreign languages	8
+245	244	244	know	long_vp_coord	unexpected	the surgeons like to watch television shows and knows many different foreign languages	8
+245	245	245	are	long_vp_coord	expected	the surgeons like to watch television shows and are twenty three years old	8
+246	245	245	are	long_vp_coord	unexpected	the surgeons like to watch television shows and is twenty three years old	8
+246	246	246	enjoy	long_vp_coord	expected	the surgeons like to watch television shows and enjoy playing tennis with colleagues	8
+247	246	246	enjoy	long_vp_coord	unexpected	the surgeons like to watch television shows and enjoys playing tennis with colleagues	8
+247	247	247	write	long_vp_coord	expected	the surgeons like to watch television shows and write in a journal every day	8
+248	247	247	write	long_vp_coord	unexpected	the surgeons like to watch television shows and writes in a journal every day	8
+248	248	248	know	long_vp_coord	expected	the surgeons are twenty three years old and know many different foreign languages	8
+249	248	248	know	long_vp_coord	unexpected	the surgeons are twenty three years old and knows many different foreign languages	8
+249	249	249	like	long_vp_coord	expected	the surgeons are twenty three years old and like to watch television shows	8
+250	249	249	like	long_vp_coord	unexpected	the surgeons are twenty three years old and likes to watch television shows	8
+250	250	250	enjoy	long_vp_coord	expected	the surgeons are twenty three years old and enjoy playing tennis with colleagues	8
+251	250	250	enjoy	long_vp_coord	unexpected	the surgeons are twenty three years old and enjoys playing tennis with colleagues	8
+251	251	251	write	long_vp_coord	expected	the surgeons are twenty three years old and write in a journal every day	8
+252	251	251	write	long_vp_coord	unexpected	the surgeons are twenty three years old and writes in a journal every day	8
+252	252	252	know	long_vp_coord	expected	the surgeons enjoy playing tennis with colleagues and know many different foreign languages	8
+253	252	252	know	long_vp_coord	unexpected	the surgeons enjoy playing tennis with colleagues and knows many different foreign languages	8
+253	253	253	like	long_vp_coord	expected	the surgeons enjoy playing tennis with colleagues and like to watch television shows	8
+254	253	253	like	long_vp_coord	unexpected	the surgeons enjoy playing tennis with colleagues and likes to watch television shows	8
+254	254	254	are	long_vp_coord	expected	the surgeons enjoy playing tennis with colleagues and are twenty three years old	8
+255	254	254	are	long_vp_coord	unexpected	the surgeons enjoy playing tennis with colleagues and is twenty three years old	8
+255	255	255	write	long_vp_coord	expected	the surgeons enjoy playing tennis with colleagues and write in a journal every day	8
+256	255	255	write	long_vp_coord	unexpected	the surgeons enjoy playing tennis with colleagues and writes in a journal every day	8
+256	256	256	know	long_vp_coord	expected	the surgeons write in a journal every day and know many different foreign languages	9
+257	256	256	know	long_vp_coord	unexpected	the surgeons write in a journal every day and knows many different foreign languages	9
+257	257	257	like	long_vp_coord	expected	the surgeons write in a journal every day and like to watch television shows	9
+258	257	257	like	long_vp_coord	unexpected	the surgeons write in a journal every day and likes to watch television shows	9
+258	258	258	are	long_vp_coord	expected	the surgeons write in a journal every day and are twenty three years old	9
+259	258	258	are	long_vp_coord	unexpected	the surgeons write in a journal every day and is twenty three years old	9
+259	259	259	enjoy	long_vp_coord	expected	the surgeons write in a journal every day and enjoy playing tennis with colleagues	9
+260	259	259	enjoy	long_vp_coord	unexpected	the surgeons write in a journal every day and enjoys playing tennis with colleagues	9
+260	260	260	like	long_vp_coord	expected	the farmers know many different foreign languages and like to watch television shows	8
+261	260	260	like	long_vp_coord	unexpected	the farmers know many different foreign languages and likes to watch television shows	8
+261	261	261	are	long_vp_coord	expected	the farmers know many different foreign languages and are twenty three years old	8
+262	261	261	are	long_vp_coord	unexpected	the farmers know many different foreign languages and is twenty three years old	8
+262	262	262	enjoy	long_vp_coord	expected	the farmers know many different foreign languages and enjoy playing tennis with colleagues	8
+263	262	262	enjoy	long_vp_coord	unexpected	the farmers know many different foreign languages and enjoys playing tennis with colleagues	8
+263	263	263	write	long_vp_coord	expected	the farmers know many different foreign languages and write in a journal every day	8
+264	263	263	write	long_vp_coord	unexpected	the farmers know many different foreign languages and writes in a journal every day	8
+264	264	264	know	long_vp_coord	expected	the farmers like to watch television shows and know many different foreign languages	8
+265	264	264	know	long_vp_coord	unexpected	the farmers like to watch television shows and knows many different foreign languages	8
+265	265	265	are	long_vp_coord	expected	the farmers like to watch television shows and are twenty three years old	8
+266	265	265	are	long_vp_coord	unexpected	the farmers like to watch television shows and is twenty three years old	8
+266	266	266	enjoy	long_vp_coord	expected	the farmers like to watch television shows and enjoy playing tennis with colleagues	8
+267	266	266	enjoy	long_vp_coord	unexpected	the farmers like to watch television shows and enjoys playing tennis with colleagues	8
+267	267	267	write	long_vp_coord	expected	the farmers like to watch television shows and write in a journal every day	8
+268	267	267	write	long_vp_coord	unexpected	the farmers like to watch television shows and writes in a journal every day	8
+268	268	268	know	long_vp_coord	expected	the farmers are twenty three years old and know many different foreign languages	8
+269	268	268	know	long_vp_coord	unexpected	the farmers are twenty three years old and knows many different foreign languages	8
+269	269	269	like	long_vp_coord	expected	the farmers are twenty three years old and like to watch television shows	8
+270	269	269	like	long_vp_coord	unexpected	the farmers are twenty three years old and likes to watch television shows	8
+270	270	270	enjoy	long_vp_coord	expected	the farmers are twenty three years old and enjoy playing tennis with colleagues	8
+271	270	270	enjoy	long_vp_coord	unexpected	the farmers are twenty three years old and enjoys playing tennis with colleagues	8
+271	271	271	write	long_vp_coord	expected	the farmers are twenty three years old and write in a journal every day	8
+272	271	271	write	long_vp_coord	unexpected	the farmers are twenty three years old and writes in a journal every day	8
+272	272	272	know	long_vp_coord	expected	the farmers enjoy playing tennis with colleagues and know many different foreign languages	8
+273	272	272	know	long_vp_coord	unexpected	the farmers enjoy playing tennis with colleagues and knows many different foreign languages	8
+273	273	273	like	long_vp_coord	expected	the farmers enjoy playing tennis with colleagues and like to watch television shows	8
+274	273	273	like	long_vp_coord	unexpected	the farmers enjoy playing tennis with colleagues and likes to watch television shows	8
+274	274	274	are	long_vp_coord	expected	the farmers enjoy playing tennis with colleagues and are twenty three years old	8
+275	274	274	are	long_vp_coord	unexpected	the farmers enjoy playing tennis with colleagues and is twenty three years old	8
+275	275	275	write	long_vp_coord	expected	the farmers enjoy playing tennis with colleagues and write in a journal every day	8
+276	275	275	write	long_vp_coord	unexpected	the farmers enjoy playing tennis with colleagues and writes in a journal every day	8
+276	276	276	know	long_vp_coord	expected	the farmers write in a journal every day and know many different foreign languages	9
+277	276	276	know	long_vp_coord	unexpected	the farmers write in a journal every day and knows many different foreign languages	9
+277	277	277	like	long_vp_coord	expected	the farmers write in a journal every day and like to watch television shows	9
+278	277	277	like	long_vp_coord	unexpected	the farmers write in a journal every day and likes to watch television shows	9
+278	278	278	are	long_vp_coord	expected	the farmers write in a journal every day and are twenty three years old	9
+279	278	278	are	long_vp_coord	unexpected	the farmers write in a journal every day and is twenty three years old	9
+279	279	279	enjoy	long_vp_coord	expected	the farmers write in a journal every day and enjoy playing tennis with colleagues	9
+280	279	279	enjoy	long_vp_coord	unexpected	the farmers write in a journal every day and enjoys playing tennis with colleagues	9
+280	280	280	like	long_vp_coord	expected	the managers know many different foreign languages and like to watch television shows	8
+281	280	280	like	long_vp_coord	unexpected	the managers know many different foreign languages and likes to watch television shows	8
+281	281	281	are	long_vp_coord	expected	the managers know many different foreign languages and are twenty three years old	8
+282	281	281	are	long_vp_coord	unexpected	the managers know many different foreign languages and is twenty three years old	8
+282	282	282	enjoy	long_vp_coord	expected	the managers know many different foreign languages and enjoy playing tennis with colleagues	8
+283	282	282	enjoy	long_vp_coord	unexpected	the managers know many different foreign languages and enjoys playing tennis with colleagues	8
+283	283	283	write	long_vp_coord	expected	the managers know many different foreign languages and write in a journal every day	8
+284	283	283	write	long_vp_coord	unexpected	the managers know many different foreign languages and writes in a journal every day	8
+284	284	284	know	long_vp_coord	expected	the managers like to watch television shows and know many different foreign languages	8
+285	284	284	know	long_vp_coord	unexpected	the managers like to watch television shows and knows many different foreign languages	8
+285	285	285	are	long_vp_coord	expected	the managers like to watch television shows and are twenty three years old	8
+286	285	285	are	long_vp_coord	unexpected	the managers like to watch television shows and is twenty three years old	8
+286	286	286	enjoy	long_vp_coord	expected	the managers like to watch television shows and enjoy playing tennis with colleagues	8
+287	286	286	enjoy	long_vp_coord	unexpected	the managers like to watch television shows and enjoys playing tennis with colleagues	8
+287	287	287	write	long_vp_coord	expected	the managers like to watch television shows and write in a journal every day	8
+288	287	287	write	long_vp_coord	unexpected	the managers like to watch television shows and writes in a journal every day	8
+288	288	288	know	long_vp_coord	expected	the managers are twenty three years old and know many different foreign languages	8
+289	288	288	know	long_vp_coord	unexpected	the managers are twenty three years old and knows many different foreign languages	8
+289	289	289	like	long_vp_coord	expected	the managers are twenty three years old and like to watch television shows	8
+290	289	289	like	long_vp_coord	unexpected	the managers are twenty three years old and likes to watch television shows	8
+290	290	290	enjoy	long_vp_coord	expected	the managers are twenty three years old and enjoy playing tennis with colleagues	8
+291	290	290	enjoy	long_vp_coord	unexpected	the managers are twenty three years old and enjoys playing tennis with colleagues	8
+291	291	291	write	long_vp_coord	expected	the managers are twenty three years old and write in a journal every day	8
+292	291	291	write	long_vp_coord	unexpected	the managers are twenty three years old and writes in a journal every day	8
+292	292	292	know	long_vp_coord	expected	the managers enjoy playing tennis with colleagues and know many different foreign languages	8
+293	292	292	know	long_vp_coord	unexpected	the managers enjoy playing tennis with colleagues and knows many different foreign languages	8
+293	293	293	like	long_vp_coord	expected	the managers enjoy playing tennis with colleagues and like to watch television shows	8
+294	293	293	like	long_vp_coord	unexpected	the managers enjoy playing tennis with colleagues and likes to watch television shows	8
+294	294	294	are	long_vp_coord	expected	the managers enjoy playing tennis with colleagues and are twenty three years old	8
+295	294	294	are	long_vp_coord	unexpected	the managers enjoy playing tennis with colleagues and is twenty three years old	8
+295	295	295	write	long_vp_coord	expected	the managers enjoy playing tennis with colleagues and write in a journal every day	8
+296	295	295	write	long_vp_coord	unexpected	the managers enjoy playing tennis with colleagues and writes in a journal every day	8
+296	296	296	know	long_vp_coord	expected	the managers write in a journal every day and know many different foreign languages	9
+297	296	296	know	long_vp_coord	unexpected	the managers write in a journal every day and knows many different foreign languages	9
+297	297	297	like	long_vp_coord	expected	the managers write in a journal every day and like to watch television shows	9
+298	297	297	like	long_vp_coord	unexpected	the managers write in a journal every day and likes to watch television shows	9
+298	298	298	are	long_vp_coord	expected	the managers write in a journal every day and are twenty three years old	9
+299	298	298	are	long_vp_coord	unexpected	the managers write in a journal every day and is twenty three years old	9
+299	299	299	enjoy	long_vp_coord	expected	the managers write in a journal every day and enjoy playing tennis with colleagues	9
+300	299	299	enjoy	long_vp_coord	unexpected	the managers write in a journal every day and enjoys playing tennis with colleagues	9
+300	300	300	like	long_vp_coord	expected	the customers know many different foreign languages and like to watch television shows	8
+301	300	300	like	long_vp_coord	unexpected	the customers know many different foreign languages and likes to watch television shows	8
+301	301	301	are	long_vp_coord	expected	the customers know many different foreign languages and are twenty three years old	8
+302	301	301	are	long_vp_coord	unexpected	the customers know many different foreign languages and is twenty three years old	8
+302	302	302	enjoy	long_vp_coord	expected	the customers know many different foreign languages and enjoy playing tennis with colleagues	8
+303	302	302	enjoy	long_vp_coord	unexpected	the customers know many different foreign languages and enjoys playing tennis with colleagues	8
+303	303	303	write	long_vp_coord	expected	the customers know many different foreign languages and write in a journal every day	8
+304	303	303	write	long_vp_coord	unexpected	the customers know many different foreign languages and writes in a journal every day	8
+304	304	304	know	long_vp_coord	expected	the customers like to watch television shows and know many different foreign languages	8
+305	304	304	know	long_vp_coord	unexpected	the customers like to watch television shows and knows many different foreign languages	8
+305	305	305	are	long_vp_coord	expected	the customers like to watch television shows and are twenty three years old	8
+306	305	305	are	long_vp_coord	unexpected	the customers like to watch television shows and is twenty three years old	8
+306	306	306	enjoy	long_vp_coord	expected	the customers like to watch television shows and enjoy playing tennis with colleagues	8
+307	306	306	enjoy	long_vp_coord	unexpected	the customers like to watch television shows and enjoys playing tennis with colleagues	8
+307	307	307	write	long_vp_coord	expected	the customers like to watch television shows and write in a journal every day	8
+308	307	307	write	long_vp_coord	unexpected	the customers like to watch television shows and writes in a journal every day	8
+308	308	308	know	long_vp_coord	expected	the customers are twenty three years old and know many different foreign languages	8
+309	308	308	know	long_vp_coord	unexpected	the customers are twenty three years old and knows many different foreign languages	8
+309	309	309	like	long_vp_coord	expected	the customers are twenty three years old and like to watch television shows	8
+310	309	309	like	long_vp_coord	unexpected	the customers are twenty three years old and likes to watch television shows	8
+310	310	310	enjoy	long_vp_coord	expected	the customers are twenty three years old and enjoy playing tennis with colleagues	8
+311	310	310	enjoy	long_vp_coord	unexpected	the customers are twenty three years old and enjoys playing tennis with colleagues	8
+311	311	311	write	long_vp_coord	expected	the customers are twenty three years old and write in a journal every day	8
+312	311	311	write	long_vp_coord	unexpected	the customers are twenty three years old and writes in a journal every day	8
+312	312	312	know	long_vp_coord	expected	the customers enjoy playing tennis with colleagues and know many different foreign languages	8
+313	312	312	know	long_vp_coord	unexpected	the customers enjoy playing tennis with colleagues and knows many different foreign languages	8
+313	313	313	like	long_vp_coord	expected	the customers enjoy playing tennis with colleagues and like to watch television shows	8
+314	313	313	like	long_vp_coord	unexpected	the customers enjoy playing tennis with colleagues and likes to watch television shows	8
+314	314	314	are	long_vp_coord	expected	the customers enjoy playing tennis with colleagues and are twenty three years old	8
+315	314	314	are	long_vp_coord	unexpected	the customers enjoy playing tennis with colleagues and is twenty three years old	8
+315	315	315	write	long_vp_coord	expected	the customers enjoy playing tennis with colleagues and write in a journal every day	8
+316	315	315	write	long_vp_coord	unexpected	the customers enjoy playing tennis with colleagues and writes in a journal every day	8
+316	316	316	know	long_vp_coord	expected	the customers write in a journal every day and know many different foreign languages	9
+317	316	316	know	long_vp_coord	unexpected	the customers write in a journal every day and knows many different foreign languages	9
+317	317	317	like	long_vp_coord	expected	the customers write in a journal every day and like to watch television shows	9
+318	317	317	like	long_vp_coord	unexpected	the customers write in a journal every day and likes to watch television shows	9
+318	318	318	are	long_vp_coord	expected	the customers write in a journal every day and are twenty three years old	9
+319	318	318	are	long_vp_coord	unexpected	the customers write in a journal every day and is twenty three years old	9
+319	319	319	enjoy	long_vp_coord	expected	the customers write in a journal every day and enjoy playing tennis with colleagues	9
+320	319	319	enjoy	long_vp_coord	unexpected	the customers write in a journal every day and enjoys playing tennis with colleagues	9
+320	320	320	like	long_vp_coord	expected	the officers know many different foreign languages and like to watch television shows	8
+321	320	320	like	long_vp_coord	unexpected	the officers know many different foreign languages and likes to watch television shows	8
+321	321	321	are	long_vp_coord	expected	the officers know many different foreign languages and are twenty three years old	8
+322	321	321	are	long_vp_coord	unexpected	the officers know many different foreign languages and is twenty three years old	8
+322	322	322	enjoy	long_vp_coord	expected	the officers know many different foreign languages and enjoy playing tennis with colleagues	8
+323	322	322	enjoy	long_vp_coord	unexpected	the officers know many different foreign languages and enjoys playing tennis with colleagues	8
+323	323	323	write	long_vp_coord	expected	the officers know many different foreign languages and write in a journal every day	8
+324	323	323	write	long_vp_coord	unexpected	the officers know many different foreign languages and writes in a journal every day	8
+324	324	324	know	long_vp_coord	expected	the officers like to watch television shows and know many different foreign languages	8
+325	324	324	know	long_vp_coord	unexpected	the officers like to watch television shows and knows many different foreign languages	8
+325	325	325	are	long_vp_coord	expected	the officers like to watch television shows and are twenty three years old	8
+326	325	325	are	long_vp_coord	unexpected	the officers like to watch television shows and is twenty three years old	8
+326	326	326	enjoy	long_vp_coord	expected	the officers like to watch television shows and enjoy playing tennis with colleagues	8
+327	326	326	enjoy	long_vp_coord	unexpected	the officers like to watch television shows and enjoys playing tennis with colleagues	8
+327	327	327	write	long_vp_coord	expected	the officers like to watch television shows and write in a journal every day	8
+328	327	327	write	long_vp_coord	unexpected	the officers like to watch television shows and writes in a journal every day	8
+328	328	328	know	long_vp_coord	expected	the officers are twenty three years old and know many different foreign languages	8
+329	328	328	know	long_vp_coord	unexpected	the officers are twenty three years old and knows many different foreign languages	8
+329	329	329	like	long_vp_coord	expected	the officers are twenty three years old and like to watch television shows	8
+330	329	329	like	long_vp_coord	unexpected	the officers are twenty three years old and likes to watch television shows	8
+330	330	330	enjoy	long_vp_coord	expected	the officers are twenty three years old and enjoy playing tennis with colleagues	8
+331	330	330	enjoy	long_vp_coord	unexpected	the officers are twenty three years old and enjoys playing tennis with colleagues	8
+331	331	331	write	long_vp_coord	expected	the officers are twenty three years old and write in a journal every day	8
+332	331	331	write	long_vp_coord	unexpected	the officers are twenty three years old and writes in a journal every day	8
+332	332	332	know	long_vp_coord	expected	the officers enjoy playing tennis with colleagues and know many different foreign languages	8
+333	332	332	know	long_vp_coord	unexpected	the officers enjoy playing tennis with colleagues and knows many different foreign languages	8
+333	333	333	like	long_vp_coord	expected	the officers enjoy playing tennis with colleagues and like to watch television shows	8
+334	333	333	like	long_vp_coord	unexpected	the officers enjoy playing tennis with colleagues and likes to watch television shows	8
+334	334	334	are	long_vp_coord	expected	the officers enjoy playing tennis with colleagues and are twenty three years old	8
+335	334	334	are	long_vp_coord	unexpected	the officers enjoy playing tennis with colleagues and is twenty three years old	8
+335	335	335	write	long_vp_coord	expected	the officers enjoy playing tennis with colleagues and write in a journal every day	8
+336	335	335	write	long_vp_coord	unexpected	the officers enjoy playing tennis with colleagues and writes in a journal every day	8
+336	336	336	know	long_vp_coord	expected	the officers write in a journal every day and know many different foreign languages	9
+337	336	336	know	long_vp_coord	unexpected	the officers write in a journal every day and knows many different foreign languages	9
+337	337	337	like	long_vp_coord	expected	the officers write in a journal every day and like to watch television shows	9
+338	337	337	like	long_vp_coord	unexpected	the officers write in a journal every day and likes to watch television shows	9
+338	338	338	are	long_vp_coord	expected	the officers write in a journal every day and are twenty three years old	9
+339	338	338	are	long_vp_coord	unexpected	the officers write in a journal every day and is twenty three years old	9
+339	339	339	enjoy	long_vp_coord	expected	the officers write in a journal every day and enjoy playing tennis with colleagues	9
+340	339	339	enjoy	long_vp_coord	unexpected	the officers write in a journal every day and enjoys playing tennis with colleagues	9
+340	340	340	like	long_vp_coord	expected	the teachers know many different foreign languages and like to watch television shows	8
+341	340	340	like	long_vp_coord	unexpected	the teachers know many different foreign languages and likes to watch television shows	8
+341	341	341	are	long_vp_coord	expected	the teachers know many different foreign languages and are twenty three years old	8
+342	341	341	are	long_vp_coord	unexpected	the teachers know many different foreign languages and is twenty three years old	8
+342	342	342	enjoy	long_vp_coord	expected	the teachers know many different foreign languages and enjoy playing tennis with colleagues	8
+343	342	342	enjoy	long_vp_coord	unexpected	the teachers know many different foreign languages and enjoys playing tennis with colleagues	8
+343	343	343	write	long_vp_coord	expected	the teachers know many different foreign languages and write in a journal every day	8
+344	343	343	write	long_vp_coord	unexpected	the teachers know many different foreign languages and writes in a journal every day	8
+344	344	344	know	long_vp_coord	expected	the teachers like to watch television shows and know many different foreign languages	8
+345	344	344	know	long_vp_coord	unexpected	the teachers like to watch television shows and knows many different foreign languages	8
+345	345	345	are	long_vp_coord	expected	the teachers like to watch television shows and are twenty three years old	8
+346	345	345	are	long_vp_coord	unexpected	the teachers like to watch television shows and is twenty three years old	8
+346	346	346	enjoy	long_vp_coord	expected	the teachers like to watch television shows and enjoy playing tennis with colleagues	8
+347	346	346	enjoy	long_vp_coord	unexpected	the teachers like to watch television shows and enjoys playing tennis with colleagues	8
+347	347	347	write	long_vp_coord	expected	the teachers like to watch television shows and write in a journal every day	8
+348	347	347	write	long_vp_coord	unexpected	the teachers like to watch television shows and writes in a journal every day	8
+348	348	348	know	long_vp_coord	expected	the teachers are twenty three years old and know many different foreign languages	8
+349	348	348	know	long_vp_coord	unexpected	the teachers are twenty three years old and knows many different foreign languages	8
+349	349	349	like	long_vp_coord	expected	the teachers are twenty three years old and like to watch television shows	8
+350	349	349	like	long_vp_coord	unexpected	the teachers are twenty three years old and likes to watch television shows	8
+350	350	350	enjoy	long_vp_coord	expected	the teachers are twenty three years old and enjoy playing tennis with colleagues	8
+351	350	350	enjoy	long_vp_coord	unexpected	the teachers are twenty three years old and enjoys playing tennis with colleagues	8
+351	351	351	write	long_vp_coord	expected	the teachers are twenty three years old and write in a journal every day	8
+352	351	351	write	long_vp_coord	unexpected	the teachers are twenty three years old and writes in a journal every day	8
+352	352	352	know	long_vp_coord	expected	the teachers enjoy playing tennis with colleagues and know many different foreign languages	8
+353	352	352	know	long_vp_coord	unexpected	the teachers enjoy playing tennis with colleagues and knows many different foreign languages	8
+353	353	353	like	long_vp_coord	expected	the teachers enjoy playing tennis with colleagues and like to watch television shows	8
+354	353	353	like	long_vp_coord	unexpected	the teachers enjoy playing tennis with colleagues and likes to watch television shows	8
+354	354	354	are	long_vp_coord	expected	the teachers enjoy playing tennis with colleagues and are twenty three years old	8
+355	354	354	are	long_vp_coord	unexpected	the teachers enjoy playing tennis with colleagues and is twenty three years old	8
+355	355	355	write	long_vp_coord	expected	the teachers enjoy playing tennis with colleagues and write in a journal every day	8
+356	355	355	write	long_vp_coord	unexpected	the teachers enjoy playing tennis with colleagues and writes in a journal every day	8
+356	356	356	know	long_vp_coord	expected	the teachers write in a journal every day and know many different foreign languages	9
+357	356	356	know	long_vp_coord	unexpected	the teachers write in a journal every day and knows many different foreign languages	9
+357	357	357	like	long_vp_coord	expected	the teachers write in a journal every day and like to watch television shows	9
+358	357	357	like	long_vp_coord	unexpected	the teachers write in a journal every day and likes to watch television shows	9
+358	358	358	are	long_vp_coord	expected	the teachers write in a journal every day and are twenty three years old	9
+359	358	358	are	long_vp_coord	unexpected	the teachers write in a journal every day and is twenty three years old	9
+359	359	359	enjoy	long_vp_coord	expected	the teachers write in a journal every day and enjoy playing tennis with colleagues	9
+360	359	359	enjoy	long_vp_coord	unexpected	the teachers write in a journal every day and enjoys playing tennis with colleagues	9
+360	360	360	like	long_vp_coord	expected	the senators know many different foreign languages and like to watch television shows	8
+361	360	360	like	long_vp_coord	unexpected	the senators know many different foreign languages and likes to watch television shows	8
+361	361	361	are	long_vp_coord	expected	the senators know many different foreign languages and are twenty three years old	8
+362	361	361	are	long_vp_coord	unexpected	the senators know many different foreign languages and is twenty three years old	8
+362	362	362	enjoy	long_vp_coord	expected	the senators know many different foreign languages and enjoy playing tennis with colleagues	8
+363	362	362	enjoy	long_vp_coord	unexpected	the senators know many different foreign languages and enjoys playing tennis with colleagues	8
+363	363	363	write	long_vp_coord	expected	the senators know many different foreign languages and write in a journal every day	8
+364	363	363	write	long_vp_coord	unexpected	the senators know many different foreign languages and writes in a journal every day	8
+364	364	364	know	long_vp_coord	expected	the senators like to watch television shows and know many different foreign languages	8
+365	364	364	know	long_vp_coord	unexpected	the senators like to watch television shows and knows many different foreign languages	8
+365	365	365	are	long_vp_coord	expected	the senators like to watch television shows and are twenty three years old	8
+366	365	365	are	long_vp_coord	unexpected	the senators like to watch television shows and is twenty three years old	8
+366	366	366	enjoy	long_vp_coord	expected	the senators like to watch television shows and enjoy playing tennis with colleagues	8
+367	366	366	enjoy	long_vp_coord	unexpected	the senators like to watch television shows and enjoys playing tennis with colleagues	8
+367	367	367	write	long_vp_coord	expected	the senators like to watch television shows and write in a journal every day	8
+368	367	367	write	long_vp_coord	unexpected	the senators like to watch television shows and writes in a journal every day	8
+368	368	368	know	long_vp_coord	expected	the senators are twenty three years old and know many different foreign languages	8
+369	368	368	know	long_vp_coord	unexpected	the senators are twenty three years old and knows many different foreign languages	8
+369	369	369	like	long_vp_coord	expected	the senators are twenty three years old and like to watch television shows	8
+370	369	369	like	long_vp_coord	unexpected	the senators are twenty three years old and likes to watch television shows	8
+370	370	370	enjoy	long_vp_coord	expected	the senators are twenty three years old and enjoy playing tennis with colleagues	8
+371	370	370	enjoy	long_vp_coord	unexpected	the senators are twenty three years old and enjoys playing tennis with colleagues	8
+371	371	371	write	long_vp_coord	expected	the senators are twenty three years old and write in a journal every day	8
+372	371	371	write	long_vp_coord	unexpected	the senators are twenty three years old and writes in a journal every day	8
+372	372	372	know	long_vp_coord	expected	the senators enjoy playing tennis with colleagues and know many different foreign languages	8
+373	372	372	know	long_vp_coord	unexpected	the senators enjoy playing tennis with colleagues and knows many different foreign languages	8
+373	373	373	like	long_vp_coord	expected	the senators enjoy playing tennis with colleagues and like to watch television shows	8
+374	373	373	like	long_vp_coord	unexpected	the senators enjoy playing tennis with colleagues and likes to watch television shows	8
+374	374	374	are	long_vp_coord	expected	the senators enjoy playing tennis with colleagues and are twenty three years old	8
+375	374	374	are	long_vp_coord	unexpected	the senators enjoy playing tennis with colleagues and is twenty three years old	8
+375	375	375	write	long_vp_coord	expected	the senators enjoy playing tennis with colleagues and write in a journal every day	8
+376	375	375	write	long_vp_coord	unexpected	the senators enjoy playing tennis with colleagues and writes in a journal every day	8
+376	376	376	know	long_vp_coord	expected	the senators write in a journal every day and know many different foreign languages	9
+377	376	376	know	long_vp_coord	unexpected	the senators write in a journal every day and knows many different foreign languages	9
+377	377	377	like	long_vp_coord	expected	the senators write in a journal every day and like to watch television shows	9
+378	377	377	like	long_vp_coord	unexpected	the senators write in a journal every day and likes to watch television shows	9
+378	378	378	are	long_vp_coord	expected	the senators write in a journal every day and are twenty three years old	9
+379	378	378	are	long_vp_coord	unexpected	the senators write in a journal every day and is twenty three years old	9
+379	379	379	enjoy	long_vp_coord	expected	the senators write in a journal every day and enjoy playing tennis with colleagues	9
+380	379	379	enjoy	long_vp_coord	unexpected	the senators write in a journal every day and enjoys playing tennis with colleagues	9
+380	380	380	like	long_vp_coord	expected	the consultants know many different foreign languages and like to watch television shows	8
+381	380	380	like	long_vp_coord	unexpected	the consultants know many different foreign languages and likes to watch television shows	8
+381	381	381	are	long_vp_coord	expected	the consultants know many different foreign languages and are twenty three years old	8
+382	381	381	are	long_vp_coord	unexpected	the consultants know many different foreign languages and is twenty three years old	8
+382	382	382	enjoy	long_vp_coord	expected	the consultants know many different foreign languages and enjoy playing tennis with colleagues	8
+383	382	382	enjoy	long_vp_coord	unexpected	the consultants know many different foreign languages and enjoys playing tennis with colleagues	8
+383	383	383	write	long_vp_coord	expected	the consultants know many different foreign languages and write in a journal every day	8
+384	383	383	write	long_vp_coord	unexpected	the consultants know many different foreign languages and writes in a journal every day	8
+384	384	384	know	long_vp_coord	expected	the consultants like to watch television shows and know many different foreign languages	8
+385	384	384	know	long_vp_coord	unexpected	the consultants like to watch television shows and knows many different foreign languages	8
+385	385	385	are	long_vp_coord	expected	the consultants like to watch television shows and are twenty three years old	8
+386	385	385	are	long_vp_coord	unexpected	the consultants like to watch television shows and is twenty three years old	8
+386	386	386	enjoy	long_vp_coord	expected	the consultants like to watch television shows and enjoy playing tennis with colleagues	8
+387	386	386	enjoy	long_vp_coord	unexpected	the consultants like to watch television shows and enjoys playing tennis with colleagues	8
+387	387	387	write	long_vp_coord	expected	the consultants like to watch television shows and write in a journal every day	8
+388	387	387	write	long_vp_coord	unexpected	the consultants like to watch television shows and writes in a journal every day	8
+388	388	388	know	long_vp_coord	expected	the consultants are twenty three years old and know many different foreign languages	8
+389	388	388	know	long_vp_coord	unexpected	the consultants are twenty three years old and knows many different foreign languages	8
+389	389	389	like	long_vp_coord	expected	the consultants are twenty three years old and like to watch television shows	8
+390	389	389	like	long_vp_coord	unexpected	the consultants are twenty three years old and likes to watch television shows	8
+390	390	390	enjoy	long_vp_coord	expected	the consultants are twenty three years old and enjoy playing tennis with colleagues	8
+391	390	390	enjoy	long_vp_coord	unexpected	the consultants are twenty three years old and enjoys playing tennis with colleagues	8
+391	391	391	write	long_vp_coord	expected	the consultants are twenty three years old and write in a journal every day	8
+392	391	391	write	long_vp_coord	unexpected	the consultants are twenty three years old and writes in a journal every day	8
+392	392	392	know	long_vp_coord	expected	the consultants enjoy playing tennis with colleagues and know many different foreign languages	8
+393	392	392	know	long_vp_coord	unexpected	the consultants enjoy playing tennis with colleagues and knows many different foreign languages	8
+393	393	393	like	long_vp_coord	expected	the consultants enjoy playing tennis with colleagues and like to watch television shows	8
+394	393	393	like	long_vp_coord	unexpected	the consultants enjoy playing tennis with colleagues and likes to watch television shows	8
+394	394	394	are	long_vp_coord	expected	the consultants enjoy playing tennis with colleagues and are twenty three years old	8
+395	394	394	are	long_vp_coord	unexpected	the consultants enjoy playing tennis with colleagues and is twenty three years old	8
+395	395	395	write	long_vp_coord	expected	the consultants enjoy playing tennis with colleagues and write in a journal every day	8
+396	395	395	write	long_vp_coord	unexpected	the consultants enjoy playing tennis with colleagues and writes in a journal every day	8
+396	396	396	know	long_vp_coord	expected	the consultants write in a journal every day and know many different foreign languages	9
+397	396	396	know	long_vp_coord	unexpected	the consultants write in a journal every day and knows many different foreign languages	9
+397	397	397	like	long_vp_coord	expected	the consultants write in a journal every day and like to watch television shows	9
+398	397	397	like	long_vp_coord	unexpected	the consultants write in a journal every day and likes to watch television shows	9
+398	398	398	are	long_vp_coord	expected	the consultants write in a journal every day and are twenty three years old	9
+399	398	398	are	long_vp_coord	unexpected	the consultants write in a journal every day and is twenty three years old	9
+399	399	399	enjoy	long_vp_coord	expected	the consultants write in a journal every day and enjoy playing tennis with colleagues	9
+400	399	399	enjoy	long_vp_coord	unexpected	the consultants write in a journal every day and enjoys playing tennis with colleagues	9
