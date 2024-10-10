@@ -165,18 +165,9 @@ class MinimalPair(Analysis):
 
 
     def summarize_lemma(self, by_pair):
-
-        if self.pred_measure == 'prob':
-            ascending = False
-        else:
-            ascending = True
-
         groupby_cols = ['contextid','model', 'condition']
 
-        by_lemma = by_pair.sort_values(by=['expected'], ascending=ascending).groupby(groupby_cols).head(self.topk).reset_index(drop=True)
-
-
-        by_context = by_lemma.groupby(groupby_cols).agg({'microdiff': 'mean', 'macrodiff': 'mean', 'acc': 'mean'}).reset_index()
+        by_context = by_pair.groupby(groupby_cols).agg({'microdiff': 'mean', 'macrodiff': 'mean', 'acc': 'mean'}).reset_index()
 
         return by_context
 
@@ -203,6 +194,8 @@ class MinimalPair(Analysis):
 
         # comparison summarized over all ROIs for each pair 
         by_pair = self.summarize_roi(by_word)
+
+        ## TO DO: refactor this so it is just summary over user specified columns
 
         # summarize over lemmas
         by_context = self.summarize_lemma(by_pair)
