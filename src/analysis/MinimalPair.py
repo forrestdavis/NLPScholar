@@ -61,10 +61,16 @@ class MinimalPair(Analysis):
         return grouped_df
 
 
-    def save_interim(self,target_df):
+    def save_interim(self,target_wide_df):
+
+        target_long = pd.melt(target_wide_df,
+                              value_vars = ['expected', 'unexpected'], 
+                              id_vars=['pairid','pos', 'model','condition','lemma'],
+                              value_name = self.pred_measure)
+
         
-        cols = ['model','sentid', 'pairid', 'contextid', 'lemma', 'condition', 'comparison', 'sentence']
-        summ = target_df.groupby(cols).agg({'prob': ['sum','mean'], 'surp': ['sum','mean']}).reset_index()
+        cols = ['model', 'pairid', 'lemma', 'condition', 'comparison']
+        summ = target_long.groupby(cols).agg({self.pred_measure: ['sum','mean']}).reset_index()
         summ.columns = list(map(''.join, summ.columns.values))
         fname = f"{self.resultsfpath.replace('.tsv', '')}_byROI.tsv"
         print(f"Saving interim file: {fname}")
@@ -88,21 +94,26 @@ class MinimalPair(Analysis):
         target['mapping'] = target.apply(lambda x: {curr:new for new, curr in enumerate(x['ROI'])}, axis=1)
         target['pos'] = target.apply(lambda x: x['mapping'][x['wordpos_mod']], axis=1)
 
-        # Save interim state before computing difference
-        self.save_interim(target)
 
         # Specify pred measure
         pred_measure = self.get_measure()
 
-        # Compare pairs for each ROI (micro measures, accuracy)
-        groupby_cols = ['pairid', 'model', 'condition', 'lemma', 'contextid']
-
+       
+        # Make data wider; compute difference and accuracy
         target_wide = target.pivot(index=['pairid', 'pos', 'model', 'condition','lemma', 'contextid'], columns='comparison', values=pred_measure).reset_index()
 
         target_wide['microdiff'] = self.get_diff(target_wide, 'micro')
         target_wide['acc'] = self.get_acc(target_wide)
 
+        # Filter topk lemmas
+        target_wide = self.filter_lemma(target_wide)
+
+        # Save interim state before computing summarizing
+        self.save_interim(target_wide)
+
         # Summarize over ROIs
+        groupby_cols = ['pairid', 'model', 'condition', 'lemma', 'contextid']
+
         by_pair = target_wide.groupby(groupby_cols).agg({'expected': 'mean', 'unexpected': 'mean', 'microdiff': 'mean', 'acc': 'mean'}).reset_index()
 
         # Compute perplexity
@@ -138,6 +149,20 @@ class MinimalPair(Analysis):
         #     return('surp', 'sum') #we need sum surprisal (or is it mean?)
         else:
             return 'surp'
+
+    def filter_lemma(self, target_wide):
+        if self.pred_measure == 'prob':
+            ascending = False
+        else:
+            ascending = True
+
+        groupby_cols = ['contextid','model', 'condition']
+
+        by_lemma = target_wide.sort_values(by=['expected'], ascending=ascending).groupby(groupby_cols).head(self.topk).reset_index(drop=True)
+
+        return by_lemma
+
+
 
     def summarize_lemma(self, by_pair):
 
