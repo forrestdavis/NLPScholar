@@ -25,8 +25,10 @@ class HFTokenizer(Tokenizer):
                     self._tokenizer.pad_token = self._tokenizer.eos_token
                     sys.stderr.write(f"Using {self._tokenizer.eos_token} as pad token\n")
                 else:
+                    self._tokenizer.add_special_tokens({'pad_token': '[PAD]'})
                     sys.stderr.write(f"There is no eos token for the "\
-                                     "tokenizer\n")
+                                     "tokenizer. Creating a new token to use "\
+                                     "as a pad token, [PAD].\n")
             elif self.addPadToken:
                 token_id = self.encode(self.addPadToken)
                 if len(token_id) != 1:
