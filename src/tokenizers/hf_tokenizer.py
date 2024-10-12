@@ -57,6 +57,14 @@ class HFTokenizer(Tokenizer):
     def mask_token_id(self) -> int:
         return self._tokenizer.mask_token_id
 
+    @property 
+    def sep_token_id(self) -> int:
+        return self._tokenizer.sep_token_id
+
+    @property 
+    def cls_token_id(self) -> int:
+        return self._tokenizer.cls_token_id
+
     def IsSkipTokenID(self, token_id: int) -> bool:
         """ Whether the token id is for a skippable token. We consider cls, sep,
         and beginning of sentence tokens skippable. Note that eos is not included. 

@@ -29,6 +29,7 @@ class LM:
         self.device = 'best' 
         self.loadPretrained = True
         self.maxSequenceLength = 128
+        self.stride = None
         for k, v in kwargs.items():
             setattr(self, k, v)
 
@@ -89,8 +90,7 @@ class LM:
 
         Args:
             logits (`torch.Tensor`): logits with shape (batch_size,
-                                            number of tokens, vocab_size),
-                                        as in output of get_output()
+                                            number of tokens, vocab_size)
 
         Returns:
             `torch.Tensor`: probabilities and surprisals (base 2) each 
@@ -105,7 +105,6 @@ class LM:
     def get_by_token_predictability(self, text: Union[str, List[str]]
                                                      ) -> list: 
         """ Returns predictability measure of each token for inputted text.
-           Note that this requires `get_output`.
 
         Args:
             text (`Union[str, List[str]]`): A (batch of) strings.
@@ -163,7 +162,8 @@ class LM:
     def get_by_sentence_perplexity(self, text: Union[str, List[str]]
                                   ) -> dict:
         """ Returns perplexity of each batch (e.g., sentence) for inputted text.
-            Note that this requires that you've implemented `get_output`.
+            Note that this requires that you've implemented
+            `get_by_token_predictability`.
 
            Perpelixty for autoregressive models is defined as: 
             .. math::
@@ -216,7 +216,7 @@ class LM:
     def get_aligned_words_predictabilities(self, text: Union[str, List[str]], 
                                           ) -> List[List[WordPred]]:
         """ Returns predictability measures of each word for inputted text.
-           Note that this requires `get_output`.
+           Note that this requires `get_by_token_predictability`.
 
         WordPred Object: 
             word: word in text

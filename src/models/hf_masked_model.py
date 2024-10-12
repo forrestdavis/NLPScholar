@@ -64,8 +64,103 @@ class HFMaskedModel(LM):
                             **modelkwargs).to(self.device)
         self.model.eval()
 
+        # Set stride to half max length if you haven't specified it
+        if self.stride is None:
+            self.stride = int(self.tokenizer.model_max_length//2)
+
     @torch.no_grad()
-    def get_output(self, texts: Union[str, List[str]]):
+    def get_by_token_predictability(self, texts: Union[str, List[str]]):
+        
+        assert self.PLL_type in {'original', 'within_word_l2r'}, f"PLL metric {PLL_type} not supported"
+
+        self.stride = 3
+
+        # batchify 
+        if isinstance(texts, str):
+            texts = [texts]
+
+        MAX_LENGTH = self.tokenizer.model_max_length
+        MAX_LENGTH = 5
+
+        # Note: Special tokens are not added, instead the individual 
+        # logit calls will add special tokens
+        inputs_dict = self.tokenizer(texts, 
+                                     padding=True,
+                                     return_tensors='pt', 
+                                    add_special_tokens=False).to(self.device)
+        input_ids = inputs_dict['input_ids']
+        attn_mask = inputs_dict['attention_mask']
+
+        seq_len = input_ids.size(1)
+        # Adapted from HuggingFace's perpelxity for fixed length models 
+        # https://huggingface.co/docs/transformers/main/en/perplexity
+        prev_end_loc = 0
+        data = []
+        for begin_loc in range(0, seq_len, self.stride):
+            end_loc = min(begin_loc + MAX_LENGTH, seq_len)
+            trg_len = end_loc - prev_end_loc
+            strided_input_ids = input_ids[:,begin_loc:end_loc].to(self.device)
+
+            # reconvert to text 
+            strided_text = []
+            for idx in range(strided_input_ids.size(0)):
+                strided_text.append(self.tokenizer.decode(
+                                    strided_input_ids[idx, :], 
+                                    skip_special_tokens=False))
+
+            logits = self.get_logits(strided_text)['logits']
+
+            by_token_probabilities, by_token_surprisals = \
+                    self.convert_to_predictability(logits)
+
+            # Get by token measures 
+            by_token_probabilities = by_token_probabilities.gather(-1,
+                                               strided_input_ids.unsqueeze(2)).squeeze(-1)
+            by_token_surprisals = by_token_surprisals.gather(-1,
+                                                strided_input_ids.unsqueeze(2)).squeeze(-1)
+
+            # Extract the actual targets (those predictions which are new)
+            by_token_probabilities = by_token_probabilities[:, -trg_len:]
+            by_token_surprisals = by_token_surprisals[:, -trg_len:]
+            strided_input_ids = strided_input_ids[:, -trg_len:]
+            print(by_token_probabilities)
+
+            # For each batch, zip together input ids and predictability measures
+            # into dictionaries 
+            # TODO: FIX
+            for i in range(by_token_surprisals.size(0)):
+                row = []
+                for group in zip(strided_input_ids[i, :], 
+                            by_token_probabilities[i,:], 
+                            by_token_surprisals[i,:],
+                                 strict=True):
+                    row.append({'token_id': int(group[0]), 
+                                'probability': float(group[1]), 
+                                'surprisal': float(group[2])})
+                if len(data) != i+1:
+                    data.append(row)
+                else:
+                    data[i].extend(row)
+
+            prev_end_loc = end_loc
+            # Wrap up if you've reached the end with the current chunk
+            if end_loc == seq_len:
+                break
+        return data
+
+    @torch.no_grad()
+    def get_logits(self, texts: Union[str, List[str]]):
+        """ Returns model logits for text
+
+        Args:
+            texts (`Union[str, List[str]]`): A (batch of) strings.
+
+        Returns:
+            `dict`: Dictionary with input_ids and logits.
+                    input_ids are the input ids from the tokenizer.
+                    Logits has shape (batch_size, number of
+                    tokens, vocab_size).
+        """
         
         assert self.PLL_type in {'original', 'within_word_l2r'}, f"PLL metric {PLL_type} not supported"
 
@@ -91,7 +186,6 @@ class HFMaskedModel(LM):
         # this works because transformers tokenizer flags 
         # padding with an attention mask value of 0
         attn_mask = attn_mask.to(torch.int)
-        last_non_masked_idx = torch.sum(attn_mask, dim=1) - 1
 
         logits = None
         # For each batch, create version of input where each token is MASK'd.
@@ -105,6 +199,12 @@ class HFMaskedModel(LM):
         MASK = torch.tensor(self.tokenizer.mask_token_id).to(self.device)
 
         for idx in range(inputs.shape[1]):
+
+            # Skip CLS/SEP
+            if (inputs[0, idx] in [self.tokenizer.cls_token_id, 
+                                   self.tokenizer.sep_token_id]):
+                continue
+
             masked_input = inputs.clone()
             masked_input[:,idx] = MASK
 
@@ -134,8 +234,7 @@ class HFMaskedModel(LM):
             else:
                 logits = torch.cat((logits, out), 1)
 
-        return {'input_ids': inputs, 'last_non_masked_idx': last_non_masked_idx, 
-                'logits': logits}
+        return {'input_ids': inputs, 'logits': logits}
 
     @torch.no_grad()
     def get_hidden_layers(self, texts):
@@ -167,8 +266,6 @@ class HFMaskedModel(LM):
         # Downcast for mps warning
         attn_mask = attn_mask.to(torch.int)
 
-        last_non_masked_idx = torch.sum(attn_mask, dim=1) - 1
-
-        return {'input_ids': inputs, 'last_non_masked_idx': last_non_masked_idx, 
+        return {'input_ids': inputs, 
                 'hidden': self.model(**inputs_dict).hidden_states}
 
