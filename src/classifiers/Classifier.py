@@ -22,7 +22,6 @@ class Classifier:
 
         # Default values
         self.precision = None
-        self.showSpecialTokens = False
         self.device = 'best' 
         self.id2label = None
         self.label2id = None

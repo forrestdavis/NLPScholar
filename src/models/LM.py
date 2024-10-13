@@ -25,10 +25,10 @@ class LM:
         # Default values
         self.getHidden = False
         self.precision = None
-        self.showSpecialTokens = False
         self.device = 'best' 
         self.loadPretrained = True
-        self.maxSequenceLength = 128
+        self.maxTrainSequenceLength = 128
+        self.stride = None
         for k, v in kwargs.items():
             setattr(self, k, v)
 
@@ -49,22 +49,6 @@ class LM:
         return self.modelname
 
     @torch.no_grad()
-    def get_output(self, text: Union[str, List[str]]) -> dict:
-        """ Returns model output for text
-
-        Args:
-            text (`Union[str, List[str]]`): A (batch of) strings.
-
-        Returns:
-            `dict`: Dictionary with input_ids, last_non_masked_idx, and logits.
-                    input_ids are the input ids from the tokenizer.
-                    last_non_masked_idx is the index right before padding starts
-                    of shape batch_size. Logits has shape (batch_size, number of
-                    tokens, vocab_size).
-        """
-        raise NotImplementedError
-
-    @torch.no_grad()
     def get_hidden_layers(self, text: Union[str, List[str]]) -> dict:
         """ Returns model hidden layer representations for text
 
@@ -72,13 +56,11 @@ class LM:
             text (`Union[str, List[str]]`): A (batch of) strings.
 
         Returns:
-            `dict`: Dictionary with input_ids, last_non_masked_idx, and
-                    hidden_layers.
+            `dict`: Dictionary with input_ids and hidden_layers.
                     input_ids are the input ids from the tokenizer.
-                    last_non_masked_idx is the index right before padding starts
-                    of shape batch_size. hidden_layers is a tuple of length
-                    number of layers (including embeddings). Each element has
-                    shape (batch_size, number of tokens, hidden_size).
+                    hidden_layers is a tuple of length number of layers
+                    (including embeddings). Each element has shape (batch_size,
+                    number of tokens, hidden_size).
         """
 
         raise NotImplementedError
@@ -89,8 +71,7 @@ class LM:
 
         Args:
             logits (`torch.Tensor`): logits with shape (batch_size,
-                                            number of tokens, vocab_size),
-                                        as in output of get_output()
+                                            number of tokens, vocab_size)
 
         Returns:
             `torch.Tensor`: probabilities and surprisals (base 2) each 
@@ -105,7 +86,6 @@ class LM:
     def get_by_token_predictability(self, text: Union[str, List[str]]
                                                      ) -> list: 
         """ Returns predictability measure of each token for inputted text.
-           Note that this requires `get_output`.
 
         Args:
             text (`Union[str, List[str]]`): A (batch of) strings.
@@ -115,55 +95,14 @@ class LM:
                     token. Each dictionary has token_id, probability, surprisal.
                     Note: the padded output is included.
         """
-        output = self.get_output(text)
-        input_ids = output['input_ids']
-        last_non_masked_idx = output['last_non_masked_idx']
-        
-        by_token_probabilities, by_token_surprisals = \
-                    self.convert_to_predictability(output['logits'])
-
-        # If predictions are offset (as with causal LMs) then shift targets
-        # using a zero vector for surprisal and a ones vector for probability.
-        # This has the added benefit of making the first prediction value zero
-        # for surprisal and one for probability.
-        if self.offset:
-            by_token_probabilities = torch.cat((torch.ones(
-                                        by_token_probabilities.size(0), 1,
-                                     by_token_probabilities.size(-1)).to(self.device),
-                                         by_token_probabilities), 
-                                         dim = 1)
-            by_token_surprisals = torch.cat((torch.zeros(
-                                                by_token_surprisals.size(0), 1, 
-                                                by_token_surprisals.size(-1)).to(self.device),
-                                         by_token_surprisals), 
-                                         dim = 1)
-            last_non_masked_idx = last_non_masked_idx + 1
-
-        by_token_probabilities = by_token_probabilities.gather(-1,
-                                                      input_ids.unsqueeze(2)).squeeze(-1)
-        by_token_surprisals = by_token_surprisals.gather(-1,
-                                                      input_ids.unsqueeze(2)).squeeze(-1)
-
-        # For each batch, zip together input ids and predictability measures
-        # into dictionaries 
-        data = []
-        for i in range(by_token_surprisals.size(0)):
-            row = []
-            for group in zip(input_ids[i, :], 
-                        by_token_probabilities[i,:], 
-                        by_token_surprisals[i,:],
-                             strict=True):
-                row.append({'token_id': int(group[0]), 
-                            'probability': float(group[1]), 
-                            'surprisal': float(group[2])})
-            data.append(row)
-        return data
+        raise NotImplementedError
 
     @torch.no_grad()
-    def get_by_sentence_perplexity(self, text: Union[str, List[str]]
-                                  ) -> dict:
-        """ Returns perplexity of each batch (e.g., sentence) for inputted text.
-            Note that this requires that you've implemented `get_output`.
+    def get_by_batch_perplexity(self, text: Union[str, List[str]], 
+                                  add_special_tokens=False) -> dict:
+        """ Returns perplexity of each batch for inputted text.
+            Note that this requires that you've implemented
+            `get_by_token_predictability`.
 
            Perpelixty for autoregressive models is defined as: 
             .. math::
@@ -176,6 +115,12 @@ class LM:
 
         Args: 
             text (`Union[str, List[str]]`): A (batch of) strings.
+            add_special_tokens (`bool`): Whether to add special tokens like CLS
+                and SEP. NOTE: This does not change the internal computation for
+                getting logits. That necessarily adds CLS and SEP. This flag is
+                for the alignment to text, where we do not return information
+                about CLS and SEP because we do not return predictability
+                measures for them.  Default is False. 
 
         Returns:
             `dict`: Dictionary with two keys: text, which contains the text,
@@ -189,7 +134,8 @@ class LM:
             text = [text]
         all_ppls = []
         batched_token_predicts = self.get_by_token_predictability(text)
-        batched_alignments = self.tokenizer.align_words_ids(text)
+        batched_alignments = self.tokenizer.align_words_ids(text,
+                                        add_special_tokens=add_special_tokens)
         for token_predicts, alignments_words in zip(batched_token_predicts,
                                                     batched_alignments,
                                                     strict=True):
@@ -214,9 +160,9 @@ class LM:
 
     @torch.no_grad()
     def get_aligned_words_predictabilities(self, text: Union[str, List[str]], 
-                                          ) -> List[List[WordPred]]:
+                                          add_special_tokens=False) -> List[List[WordPred]]:
         """ Returns predictability measures of each word for inputted text.
-           Note that this requires `get_output`.
+           Note that this requires `get_by_token_predictability`.
 
         WordPred Object: 
             word: word in text
@@ -229,6 +175,12 @@ class LM:
 
         Args:
             text (`Union[str, List[str]]`): A (batch of) strings.
+            add_special_tokens (`bool`): Whether to add special tokens like CLS
+                and SEP. NOTE: This does not change the internal computation for
+                getting logits. That necessarily adds CLS and SEP. This flag is
+                for the alignment to text, where we do not return information
+                about CLS and SEP because we do not return predictability
+                measures for them.  Default is False. 
 
         Returns:
             `List[List[WordPred]]`: List of lists for each batch comprised of
@@ -237,7 +189,8 @@ class LM:
 
         all_data = []
         batched_token_predicts = self.get_by_token_predictability(text)
-        batched_alignments = self.tokenizer.align_words_ids(text)
+        batched_alignments = self.tokenizer.align_words_ids(text, 
+                                        add_special_tokens=add_special_tokens)
         for token_predicts, alignments_words in zip(batched_token_predicts,
                                                     batched_alignments,
                                                     strict=True):
@@ -260,14 +213,6 @@ class LM:
                     isUnk = True
                 # This is a special token (e.g., [CLS], [PAD])
                 if word is None:
-                    # Surface only when requested (still ignoring pad)
-                    if (self.showSpecialTokens and 
-                       self.tokenizer.pad_token_id != measure['token_id']):
-                        word = self.tokenizer.convert_ids_to_tokens(
-                            measure['token_id'])
-                        sentence_data.append(WordPred(word, surp, prob, isSplit,
-                                                      isUnk, self.modelname,
-                                                      self.tokenizer.tokenizername))
                     prob = 1
                     surp = 0
 

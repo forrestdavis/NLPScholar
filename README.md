@@ -175,6 +175,43 @@ behavior is `False`.
 loadAll: False
 ```
 
+#### `stride`
+
+When using models with a fixed context length (like `gpt2`), care needs to be
+taken with calculating the predictability measures of a token in long contexts
+which exceed the maximum length of the model. In these cases, we use a striding
+window strategy. You can use `stride` to control the size of the stride. The
+default behavior is half of the maximum length allowed by the model. 
+
+```yaml
+stride: 100
+```
+
+To make this clear, here is an example. Suppose the maximum context length was
+5, each word was represented as one token, and our stride was 3. The following
+sentence would cause problems: 
+
+`the strange boy is outside and the girl saw him`
+
+As it has 10 words, but the model only allows for 5. Using a stride would yield
+the following fragments, over which predictability measures are calculated: 
+
+`the strange boy is outside`
+
+`is outside and the girl`
+
+`the girl saw him`
+
+The first occurrence of the word is where it's probability is calculated. So for
+example, `outside` is `P(outside | the strange boy is)` and `girl` is `P(girl |
+is outside and the)`. 
+
+Note that for certain models, special tokens are appended to the start and end
+of a text (like [CLS]). At the moment, we handle this just for masked language
+models. Importantly, these additional tokens interact with stride, as we have
+implemented it. They are ignored in calculating the stride jumps and maximum
+context length. So, in effect, the maximum length is less than the total allowed
+(by two for now, though future versions should handle this more rigorously). 
 
 ## Config Details for `analyze`
 The `analyze` mode is designed to take the predictions from the `evaluate` mode and generate summaries that are relevant to each experiment type. More details can be found in the following markdown files in `src/analysis/`: `MinimalPairAnalysis.md`, `TextClassificationAnalysis.md`, and `TokenClassificationAnalysis.md`. 
@@ -234,15 +271,15 @@ classification with `numLabels`. Note: you must specify a value if
 numLabels: 5
 ```
 
-#### `maxSequenceLength`
+#### `maxTrainSequenceLength`
 
 In loading a model, you can specify the maximum sequence length (i.e., the
-context size) with `maxSequenceLength`. This changes the sequence length of the
+context size) with `maxTrainSequenceLength`. This changes the sequence length of the
 model when loading not from a pretrained model and controls the sequence length
 in a batch during training. The default is 128. 
 
 ```yaml
-maxSequenceLength: 128
+maxTrainSequenceLength: 128
 ```
 
 #### `seed`
@@ -366,18 +403,6 @@ precision: 16bit
 `full`, which loads the model without changing its precision. Selecting `16bit`
 with `train` will train a lower precision model (note: you need to use a GPU for
 this). 
-
-#### `showSpecialTokens`
-
-You can surface special tokens in the output using show `showSpecialTokens`,
-which takes a boolean: 
-
-```yaml
-showSpecialTokens: True
-```
-
-If set to `True`, the model returns non-pad special tokens used internal to the
-model architecture (e.g., [CLS]).
 
 #### `PLL_type`
 

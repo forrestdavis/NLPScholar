@@ -63,9 +63,7 @@ class MinimalPair(Evaluation):
                 token = LM.tokenizer.convert_ids_to_tokens(measure['token_id'])
 
                 if word is None:
-                    if not LM.showSpecialTokens: 
-                        continue
-                    word = ''
+                    continue
 
                 # Figure out if punctuation 
                 isPunct = False
