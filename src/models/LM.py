@@ -25,10 +25,9 @@ class LM:
         # Default values
         self.getHidden = False
         self.precision = None
-        self.showSpecialTokens = False
         self.device = 'best' 
         self.loadPretrained = True
-        self.maxSequenceLength = 128
+        self.maxTrainSequenceLength = 128
         self.stride = None
         for k, v in kwargs.items():
             setattr(self, k, v)
@@ -214,7 +213,7 @@ class LM:
 
     @torch.no_grad()
     def get_aligned_words_predictabilities(self, text: Union[str, List[str]], 
-                                          ) -> List[List[WordPred]]:
+                                          add_special_tokens=False) -> List[List[WordPred]]:
         """ Returns predictability measures of each word for inputted text.
            Note that this requires `get_by_token_predictability`.
 
@@ -229,6 +228,12 @@ class LM:
 
         Args:
             text (`Union[str, List[str]]`): A (batch of) strings.
+            add_special_tokens (`bool`): Whether to add special tokens like CLS
+                and SEP. NOTE: This does not change the internal computation for
+                getting logits. That necessarily adds CLS and SEP. This flag is
+                for the alignment to text, where we do not return information
+                about CLS and SEP because we do not return predictability
+                measures for them.  Default is False. 
 
         Returns:
             `List[List[WordPred]]`: List of lists for each batch comprised of
@@ -260,14 +265,6 @@ class LM:
                     isUnk = True
                 # This is a special token (e.g., [CLS], [PAD])
                 if word is None:
-                    # Surface only when requested (still ignoring pad)
-                    if (self.showSpecialTokens and 
-                       self.tokenizer.pad_token_id != measure['token_id']):
-                        word = self.tokenizer.convert_ids_to_tokens(
-                            measure['token_id'])
-                        sentence_data.append(WordPred(word, surp, prob, isSplit,
-                                                      isUnk, self.modelname,
-                                                      self.tokenizer.tokenizername))
                     prob = 1
                     surp = 0
 

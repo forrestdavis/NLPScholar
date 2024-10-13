@@ -47,8 +47,8 @@ class HFCausalModel(LM):
             auto_config = AutoConfig.from_pretrained(
                             modelname, 
                             vocab_size = len(self.tokenizer), 
-                            n_positions = self.maxSequenceLength,
-                            max_position_embeddings = self.maxSequenceLength,
+                            n_positions = self.maxTrainSequenceLength,
+                            max_position_embeddings = self.maxTrainSequenceLength,
                             bos_token_id = self.tokenizer.bos_token_id, 
                             eos_token_id = self.tokenizer.eos_token_id,
                         )

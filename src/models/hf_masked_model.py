@@ -50,8 +50,8 @@ class HFMaskedModel(LM):
             auto_config = AutoConfig.from_pretrained(
                             modelname, 
                             vocab_size = len(self.tokenizer), 
-                            n_positions = self.maxSequenceLength,
-                            max_position_embeddings = self.maxSequenceLength,
+                            n_positions = self.maxTrainSequenceLength,
+                            max_position_embeddings = self.maxTrainSequenceLength,
                             bos_token_id = self.tokenizer.bos_token_id, 
                             eos_token_id = self.tokenizer.eos_token_id,
                         )
@@ -80,7 +80,7 @@ class HFMaskedModel(LM):
             texts = [texts]
 
         MAX_LENGTH = self.tokenizer.model_max_length
-        MAX_LENGTH = 5
+        MAX_LENGTH = 11
 
         # Note: Special tokens are not added, instead the individual 
         # logit calls will add special tokens
@@ -95,7 +95,10 @@ class HFMaskedModel(LM):
         # Adapted from HuggingFace's perpelxity for fixed length models 
         # https://huggingface.co/docs/transformers/main/en/perplexity
         prev_end_loc = 0
+        # Set up data
         data = []
+        for _ in range(input_ids.size(0)):
+            data.append([])
         for begin_loc in range(0, seq_len, self.stride):
             end_loc = min(begin_loc + MAX_LENGTH, seq_len)
             trg_len = end_loc - prev_end_loc
@@ -123,11 +126,9 @@ class HFMaskedModel(LM):
             by_token_probabilities = by_token_probabilities[:, -trg_len:]
             by_token_surprisals = by_token_surprisals[:, -trg_len:]
             strided_input_ids = strided_input_ids[:, -trg_len:]
-            print(by_token_probabilities)
 
             # For each batch, zip together input ids and predictability measures
             # into dictionaries 
-            # TODO: FIX
             for i in range(by_token_surprisals.size(0)):
                 row = []
                 for group in zip(strided_input_ids[i, :], 
@@ -137,10 +138,7 @@ class HFMaskedModel(LM):
                     row.append({'token_id': int(group[0]), 
                                 'probability': float(group[1]), 
                                 'surprisal': float(group[2])})
-                if len(data) != i+1:
-                    data.append(row)
-                else:
-                    data[i].extend(row)
+                data[i].extend(row)
 
             prev_end_loc = end_loc
             # Wrap up if you've reached the end with the current chunk

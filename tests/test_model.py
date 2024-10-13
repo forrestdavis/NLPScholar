@@ -22,7 +22,7 @@ model = load_models(config)[0]
 
 text = ['the boy is outside and the girl is with him.', 
         'the girl']
-data = model.get_by_token_predictability(text)
+data = model.get_aligned_words_predictabilities(text)
 for batch in data:
     for word in batch:
-        print(word)
+        print(word.word, word.surp, word.prob)

@@ -68,9 +68,7 @@ class TokenClassification(Evaluation):
                 token = Classifier.tokenizer.convert_ids_to_tokens(measure['token_id'])
 
                 if word is None:
-                    if not Classifier.showSpecialTokens: 
-                        continue
-                    word = ''
+                    continue
 
                 if alignment is not None and alignment < len(targets):
                     target = targets[alignment]
@@ -187,7 +185,5 @@ class TokenClassification(Evaluation):
                 print_out = f"{token: <20} | {modelName: <24} | {label: <11}" \
                 f" | {prob: >10}"
                 if unit is None:
-                    if Classifier.showSpecialTokens:
-                        print(print_out)
                     continue
                 print(print_out)

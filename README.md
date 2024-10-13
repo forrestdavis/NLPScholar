@@ -234,15 +234,15 @@ classification with `numLabels`. Note: you must specify a value if
 numLabels: 5
 ```
 
-#### `maxSequenceLength`
+#### `maxTrainSequenceLength`
 
 In loading a model, you can specify the maximum sequence length (i.e., the
-context size) with `maxSequenceLength`. This changes the sequence length of the
+context size) with `maxTrainSequenceLength`. This changes the sequence length of the
 model when loading not from a pretrained model and controls the sequence length
 in a batch during training. The default is 128. 
 
 ```yaml
-maxSequenceLength: 128
+maxTrainSequenceLength: 128
 ```
 
 #### `seed`
@@ -366,18 +366,6 @@ precision: 16bit
 `full`, which loads the model without changing its precision. Selecting `16bit`
 with `train` will train a lower precision model (note: you need to use a GPU for
 this). 
-
-#### `showSpecialTokens`
-
-You can surface special tokens in the output using show `showSpecialTokens`,
-which takes a boolean: 
-
-```yaml
-showSpecialTokens: True
-```
-
-If set to `True`, the model returns non-pad special tokens used internal to the
-model architecture (e.g., [CLS]).
 
 #### `PLL_type`
 

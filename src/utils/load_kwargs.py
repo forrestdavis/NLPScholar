@@ -3,11 +3,10 @@ def load_kwargs(config: dict) -> dict:
 
     """
     kwargs = {}
-    optional = ['getHidden', 'precision', 'device', 'showSpecialTokens', 
+    optional = ['getHidden', 'precision', 'device', 
                 'PLL_type', 'id2label', 'addPadToken', 'doLower',
                 'addPrefixSpace', 'loadAll', 'checkFileColumns', 
                'batchSize', 'verbose', 
-                'maxSequenceLength',
                'loadPretrained', 'numLabels', 
                 # dataset args
                 'seed',
@@ -29,7 +28,7 @@ def load_kwargs(config: dict) -> dict:
                 'load_best_model_at_end',
                 'wholeWordMasking',
                 'maskProbability',
-                'maxSequenceLength',
+                'maxTrainSequenceLength',
                 # analysis args
                 'predfpath',
                 'datafpath',

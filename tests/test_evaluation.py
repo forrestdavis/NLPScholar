@@ -16,7 +16,6 @@ config = {'models':
            ["ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli"]}}
 
 kwargs = {
-        'showSpecialTokens': False,
           'loadAll': True,
           'device': 'mps', 
           'batchSize': 10}
