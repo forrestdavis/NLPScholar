@@ -8,6 +8,7 @@ def load_kwargs(config: dict) -> dict:
                 'addPrefixSpace', 'loadAll', 'checkFileColumns', 
                'batchSize', 'verbose', 
                'loadPretrained', 'numLabels', 
+                'stride', 
                 # dataset args
                 'seed',
                 'samplePercent',

@@ -81,10 +81,19 @@ class HFCausalModel(LM):
 
         seq_len = input_ids.size(1)
 
+        if seq_len > MAX_LENGTH:
+            sys.stderr.write(f"Sequence length: {seq_len} is larger than "\
+                             f"maximum sequence length allowed by the "\
+                             f"model: {MAX_LENGTH}.  Using a stride of "\
+                             f"{self.stride} in calculating token "\
+                             f"predictabilities.\n")
+
         # Adapted from HuggingFace's perpelxity for fixed length models 
         # https://huggingface.co/docs/transformers/main/en/perplexity
         prev_end_loc = 0
         data = []
+        for _ in range(input_ids.size(0)):
+            data.append([])
         for begin_loc in range(0, seq_len, self.stride):
             end_loc = min(begin_loc + MAX_LENGTH, seq_len)
             trg_len = end_loc - prev_end_loc
@@ -135,10 +144,7 @@ class HFCausalModel(LM):
                     row.append({'token_id': int(group[0]), 
                                 'probability': float(group[1]), 
                                 'surprisal': float(group[2])})
-                if data == []:
-                    data.append(row)
-                else:
-                    data[i].extend(row)
+                data[i].extend(row)
 
             prev_end_loc = end_loc
             # Wrap up if you've reached the end with the current chunk

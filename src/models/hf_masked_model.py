@@ -73,14 +73,11 @@ class HFMaskedModel(LM):
         
         assert self.PLL_type in {'original', 'within_word_l2r'}, f"PLL metric {PLL_type} not supported"
 
-        self.stride = 3
-
         # batchify 
         if isinstance(texts, str):
             texts = [texts]
 
-        MAX_LENGTH = self.tokenizer.model_max_length
-        MAX_LENGTH = 11
+        MAX_LENGTH = self.tokenizer.model_max_length - 2
 
         # Note: Special tokens are not added, instead the individual 
         # logit calls will add special tokens
@@ -92,6 +89,15 @@ class HFMaskedModel(LM):
         attn_mask = inputs_dict['attention_mask']
 
         seq_len = input_ids.size(1)
+
+        if seq_len > MAX_LENGTH:
+            sys.stderr.write(f"Sequence length: {seq_len} is larger than "\
+                             f"maximum sequence length allowed by the "\
+                             f"model: {MAX_LENGTH} (without seperating tokens"\
+                             f"). Using a stride of "\
+                             f"{self.stride} in calculating token "\
+                             f"predictabilities.\n")
+
         # Adapted from HuggingFace's perpelxity for fixed length models 
         # https://huggingface.co/docs/transformers/main/en/perplexity
         prev_end_loc = 0
@@ -109,7 +115,7 @@ class HFMaskedModel(LM):
             for idx in range(strided_input_ids.size(0)):
                 strided_text.append(self.tokenizer.decode(
                                     strided_input_ids[idx, :], 
-                                    skip_special_tokens=False))
+                                    skip_special_tokens=True))
 
             logits = self.get_logits(strided_text)['logits']
 
