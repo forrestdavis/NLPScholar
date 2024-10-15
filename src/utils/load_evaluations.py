@@ -1,12 +1,14 @@
 from ..evaluations.MinimalPair import MinimalPair
 from ..evaluations.TokenClassification import TokenClassification
 from ..evaluations.TextClassification import TextClassification
+from ..evaluations.LanguageModel import LanguageModel
 from .load_kwargs import load_kwargs
 
 evaluation_nickname_to_evaluation_class = {
     'MinimalPair': MinimalPair, 
     'TokenClassification': TokenClassification, 
     'TextClassification': TextClassification,
+    'LanguageModel': LanguageModel,
     }
 
 def load_evaluation(config: dict):

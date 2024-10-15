@@ -1,6 +1,7 @@
 # Short Term
 - [ ] Add in LanguageModel experiment with evaluate being perplexity, train
-  being like MinimalPair, and interact being ppl for inputted text
+  being like MinimalPair
+- [ ] Add documentation for LanguageModel
 - [ ] Add explanation of analysis to README
 - [ ] Set up config files for analysis 
 
@@ -10,7 +11,6 @@
 - [ ] Add compatibility with marty's neural-complexity
 
 # Long Term
-- [ ] Handle longer sequences in language models (sliding window?)
 - [ ] Add hyperparameter search 
 - [ ] Add whole word masking
 - [ ] Some tutorials 
@@ -19,6 +19,9 @@
 - [ ] Make documentation page
 - [ ] Make a package on pip
 - [ ] Add unit tests 
+- [ ] Make PPL calculation for MLM's faster. Right now, there is additional time
+  complexity added by the token-wise masking. If this could be vectorized and
+the batching reoriented smartly maybe it would speed things up? 
 
 # Done 
 
@@ -35,3 +38,5 @@
 - [X] Add flag details to a README.md 
 - [X] Check that `load_kwargs` is updated
 - [X] Update environment.yaml with the correct version of transformers
+- [X] Handle longer sequences in language models (sliding window?)
+- [X] Add in LanguageModel interact being ppl for inputted text

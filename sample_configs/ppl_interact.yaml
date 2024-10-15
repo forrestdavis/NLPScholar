@@ -1,0 +1,9 @@
+exp: LanguageModel
+
+mode: 
+    - interact
+
+models:
+    hf_causal_model:
+      - gpt2
+

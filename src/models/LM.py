@@ -123,8 +123,9 @@ class LM:
                 measures for them.  Default is False. 
 
         Returns:
-            `dict`: Dictionary with two keys: text, which contains the text,
-                        and perplexity, which contains the perplexities.
+            `dict`: Dictionary with three keys: text, which contains the text,
+                        perplexity, which contains the perplexities, and 
+                        length, which contains the number of targets per text.
                         Padding, the first token for causal models, and some
                         special tokens (e.g., [CLS], [SEP]) are ignored in the
                         calculation.  
@@ -133,6 +134,7 @@ class LM:
         if isinstance(text, str):
             text = [text]
         all_ppls = []
+        all_lengths = []
         batched_token_predicts = self.get_by_token_predictability(text)
         batched_alignments = self.tokenizer.align_words_ids(text,
                                         add_special_tokens=add_special_tokens)
@@ -156,7 +158,8 @@ class LM:
                 length += 1
             ppl = 2**(total_surprisal/length)
             all_ppls.append(float(ppl))
-        return {'text': text, 'perplexity': all_ppls}
+            all_lengths.append(length)
+        return {'text': text, 'perplexity': all_ppls, 'length': all_lengths}
 
     @torch.no_grad()
     def get_aligned_words_predictabilities(self, text: Union[str, List[str]], 

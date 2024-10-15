@@ -31,7 +31,7 @@ text = [' '.join(text.split(' ')[:512]), ' '.join(text.split(' ')[512:1044])]
 
 output = model.get_by_batch_perplexity(text)
 for x in range(len(output['text'])):
-    print(output['perplexity'][x], output['text'][x])
+    print(output['perplexity'][x], output['length'][x], output['text'][x])
 
 '''
 data = model.get_aligned_words_predictabilities(text)

@@ -186,11 +186,6 @@ class HFMaskedModel(LM):
                              f" {MAX_LENGTH}\n")
             sys.exit(1)
 
-        # Mark last position without padding
-        # this works because transformers tokenizer flags 
-        # padding with an attention mask value of 0
-        attn_mask = attn_mask.to(torch.int)
-
         logits = None
         # For each batch, create version of input where each token is MASK'd.
         # This will generate conditional probabilities and follows, in spirit,
@@ -266,9 +261,6 @@ class HFMaskedModel(LM):
                              f"{MAX_LENGTH}\n")
             sys.exit(1)
 
-
-        # Downcast for mps warning
-        attn_mask = attn_mask.to(torch.int)
 
         return {'input_ids': inputs, 
                 'hidden': self.model(**inputs_dict).hidden_states}
