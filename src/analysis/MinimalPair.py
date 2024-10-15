@@ -18,11 +18,9 @@ class MinimalPair(Analysis):
         try:
             self.topk = int(str(self.k_lemmas).strip())
         except:
-            print(self.k_lemmas)
             if self.k_lemmas != 'all':
                 print('\n**Invalid top-k lemmas. Using all lemmas in calculation**\n')
-
-            self.topk = len(self.conddat['lemma'].unique())
+                self.k_lemmas = 'all'
 
     def token_to_word(self, preddat):
 
@@ -106,7 +104,8 @@ class MinimalPair(Analysis):
         target_wide['acc'] = self.get_acc(target_wide)
 
         # Filter topk lemmas
-        target_wide = self.filter_lemma(target_wide)
+        if self.k_lemmas != 'all':
+            target_wide = self.filter_lemma(target_wide)
 
         # Save interim state before computing summarizing
         self.save_interim(target_wide)
