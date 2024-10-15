@@ -77,5 +77,5 @@ In many cases, ROIs are just single words, in which case this field is filled wi
 
 The analyze mode for the MinimalPair experiment returns two files: 
 
-1. A TSV file with one row for each sentence. The columns are the mean and sum of the predictability measure aggregated over the ROI for the corresponding sentence. 
+1. A TSV file with one row for each sentence. The columns are the mean and sum of the predictability measure (i.e., prob or surprisal) aggregated over the ROI for the corresponding sentence.
 2. A TSV file with one row for each condition and model combination. The columns are the micro and macro average difference in predictability between expected and unexpected as well as the accuracy (proportion of times expected is more predictable than unexpected)
