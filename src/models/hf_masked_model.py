@@ -78,7 +78,7 @@ class HFMaskedModel(LM):
             texts = [texts]
 
         #TO FIX! See issue #9 
-        MAX_LENGTH = self.tokenizer.model_max_length - 4
+        MAX_LENGTH = self.tokenizer.model_max_length - 20
 
         # Note: Special tokens are not added, instead the individual 
         # logit calls will add special tokens
