@@ -1,0 +1,32 @@
+exp: TokenClassification
+
+mode: 
+   - evaluate
+
+models: 
+    hf_token_classification_model:
+        - pos_model 
+
+datafpath: src/docs/token_classification_example/test.tsv
+
+predfpath: src/docs/token_classification_example/preds.tsv
+
+id2label:
+    0: PUNCT
+    1: SCONJ
+    2: ADJ
+    3: ADP
+    4: DET
+    5: NOUN
+    6: AUX
+    7: PROPN
+    8: ADV
+    9: VERB
+    10: PRON
+    11: CCONJ
+    12: PART
+    13: SYM
+    14: NUM
+    15: _
+    16: INTJ
+    17: X

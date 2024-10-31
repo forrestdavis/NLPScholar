@@ -1,0 +1,8 @@
+exp: TokenClassification
+
+mode: 
+    - interact
+
+models: 
+      hf_token_classification_model:
+          - pos_model
