@@ -124,6 +124,8 @@ class Classifier:
                                                predictions[batch], 
                                               strict=True):
                 token_id = token_id.item()
+                if self.tokenizer.IsSkipTokenID(token_id):
+                    continue
                 prediction = prediction.item() 
                 probability = probability.item()
                 batch_data.append({
