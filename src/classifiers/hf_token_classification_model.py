@@ -71,18 +71,29 @@ class HFTokenClassificationModel(Classifier):
         self.model.config.pad_token_id = self.tokenizer.pad_token_id
 
     @torch.no_grad()
-    def get_token_output(self, texts: Union[str, List[str]]):
+    def get_token_output(self, texts: Union[str, List[str]], 
+                         pairs: Union[str, List[str]] = None):
         
         # batchify 
         if isinstance(texts, str):
             texts = [texts]
+        if isinstance(pairs, str):
+            pairs = [pairs]
 
         MAX_LENGTH = self.tokenizer.model_max_length
 
-        inputs_dict = self.tokenizer(texts, 
-                                     padding=True,
-                                     truncation=True,
-                                     return_tensors='pt').to(self.device)
+        if pairs is not None:
+            assert len(texts) == len(pairs), f"You have {len(texts)} first "\
+                            f"sentences and {len(pairs)} second sentences"
+            inputs_dict = self.tokenizer(texts, pairs,
+                                         padding=True,
+                                         truncation=True,
+                                         return_tensors='pt').to(self.device)
+        else:
+            inputs_dict = self.tokenizer(texts, 
+                                         padding=True,
+                                         truncation=True,
+                                         return_tensors='pt').to(self.device)
         inputs = inputs_dict['input_ids']
         attn_mask = inputs_dict['attention_mask']
 

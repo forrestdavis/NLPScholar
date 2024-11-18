@@ -332,10 +332,11 @@ textLabel: text
 
 #### `pairLabel`
 
-For text classification, you can specify two sentences for tasks like natural
-language inference and paraphrase detection. You can specify the column with the
-second sentence using `pairLabel`. The default is `"pair"`. The example below
-shows how to specify the correct columns for glue's mnli task. 
+For text and token classification, you can specify two sentences for tasks like
+natural language inference, paraphrase detection, and extractive
+question-answering. You can specify the column with the second sentence using
+`pairLabel`. The default is `"pair"`. The example below shows how to specify the
+correct columns for glue's mnli task. 
 
 ```yaml
 textLabel: premise

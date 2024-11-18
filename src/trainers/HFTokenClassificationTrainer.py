@@ -53,7 +53,13 @@ class HFTokenClassificationTrainer(Trainer):
         """ Tokenizes input and aligns tokens with token level labels accounting
         for split words. """
         # Adapted from HuggingFace's Token Classification Guide
+        if self.pairLabel in examples:
+            pairs = examples[self.pairLabel]
+        else:
+            pairs = None
+
         tokenized_inputs = self.Model.tokenizer(examples[self.tokensLabel],
+                                                pairs,
                                                 truncation=True,
                                                 is_split_into_words=True)
         labels = []

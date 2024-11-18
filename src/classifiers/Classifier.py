@@ -122,8 +122,10 @@ class Classifier:
 
         return data
 
-    def get_by_token_predictions(self, text: Union[str, List[str]]): 
-        output = self.get_token_output(text)
+    def get_by_token_predictions(self, text: Union[str, List[str]], 
+                        pair: Union[str, List[str]] = None) -> dict:
+
+        output = self.get_token_output(text, pair)
         probabilities, predictions = \
                 self.convert_to_probability(output['logits']).sort(descending=True)
         

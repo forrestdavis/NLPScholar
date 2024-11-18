@@ -31,11 +31,17 @@ class TokenClassification(Evaluation):
 
         """
         sentences = self.data['text'].tolist()
+        pair = None
+        if 'pair' in self.data.columns:
+            pair = self.data['pair'].tolist()
         outputs = []
         word_alignments = []
         for batch_idx in range(0, len(sentences), self.batchSize):
             batch = sentences[batch_idx:batch_idx+self.batchSize]
-            outputs.extend(Classifier.get_by_token_predictions(batch))
+            batch_pair = None
+            if pair is not None:
+                batch_pair = pair[batch_idx:batch_idx+self.batchSize]
+            outputs.extend(Classifier.get_by_token_predictions(batch, batch_pair))
             word_alignments.extend(Classifier.tokenizer.align_words_ids(batch))
         return outputs, word_alignments
 
@@ -54,6 +60,14 @@ class TokenClassification(Evaluation):
             alignments = word_alignments[batch]['mapping_to_words']
             words = word_alignments[batch]['words']
             targets = all_targets[batch].split()
+            #TODO: THIS IS A HACK PLEASE FIX!
+            # Basically we don't want to get the predictions for the pair for QA
+            # so we trim off the pair text predictions
+            if 'pair' in self.data.columns:
+                output = output[:len(words)]
+            print(len(output))
+            print(len(alignments))
+            print(len(words))
 
             for measure, alignment, word in zip(output, alignments, words,
                                                 strict=True):
