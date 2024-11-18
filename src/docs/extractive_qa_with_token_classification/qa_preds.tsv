@@ -1,0 +1,337 @@
+token	textid	word	wordpos	condition	model	tokenizer	punctuation	target	predicted	prob
+beyonce	0	Beyoncé	0	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998627305030823
+gi	0	Giselle	1	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998403787612915
+##selle	0	Giselle	1	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998762011528015
+knowles	0	Knowles	2	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998570680618286
+-	0	-	3	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998616576194763
+carter	0	Carter	4	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998640418052673
+(	0	(	5	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998645782470703
+/	0	/	6	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998079538345337
+bi	0	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997568130493164
+##ː	0	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998145699501038
+##ˈ	0	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997959733009338
+##j	0	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997673034667969
+##ɒ	0	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997945427894592
+##nse	0	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997904896736145
+##ɪ	0	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998247623443604
+/	0	/	8	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998247623443604
+bee	0	bee	9	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998500347137451
+-	0	-	10	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998241662979126
+yo	0	YON	11	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998440742492676
+##n	0	YON	11	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998722672462463
+-	0	-	12	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998151063919067
+say	0	say	13	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999864399433136
+)	0	)	14	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998592734336853
+(	0	(	15	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998788833618164
+born	0	born	16	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999880850315094
+september	0	September	17	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998288750648499
+4	0	4	18	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998194575309753
+,	0	,	19	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9993287920951843
+1981	0	1981	20	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998549818992615
+)	0	)	21	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998761415481567
+is	0	is	22	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998815655708313
+an	0	an	23	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999886155128479
+american	0	American	24	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998748898506165
+singer	0	singer	25	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998765587806702
+,	0	,	26	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998756051063538
+songwriter	0	songwriter	27	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998721480369568
+,	0	,	28	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998735785484314
+record	0	record	29	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998810291290283
+producer	0	producer	30	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999868631362915
+and	0	and	31	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998928308486938
+actress	0	actress	32	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999885082244873
+.	0	.	33	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.961222767829895
+born	0	Born	34	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998708367347717
+and	0	and	35	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998663067817688
+raised	0	raised	36	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998568296432495
+in	0	in	37	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998699426651001
+houston	0	Houston	38	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998350739479065
+,	0	,	39	qa	exp_model	exp_model	True	IN_ANSWER	NOT_IN_ANSWER	0.9998072981834412
+texas	0	Texas	40	qa	exp_model	exp_model	False	IN_ANSWER	NOT_IN_ANSWER	0.9998002052307129
+,	0	,	41	qa	exp_model	exp_model	True	IN_ANSWER	NOT_IN_ANSWER	0.9998411536216736
+she	0	she	42	qa	exp_model	exp_model	False	IN_ANSWER	NOT_IN_ANSWER	0.9998907446861267
+performed	0	performed	43	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998682141304016
+in	0	in	44	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998327493667603
+various	0	various	45	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998044967651367
+singing	0	singing	46	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9993811249732971
+and	0	and	47	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9991076588630676
+dancing	0	dancing	48	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9991435408592224
+competitions	0	competitions	49	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998286962509155
+as	0	as	50	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998694658279419
+a	0	a	51	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998536705970764
+child	0	child	52	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998282790184021
+,	0	,	53	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997509121894836
+and	0	and	54	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998791217803955
+rose	0	rose	55	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998705387115479
+to	0	to	56	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998316764831543
+fame	0	fame	57	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997975826263428
+in	0	in	58	qa	exp_model	exp_model	False	NOT_IN_ANSWER	IN_ANSWER	0.9954807162284851
+the	0	the	59	qa	exp_model	exp_model	False	NOT_IN_ANSWER	IN_ANSWER	0.9953581094741821
+late	0	late	60	qa	exp_model	exp_model	False	NOT_IN_ANSWER	IN_ANSWER	0.9949740767478943
+1990s	0	1990s	61	qa	exp_model	exp_model	False	NOT_IN_ANSWER	IN_ANSWER	0.9949398636817932
+as	0	as	62	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998626708984375
+lead	0	lead	63	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998787045478821
+singer	0	singer	64	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998729825019836
+of	0	of	65	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999883234500885
+r	0	R	66	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998266696929932
+&	0	&	67	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997021555900574
+b	0	B	68	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998096227645874
+girl	0	girl	69	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998185634613037
+-	0	-	70	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998212456703186
+group	0	group	71	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998551607131958
+destiny	0	Destiny	72	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.99981689453125
+'	0	'	73	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998527765274048
+s	0	s	74	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998506903648376
+child	0	Child	75	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998263120651245
+.	0	.	76	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9483902454376221
+managed	0	Managed	77	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998765587806702
+by	0	by	78	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998883008956909
+her	0	her	79	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998868107795715
+father	0	father	80	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998711943626404
+,	0	,	81	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998589754104614
+mathew	0	Mathew	82	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998587965965271
+knowles	0	Knowles	83	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999860942363739
+,	0	,	84	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998608231544495
+the	0	the	85	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998940825462341
+group	0	group	86	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998794198036194
+became	0	became	87	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9999037384986877
+one	0	one	88	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999902069568634
+of	0	of	89	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998893737792969
+the	0	the	90	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998754858970642
+world	0	world	91	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998739957809448
+'	0	'	92	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999869704246521
+s	0	s	93	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998899102210999
+best	0	best	94	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998955726623535
+-	0	-	95	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998725056648254
+selling	0	selling	96	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998928904533386
+girl	0	girl	97	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998751282691956
+groups	0	groups	98	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998881220817566
+of	0	of	99	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.99988853931427
+all	0	all	100	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998877644538879
+time	0	time	101	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998845458030701
+.	0	.	102	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9535897970199585
+their	0	Their	103	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.99988853931427
+hiatus	0	hiatus	104	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998842477798462
+saw	0	saw	105	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998849034309387
+the	0	the	106	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998600482940674
+release	0	release	107	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998656511306763
+of	0	of	108	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998676180839539
+beyonce	0	Beyoncé	109	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998734593391418
+'	0	'	110	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998834133148193
+s	0	s	111	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999882161617279
+debut	0	debut	112	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998872876167297
+album	0	album	113	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998815059661865
+,	0	,	114	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998844861984253
+dangerously	0	Dangerously	115	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998821020126343
+in	0	in	116	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998838305473328
+love	0	Love	117	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998857378959656
+(	0	(	118	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998725056648254
+2003	0	2003	119	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998767375946045
+)	0	)	120	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998896718025208
+,	0	,	121	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998800158500671
+which	0	which	122	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998815655708313
+established	0	established	123	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998947381973267
+her	0	her	124	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998963475227356
+as	0	as	125	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9999002814292908
+a	0	a	126	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998963475227356
+solo	0	solo	127	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998837113380432
+artist	0	artist	128	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998918175697327
+worldwide	0	worldwide	129	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998877048492432
+,	0	,	130	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998849034309387
+earned	0	earned	131	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998863935470581
+five	0	five	132	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998857378959656
+grammy	0	Grammy	133	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998616576194763
+awards	0	Awards	134	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998753070831299
+and	0	and	135	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998889565467834
+featured	0	featured	136	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998812675476074
+the	0	the	137	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998711943626404
+billboard	0	Billboard	138	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998714327812195
+hot	0	Hot	139	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998595118522644
+100	0	100	140	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998646378517151
+number	0	number	141	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998700022697449
+-	0	-	142	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998601078987122
+one	0	one	143	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998778104782104
+singles	0	singles	144	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998643398284912
+""""	0	""""	145	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998782873153687
+""""	0	""""	146	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998742341995239
+crazy	0	Crazy	147	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998840689659119
+in	0	in	148	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998858571052551
+love	0	Love	149	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998827576637268
+""""	0	""""	150	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998836517333984
+""""	0	""""	151	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998824000358582
+and	0	and	152	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998807907104492
+""""	0	""""	153	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998759627342224
+""""	0	""""	154	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998804330825806
+baby	0	Baby	155	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998872876167297
+boy	0	Boy	156	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998877048492432
+""""	0	""""	157	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998800158500671
+""""	0	""""	158	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998756051063538
+.	0	.	159	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998581409454346
+beyonce	1	Beyoncé	0	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998417496681213
+gi	1	Giselle	1	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998083114624023
+##selle	1	Giselle	1	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998553991317749
+knowles	1	Knowles	2	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999830424785614
+-	1	-	3	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998397827148438
+carter	1	Carter	4	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998387694358826
+(	1	(	5	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998459815979004
+/	1	/	6	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997822046279907
+bi	1	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997118711471558
+##ː	1	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997886419296265
+##ˈ	1	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997614622116089
+##j	1	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997189044952393
+##ɒ	1	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997577667236328
+##nse	1	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997663497924805
+##ɪ	1	biːˈjɒnseɪ	7	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997942447662354
+/	1	/	8	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998008012771606
+bee	1	bee	9	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998212456703186
+-	1	-	10	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997984170913696
+yo	1	YON	11	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998160600662231
+##n	1	YON	11	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998554587364197
+-	1	-	12	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997924566268921
+say	1	say	13	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998408555984497
+)	1	)	14	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998430013656616
+(	1	(	15	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999865710735321
+born	1	born	16	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998643398284912
+september	1	September	17	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997892379760742
+4	1	4	18	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997678995132446
+,	1	,	19	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9991171360015869
+1981	1	1981	20	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998229146003723
+)	1	)	21	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998551607131958
+is	1	is	22	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998680949211121
+an	1	an	23	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998759031295776
+american	1	American	24	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998565316200256
+singer	1	singer	25	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998538494110107
+,	1	,	26	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998613595962524
+songwriter	1	songwriter	27	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998462200164795
+,	1	,	28	qa	exp_model	exp_model	True	IN_ANSWER	NOT_IN_ANSWER	0.9998613595962524
+record	1	record	29	qa	exp_model	exp_model	False	IN_ANSWER	NOT_IN_ANSWER	0.999865710735321
+producer	1	producer	30	qa	exp_model	exp_model	False	IN_ANSWER	NOT_IN_ANSWER	0.999846875667572
+and	1	and	31	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998853802680969
+actress	1	actress	32	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998682141304016
+.	1	.	33	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9210179448127747
+born	1	Born	34	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998472929000854
+and	1	and	35	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998412728309631
+raised	1	raised	36	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998215436935425
+in	1	in	37	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998498558998108
+houston	1	Houston	38	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997903108596802
+,	1	,	39	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997789859771729
+texas	1	Texas	40	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997325539588928
+,	1	,	41	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998147487640381
+she	1	she	42	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998763799667358
+performed	1	performed	43	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998397827148438
+in	1	in	44	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997919797897339
+various	1	various	45	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999739408493042
+singing	1	singing	46	qa	exp_model	exp_model	False	NOT_IN_ANSWER	IN_ANSWER	0.9631190896034241
+and	1	and	47	qa	exp_model	exp_model	False	NOT_IN_ANSWER	IN_ANSWER	0.9370834827423096
+dancing	1	dancing	48	qa	exp_model	exp_model	False	NOT_IN_ANSWER	IN_ANSWER	0.9693275094032288
+competitions	1	competitions	49	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997563362121582
+as	1	as	50	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999820351600647
+a	1	a	51	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998118877410889
+child	1	child	52	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997501373291016
+,	1	,	53	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997464418411255
+and	1	and	54	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998506903648376
+rose	1	rose	55	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998372197151184
+to	1	to	56	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998160600662231
+fame	1	fame	57	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997891187667847
+in	1	in	58	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997369050979614
+the	1	the	59	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997420310974121
+late	1	late	60	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997256994247437
+1990s	1	1990s	61	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9996989369392395
+as	1	as	62	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998632669448853
+lead	1	lead	63	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998627305030823
+singer	1	singer	64	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998490214347839
+of	1	of	65	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998683929443359
+r	1	R	66	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997875690460205
+&	1	&	67	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9996291995048523
+b	1	B	68	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999764621257782
+girl	1	girl	69	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997674226760864
+-	1	-	70	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997872114181519
+group	1	group	71	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998263716697693
+destiny	1	Destiny	72	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997724294662476
+'	1	'	73	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998228549957275
+s	1	s	74	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998183846473694
+child	1	Child	75	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9997754096984863
+.	1	.	76	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9006874561309814
+managed	1	Managed	77	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998671412467957
+by	1	by	78	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998789429664612
+her	1	her	79	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998754858970642
+father	1	father	80	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998500347137451
+,	1	,	81	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998442530632019
+mathew	1	Mathew	82	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998307824134827
+knowles	1	Knowles	83	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998323321342468
+,	1	,	84	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998520016670227
+the	1	the	85	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998834133148193
+group	1	group	86	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998622536659241
+became	1	became	87	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998937249183655
+one	1	one	88	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998926520347595
+of	1	of	89	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998788833618164
+the	1	the	90	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999867856502533
+world	1	world	91	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998513460159302
+'	1	'	92	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998472929000854
+s	1	s	93	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998716115951538
+best	1	best	94	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998767971992493
+-	1	-	95	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.99985671043396
+selling	1	selling	96	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998746514320374
+girl	1	girl	97	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998490214347839
+groups	1	groups	98	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998714327812195
+of	1	of	99	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998745918273926
+all	1	all	100	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998654723167419
+time	1	time	101	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998670220375061
+.	1	.	102	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9081282615661621
+their	1	Their	103	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998836517333984
+hiatus	1	hiatus	104	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998732209205627
+saw	1	saw	105	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998796582221985
+the	1	the	106	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998489618301392
+release	1	release	107	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998530745506287
+of	1	of	108	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998573064804077
+beyonce	1	Beyoncé	109	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998527765274048
+'	1	'	110	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999870777130127
+s	1	s	111	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998699426651001
+debut	1	debut	112	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998772740364075
+album	1	album	113	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998726844787598
+,	1	,	114	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.999880850315094
+dangerously	1	Dangerously	115	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998603463172913
+in	1	in	116	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998663067817688
+love	1	Love	117	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998635649681091
+(	1	(	118	qa	exp_model	exp_model	True	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998618364334106
+2003	1	2003	119	qa	exp_model	exp_model	False	NOT_IN_ANSWER	NOT_IN_ANSWER	0.9998621940612793
+)	1	)	120	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998799562454224
+,	1	,	121	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998753070831299
+which	1	which	122	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998750686645508
+established	1	established	123	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998863935470581
+her	1	her	124	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998847842216492
+as	1	as	125	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998883605003357
+a	1	a	126	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998849034309387
+solo	1	solo	127	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998680353164673
+artist	1	artist	128	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.999878466129303
+worldwide	1	worldwide	129	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998742938041687
+,	1	,	130	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998802542686462
+earned	1	earned	131	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998799562454224
+five	1	five	132	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.999878466129303
+grammy	1	Grammy	133	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998455047607422
+awards	1	Awards	134	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998671412467957
+and	1	and	135	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.999885082244873
+featured	1	featured	136	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998761415481567
+the	1	the	137	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998629689216614
+billboard	1	Billboard	138	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998586177825928
+hot	1	Hot	139	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998472929000854
+100	1	100	140	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998525977134705
+number	1	number	141	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998594522476196
+-	1	-	142	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.999846339225769
+one	1	one	143	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998672604560852
+singles	1	singles	144	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998549222946167
+""""	1	""""	145	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998716115951538
+""""	1	""""	146	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998632669448853
+crazy	1	Crazy	147	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998524785041809
+in	1	in	148	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998659491539001
+love	1	Love	149	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998568296432495
+""""	1	""""	150	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998759031295776
+""""	1	""""	151	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998733401298523
+and	1	and	152	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998740553855896
+""""	1	""""	153	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998703598976135
+""""	1	""""	154	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998763799667358
+baby	1	Baby	155	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998742938041687
+boy	1	Boy	156	qa	exp_model	exp_model	False		NOT_IN_ANSWER	0.9998726844787598
+""""	1	""""	157	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998778104782104
+""""	1	""""	158	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998727440834045
+.	1	.	159	qa	exp_model	exp_model	True		NOT_IN_ANSWER	0.9998626708984375

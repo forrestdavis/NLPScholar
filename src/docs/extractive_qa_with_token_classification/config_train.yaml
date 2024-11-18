@@ -1,0 +1,25 @@
+exp: TokenClassification
+
+mode:
+    - train
+
+models:
+   hf_token_classification_model:
+        - distilbert-base-uncased 
+
+trainfpath: src/docs/extractive_qa_with_token_classification/train.jsonl
+validfpath: src/docs/extractive_qa_with_token_classification/train.jsonl
+modelfpath: exp_model 
+
+
+loadPretrained: False
+
+numLabels: 2
+
+pairLabel: question
+
+id2label:
+    0: NOT_IN_ANSWER
+    1: IN_ANSWER
+
+epochs: 100

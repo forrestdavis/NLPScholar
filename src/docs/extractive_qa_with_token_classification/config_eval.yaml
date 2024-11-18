@@ -1,0 +1,15 @@
+exp: TokenClassification
+
+mode:
+    - evaluate
+
+models:
+   hf_token_classification_model:
+     - exp_model
+
+trainfpath: src/docs/extractive_qa_with_token_classification/test.tsv
+predfpath: src/docs/extractive_qa_with_token_classification/qa_preds.tsv
+
+id2label:
+    0: NOT_IN_ANSWER
+    1: IN_ANSWER
