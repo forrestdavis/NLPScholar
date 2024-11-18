@@ -215,12 +215,12 @@ context length. So, in effect, the maximum length is less than the total allowed
 
 #### `giveAllLabels`
 
-In evaluating models (in `evaluate` mode), the label with the maximum
-probability is deemed the predicted label. If you want the probability of all
-the labels for each sample you can use `giveAllLabels`. If set to `True` columns
-for each label are added to the predictions file and the probability of each
-label is provided. The default is `False`, where only the max label and its
-probability is provided. 
+In evaluating token and text classification models (in `evaluate` mode), the
+label with the maximum probability is deemed the predicted label. If you want
+the probability of all the labels for each sample you can use `giveAllLabels`.
+If set to `True` columns for each label are added to the predictions file and
+the probability of each label is provided. The default is `False`, where only
+the max label and its probability is provided. 
 
 ```yaml
 giveAllLabels: True
