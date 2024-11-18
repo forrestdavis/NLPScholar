@@ -213,6 +213,21 @@ implemented it. They are ignored in calculating the stride jumps and maximum
 context length. So, in effect, the maximum length is less than the total allowed
 (by two for now, though future versions should handle this more rigorously). 
 
+#### `giveAllLabels`
+
+In evaluating models (in `evaluate` mode), the label with the maximum
+probability is deemed the predicted label. If you want the probability of all
+the labels for each sample you can use `giveAllLabels`. If set to `True` columns
+for each label are added to the predictions file and the probability of each
+label is provided. The default is `False`, where only the max label and its
+probability is provided. 
+
+```yaml
+giveAllLabels: True
+```
+
+
+
 ## Config Details for `analyze`
 The `analyze` mode is designed to take the predictions from the `evaluate` mode and generate summaries that are relevant to each experiment type. More details can be found in the following markdown files in `src/analysis/`: `MinimalPairAnalysis.md`, `TextClassificationAnalysis.md`, and `TokenClassificationAnalysis.md`. 
 

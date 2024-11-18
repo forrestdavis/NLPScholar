@@ -87,8 +87,15 @@ class TokenClassification(Evaluation):
                 entriesDict['tokenizer'].append(Classifier.tokenizer.tokenizername)
                 entriesDict['punctuation'].append(isPunct)
                 entriesDict['target'].append(target)
-                entriesDict['predicted'].append(measure['label'])
+                entriesDict['predicted'].append(measure['predicted label'])
                 entriesDict['prob'].append(measure['probability'])
+                if self.giveAllLabels:
+                    for entry in measure['all labels']:
+                        label, prob = entry['label'], entry['probability']
+                        if label not in entriesDict:
+                            entriesDict[label] = []
+                        entriesDict[label].append(prob)
+
         return 
 
 

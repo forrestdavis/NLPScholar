@@ -16,6 +16,7 @@ class Evaluation:
         self.predfpath = False
         self.datafpath = False
         self.loadAll = False
+        self.giveAllLabels = False
         self.checkFileColumns = True
         self.batchSize = 1
         self.verbose = True

@@ -88,7 +88,7 @@ class HFTextClassificationTrainer(Trainer):
         self.dataset = self.dataset.shuffle(seed=42)
 
         use_cpu = False
-        if self.Model.device == 'cpu': 
+        if str(self.Model.device) == 'cpu': 
             use_cpu = True
 
         training_args = transformers.TrainingArguments(

@@ -93,27 +93,39 @@ class Classifier:
 
         Returns:
             `List[dict]`: A list with dictionaries per batch. Each dictionary
-                          has the label, probability, and id.  
+                          has the predicted label (i.e. the label with the max
+                          probability), probability, and id and then a list all
+                          labels of each label, probability, and id
         """
 
         output = self.get_text_output(text, pair)
         probabilities, predictions = \
-                self.convert_to_probability(output['logits']).max(-1)
+                self.convert_to_probability(output['logits']).sort(descending=True)
 
         data = []
         for probability, prediction in zip(probabilities, predictions):
 
-            prediction = prediction.item() 
-            probability = probability.item()
-            data.append({'label': self.id2label[prediction], 
-                         'probability': probability, 
-                         'id': prediction})
+            entry = {}
+            for idx in range(len(prediction)):
+                pred = prediction[idx].item()
+                prob = probability[idx].item()
+                if idx == 0:
+                    entry['predicted label'] = self.id2label[pred]
+                    entry['probability'] = prob
+                    entry['id'] = pred
+                    entry['all labels'] = []
+
+                entry['all labels'].append({'label': self.id2label[pred], 
+                                            'probability': prob, 
+                                            'id': pred})
+            data.append(entry)
+
         return data
 
     def get_by_token_predictions(self, text: Union[str, List[str]]): 
         output = self.get_token_output(text)
         probabilities, predictions = \
-                self.convert_to_probability(output['logits']).max(-1)
+                self.convert_to_probability(output['logits']).sort(descending=True)
         
         data = []
         for batch in range(probabilities.size(0)):
@@ -126,12 +138,20 @@ class Classifier:
                 token_id = token_id.item()
                 if self.tokenizer.IsSkipTokenID(token_id):
                     continue
-                prediction = prediction.item() 
-                probability = probability.item()
-                batch_data.append({
-                            'token_id': token_id,
-                            'label': self.id2label[prediction], 
-                             'probability': probability, 
-                             'id': prediction})
+                entry = {}
+                entry['token_id'] = token_id
+                for idx in range(len(prediction)):
+                    pred = prediction[idx].item()
+                    prob = probability[idx].item()
+                    if idx == 0:
+                        entry['predicted label'] = self.id2label[pred]
+                        entry['probability'] = prob
+                        entry['id'] = pred
+                        entry['all labels'] = []
+
+                    entry['all labels'].append({'label': self.id2label[pred], 
+                                                'probability': prob, 
+                                                'id': pred})
+                batch_data.append(entry)
             data.append(batch_data)
         return data

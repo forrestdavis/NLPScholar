@@ -39,7 +39,9 @@ def load_kwargs(config: dict) -> dict:
                 'word_summary',
                 'roi_summary',
                 'k_lemmas',
-                'punctuation'
+                'punctuation',
+                # evaluate args
+                'giveAllLabels',
                ]
     for option in optional:
         if option in config:

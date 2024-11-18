@@ -56,9 +56,14 @@ class TextClassification(Evaluation):
             entriesDict['target'].append(target)
             entriesDict['model'].append(Classifier.modelname)
             entriesDict['tokenizer'].append(Classifier.tokenizer.tokenizername)
-            entriesDict['predicted'].append(output['label'])
+            entriesDict['predicted'].append(output['predicted label'])
             entriesDict['prob'].append(output['probability'])
-
+            if self.giveAllLabels:
+                for entry in output['all labels']:
+                    label, prob = entry['label'], entry['probability']
+                    if label not in entriesDict:
+                        entriesDict[label] = []
+                    entriesDict[label].append(prob)
         return 
 
 
@@ -73,6 +78,7 @@ class TextClassification(Evaluation):
         - `tokenizer`: the name of the tokenizer
         - `predicted`: the predicted label for this text belong
         - `prob`: the predicted label's probability
+        #TODO: Add details about other labels
         """
         # Load data 
         assert self.datafpath is not None, "Missing a datafpath value\n"
