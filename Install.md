@@ -66,6 +66,10 @@ Run:
 If you see `(base)` to the left of your username on the terminal, then you are
 all set to activate `nlp`. 
 
+Never want to type this again? Run the following from the terminal on Turing: 
+
+    echo 'source ~/.bashrc' >> ~/.bash_profile
+
 ### ipykernel not found 
 
 This is my mistake. I forgot to add it to the packages. Please run: 
