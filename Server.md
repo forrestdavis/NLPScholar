@@ -2,7 +2,7 @@
 
 To submit jobs on Turing you will use PBS. The documentation maintained for
 Turing can be found
-[here](https://turing.colgate.edu/documentation/pbs_scheduler.html). You can
+[here](https://turing.colgate.edu/documentation/pbs_scheduler.php). You can
 find some basic, helpful commands for submitting jobs, viewing jobs and deleting
 jobs
 [here](https://www.nas.nasa.gov/hecc/support/kb/commonly-used-pbs-commands_174.html). 
