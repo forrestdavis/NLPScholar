@@ -33,6 +33,7 @@ def load_kwargs(config: dict) -> dict:
                 # analysis args
                 'predfpath',
                 'datafpath',
+                'condfpath',
                 'resultsfpath',
                 'sep',
                 'pred_measure',
