@@ -176,7 +176,7 @@ class HFTokenizer(Tokenizer):
             text = [text]
         text = self.LowerCaseText(text)
         encoded = self._tokenizer(text, padding=True, 
-                                  add_special_tokens=False)
+                                  add_special_tokens=add_special_tokens)
         data = []
         for batch in range(len(encoded['input_ids'])):
             mapping = encoded.word_ids(batch)
