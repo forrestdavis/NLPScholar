@@ -13,8 +13,24 @@ class MinimalPair(Analysis):
                 **kwargs):
         super().__init__(config, **kwargs)
 
-        # Set topk
+       
+        # Create condition column
+        self.validcols = []
+        for col in self.conditions.split(','): 
+            if col.strip() in self.conddat:
+                self.validcols.append(col)
+            else:
+                print(f"{col} not in conddat. Ignoring.")
 
+        if len(self.validcols) == 0:
+            print('No valid condition columns entered')
+
+        self.conddat['cond'] = self.conddat[self.validcols].apply(
+            lambda row: '_'.join(row.astype(str)), axis=1
+        )
+
+
+        # Set topk
         try:
             self.topk = int(str(self.k_lemmas).strip())
         except:
@@ -59,81 +75,97 @@ class MinimalPair(Analysis):
         return grouped_df
 
 
-    def save_interim(self,target_wide_df):
+    def save_df(self, dat, fpath):
+        # re-create condition columns
+        if len(self.validcols) > 0:
+            dat[self.validcols] = dat['cond'].str.split('_', expand = True)
 
-        target_long = pd.melt(target_wide_df,
-                              value_vars = ['expected', 'unexpected'], 
-                              id_vars=['pairid','pos', 'model','condition','lemma'],
-                              value_name = self.pred_measure)
+        print(f'Creating {fpath}\n')
+
+        dat.to_csv(fpath, sep = '\t', na_rep='NA')
+
+
+
+    # def save_interim(self,target_wide_df):
+
+    #     target_long = pd.melt(target_wide_df,
+    #                           value_vars = ['expected', 'unexpected'], 
+    #                           id_vars=['pairid','pos', 'model','condition','lemma'],
+    #                           value_name = self.pred_measure)
 
         
-        cols = ['model', 'pairid', 'lemma', 'condition', 'comparison']
-        summ = target_long.groupby(cols).agg({self.pred_measure: ['sum','mean']}).reset_index()
-        summ.columns = list(map(''.join, summ.columns.values))
-        fname = f"{self.resultsfpath.replace('.tsv', '')}_byROI.tsv"
-        print(f"Saving interim file: {fname}")
-        summ.to_csv(fname, sep = '\t', na_rep='NA')
+    #     cols = ['model', 'pairid', 'lemma', 'condition', 'comparison']
+    #     summ = target_long.groupby(cols).agg({self.pred_measure: ['sum','mean']}).reset_index()
+    #     summ.columns = list(map(''.join, summ.columns.values))
+    #     fname = f"{self.resultsfpath.replace('.tsv', '')}_byROI.tsv"
+    #     print(f"Saving interim file: {fname}")
+    #     summ.to_csv(fname, sep = '\t', na_rep='NA')
 
 
 
 
     def summarize_roi(self, by_word):
         merged = pd.merge(by_word,self.conddat, on='sentid')
-        merged = merged.astype({'ROI': 'string'}) # to avoid autocasting if ROIs have only one val
 
-        # Exclude non ROI words
-        merged['ROI'] = merged['ROI'].apply(lambda x: [int(item.strip()) for item in x.split(',')])
+        if 'ROI' in merged: ## want only specific regions
+            merged = merged.astype({'ROI': 'string'}) # to avoid autocasting if ROIs have only one val
 
-        merged['target'] = merged.apply(lambda x: True if x['wordpos_mod'] in x['ROI'] else False, axis=1)
+            # Exclude non ROI words
+            merged['ROI'] = merged['ROI'].apply(lambda x: [int(item.strip()) for item in x.split(',')])
 
-        target = merged.loc[merged['target']] ## Creating subset for convenience. Will cause warnings that can be ignored.
+            merged['target'] = merged.apply(lambda x: True if x['wordpos_mod'] in x['ROI'] else False, axis=1)
 
-        # Get consistent ROI mapping across comparisons
-        target['mapping'] = target.apply(lambda x: {curr:new for new, curr in enumerate(x['ROI'])}, axis=1)
-        target['pos'] = target.apply(lambda x: x['mapping'][x['wordpos_mod']], axis=1)
+            target = merged.loc[merged['target']] ## Creating subset for convenience. Will cause warnings that can be ignored.
+
+            # Get consistent ROI mapping across comparisons
+            ## Do I really want this if we just have equal? 
+            # target['mapping'] = target.apply(lambda x: {curr:new for new, curr in enumerate(x['ROI'])}, axis=1)
+            # target['pos'] = target.apply(lambda x: x['mapping'][x['wordpos_mod']], axis=1)
+
+        else: # want entire sentence
+            target = merged
+            target['pos'] = target['wordpos_mod']
 
 
         # Specify pred measure
         pred_measure = self.get_measure()
 
-       
-        # Make data wider; compute difference and accuracy
-        target_wide = target.pivot(index=['pairid', 'pos', 'model', 'condition','lemma', 'contextid'], columns='comparison', values=pred_measure).reset_index()
+        # Summarize over all words in sentences
 
-        target_wide['microdiff'] = self.get_diff(target_wide, 'micro')
-        target_wide['acc'] = self.get_acc(target_wide)
+        groupby_cols = ['pairid', 'model', 'cond', 'comparison']
 
-        # Filter topk lemmas
-        if self.k_lemmas != 'all':
-            target_wide = self.filter_lemma(target_wide)
-
-        # Save interim state before computing summarizing
-        self.save_interim(target_wide)
-
-        # Summarize over ROIs
-        groupby_cols = ['pairid', 'model', 'condition', 'lemma', 'contextid']
-
-        by_pair = target_wide.groupby(groupby_cols).agg({'expected': 'mean', 'unexpected': 'mean', 'microdiff': 'mean', 'acc': 'mean'}).reset_index()
+        target_summ = target.groupby(groupby_cols).agg({pred_measure: 'mean'}).reset_index()
 
         # Compute perplexity
         if self.pred_measure == 'perplexity':
-            by_pair['expected'] = 2**by_pair['expected']
-            by_pair['unexpected'] = 2**by_pair['unexpected']
+            target_summ['surp'] = 2**target_summ['surp']
 
-        # Compute macro measures
-        by_pair['macrodiff'] = self.get_diff(by_pair, 'macro')
+        # Make data wider
 
+        by_pair = target_summ.pivot(index=['pairid', 'model', 'cond'], columns='comparison', values=pred_measure).reset_index()
+
+        # Remove invalid pairs
+        by_pair = by_pair[by_pair['expected'].notna() & by_pair['unexpected'].notna()]
+
+        bad_pairs = set(by_pair[by_pair['expected'].isna() | by_pair['unexpected'].isna()]['pairid'])
+
+        print(f"Excluding pairs which did not have expected or unexpected:\n{bad_pairs}")
+
+        # Compute difference and accuracy
+        by_pair['diff'] = by_pair['expected'] - by_pair['unexpected']
+
+        by_pair['acc'] = self.get_acc(by_pair)
 
         return by_pair
 
 
-    def get_diff(self, dat, diff_type='macro'):
-        if self.pred_measure == 'prob':
-            return dat['expected'] - dat['unexpected']
-        elif self.pred_measure == 'perplexity' and diff_type == 'micro':
-            return  # cannot have perplexity of individual tokens
-        else:
-            return dat['unexpected'] - dat['expected']
+    # def get_diff(self, dat, diff_type='macro'):
+    #     if self.pred_measure == 'prob':
+    #         return dat['expected'] - dat['unexpected']
+    #     elif self.pred_measure == 'perplexity' and diff_type == 'micro':
+    #         return  # cannot have perplexity of individual tokens
+    #     else:
+    #         return dat['unexpected'] - dat['expected']
 
     def get_acc(self, dat):
         if self.pred_measure == 'prob':
@@ -144,38 +176,40 @@ class MinimalPair(Analysis):
     def get_measure(self):
         if self.pred_measure == 'prob':
             return 'prob'
-        # elif self.pred_measure == 'perplexity':
-        #     return('surp', 'sum') #we need sum surprisal (or is it mean?)
         else:
-            return 'surp'
+            return 'surp' # we need surp for perplexity too
 
-    def filter_lemma(self, target_wide):
-        if self.pred_measure == 'prob':
-            ascending = False
-        else:
-            ascending = True
+    # def filter_lemma(self, target_wide):
+    #     if self.pred_measure == 'prob':
+    #         ascending = False
+    #     else:
+    #         ascending = True
 
-        groupby_cols = ['contextid','model', 'condition']
+    #     groupby_cols = ['contextid','model', 'condition']
 
-        by_lemma = target_wide.sort_values(by=['expected'], ascending=ascending).groupby(groupby_cols).head(self.topk).reset_index(drop=True)
+    #     by_lemma = target_wide.sort_values(by=['expected'], ascending=ascending).groupby(groupby_cols).head(self.topk).reset_index(drop=True)
 
-        return by_lemma
+    #     return by_lemma
 
 
 
-    def summarize_lemma(self, by_pair):
-        groupby_cols = ['contextid','model', 'condition']
+    # def summarize_lemma(self, by_pair):
+    #     groupby_cols = ['contextid','model', 'condition']
 
-        by_context = by_pair.groupby(groupby_cols).agg({'microdiff': 'mean', 'macrodiff': 'mean', 'acc': 'mean'}).reset_index()
+    #     by_context = by_pair.groupby(groupby_cols).agg({'microdiff': 'mean', 'macrodiff': 'mean', 'acc': 'mean'}).reset_index()
 
-        return by_context
+    #     return by_context
 
-    def summarize_context(self, by_context):
-        groupby_cols = ['model', 'condition']
+    def summarize_cond(self, by_pair):
+        groupby_cols = ['model', 'cond']
 
-        by_cond = by_context.groupby(groupby_cols).agg({'microdiff': 'mean', 'macrodiff': 'mean', 'acc': 'mean'}).reset_index()
+        by_cond = by_pair.groupby(groupby_cols).agg({'acc': 'mean', 'diff': 'mean',  'expected': 'mean', 'unexpected': 'mean'}).reset_index()
+
+        by_cond['macrodiff'] = by_cond['expected'] - by_cond['unexpected']
 
         return by_cond
+
+
 
 
     def analyze(self):
@@ -190,18 +224,30 @@ class MinimalPair(Analysis):
 
         # combine subword tokens to words (handling punctuation)
         by_word = self.token_to_word(self.preddat.copy())
+        if self.save_byword:
+            fname = f"{self.resultsfpath.replace('.tsv', '')}_byword.tsv"
+            self.save_df(by_word, fname)
+
+
 
         # comparison summarized over all ROIs for each pair 
+
         by_pair = self.summarize_roi(by_word)
+
+        if self.save_bypair:
+            fname = f"{self.resultsfpath.replace('.tsv', '')}_bypair.tsv"
+            self.save_df(by_pair, fname)
+
 
         ## TO DO: refactor this so it is just summary over user specified columns
 
-        # summarize over lemmas
-        by_context = self.summarize_lemma(by_pair)
+        # # summarize over lemmas
+        # by_context = self.summarize_lemma(by_pair)
 
         # summarize over contexts
-        by_cond = self.summarize_context(by_context)
 
-        print(f'Creating {self.resultsfpath}\n')
-        by_cond.to_csv(self.resultsfpath, sep = '\t', na_rep='NA')
+        if self.save_bycond:
+            by_cond = self.summarize_cond(by_pair)
+            self.save_df(by_cond, self.resultsfpath)
+
         

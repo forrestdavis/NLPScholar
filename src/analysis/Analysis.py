@@ -21,6 +21,10 @@ class Analysis:
         self.roi_summary = 'micro'
         self.k_lemmas = 'all'
         self.punctuation = 'previous'
+        self.save_byword = True
+        self.save_bypair = True
+        self.save_bycond = True
+        self.conditions = ''
          
         # Set params
         for k, v in kwargs.items():
@@ -30,6 +34,12 @@ class Analysis:
         # Load data
         self.preddat = pd.read_csv(self.predfpath, sep=self.sep)
 
-        self.conddat = pd.read_csv(self.datafpath, sep=self.sep)
+        if self.datafpath: 
+            self.conddat = pd.read_csv(self.datafpath, sep=self.sep)
+        else: # not required if only want byword
+            print('No condition path specified')
+            self.conddat = pd.DataFrame() 
+
+        
 
 
