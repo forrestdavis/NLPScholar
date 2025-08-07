@@ -38,9 +38,10 @@ def load_kwargs(config: dict) -> dict:
                 'sep',
                 'pred_measure',
                 'word_summary',
-                'roi_summary',
-                'k_lemmas',
+                # 'roi_summary', removing for now
                 'punctuation',
+                'conditions',
+                'save',
                 # evaluate args
                 'giveAllLabels',
                ]

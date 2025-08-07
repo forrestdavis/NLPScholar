@@ -18,13 +18,14 @@ class Analysis:
         #Params relevant only for MinimalPair
         self.pred_measure = 'surp'
         self.word_summary = 'mean'
-        self.roi_summary = 'micro'
+        # self.roi_summary = 'micro' # bring this back later maybe
         self.k_lemmas = 'all'
         self.punctuation = 'previous'
-        self.save_byword = True
-        self.save_bypair = True
-        self.save_bycond = True
+        self.save_byword = False
+        self.save_bypair = False
+        self.save_bycond = False
         self.conditions = ''
+        self.save = ''
          
         # Set params
         for k, v in kwargs.items():

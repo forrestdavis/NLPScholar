@@ -13,30 +13,41 @@ class MinimalPair(Analysis):
                 **kwargs):
         super().__init__(config, **kwargs)
 
+        print('\n-----------------------')
+        print("Processing config file\n")
+
        
         # Create condition column
+        
         self.validcols = []
         for col in self.conditions.split(','): 
-            if col.strip() in self.conddat:
+            col = col.strip()
+            if col in self.conddat:
                 self.validcols.append(col)
-            else:
-                print(f"{col} not in conddat. Ignoring.")
+            elif len(col) > 0:
+                print(f"WARNING: {col} not in conddat. Ignoring.")
 
         if len(self.validcols) == 0:
-            print('No valid condition columns entered')
+            print('WARNING: No valid condition columns entered')
 
         self.conddat['cond'] = self.conddat[self.validcols].apply(
             lambda row: '_'.join(row.astype(str)), axis=1
         )
 
+        # Create output column 
 
-        # Set topk
-        try:
-            self.topk = int(str(self.k_lemmas).strip())
-        except:
-            if self.k_lemmas != 'all':
-                print('\n**Invalid top-k lemmas. Using all lemmas in calculation**\n')
-                self.k_lemmas = 'all'
+        self.output = {'by_word': False,
+                       'by_pair': False,
+                       'by_cond': False}
+
+        for out in self.save.split(','):
+            if out.strip() in self.output:
+                self.output[out.strip()] = True
+            else:
+                print(f'{out.strip()} is an invalid output type. Ignoring.')
+        print('-----------------------')
+
+
 
     def token_to_word(self, preddat):
 
@@ -75,14 +86,7 @@ class MinimalPair(Analysis):
         return grouped_df
 
 
-    def save_df(self, dat, fpath):
-        # re-create condition columns
-        if len(self.validcols) > 0:
-            dat[self.validcols] = dat['cond'].str.split('_', expand = True)
-
-        print(f'Creating {fpath}\n')
-
-        dat.to_csv(fpath, sep = '\t', na_rep='NA')
+    
 
 
 
@@ -105,17 +109,16 @@ class MinimalPair(Analysis):
 
 
     def summarize_roi(self, by_word):
-        merged = pd.merge(by_word,self.conddat, on='sentid')
 
-        if 'ROI' in merged: ## want only specific regions
-            merged = merged.astype({'ROI': 'string'}) # to avoid autocasting if ROIs have only one val
+        if 'ROI' in by_word: ## want only specific regions
+            by_word = by_word.astype({'ROI': 'string'}) # to avoid autocasting if ROIs have only one val
 
             # Exclude non ROI words
-            merged['ROI'] = merged['ROI'].apply(lambda x: [int(item.strip()) for item in x.split(',')])
+            by_word['ROI'] = by_word['ROI'].apply(lambda x: [int(item.strip()) for item in x.split(',')])
 
-            merged['target'] = merged.apply(lambda x: True if x['wordpos_mod'] in x['ROI'] else False, axis=1)
+            by_word['target'] = by_word.apply(lambda x: True if x['wordpos_mod'] in x['ROI'] else False, axis=1)
 
-            target = merged.loc[merged['target']] ## Creating subset for convenience. Will cause warnings that can be ignored.
+            target = by_word.loc[by_word['target']] ## Creating subset for convenience. Will cause warnings that can be ignored.
 
             # Get consistent ROI mapping across comparisons
             ## Do I really want this if we just have equal? 
@@ -123,7 +126,7 @@ class MinimalPair(Analysis):
             # target['pos'] = target.apply(lambda x: x['mapping'][x['wordpos_mod']], axis=1)
 
         else: # want entire sentence
-            target = merged
+            target = by_word
             target['pos'] = target['wordpos_mod']
 
 
@@ -132,7 +135,7 @@ class MinimalPair(Analysis):
 
         # Summarize over all words in sentences
 
-        groupby_cols = ['pairid', 'model', 'cond', 'comparison']
+        groupby_cols = ['model', 'cond', 'pairid', 'comparison']
 
         target_summ = target.groupby(groupby_cols).agg({pred_measure: 'mean'}).reset_index()
 
@@ -142,14 +145,15 @@ class MinimalPair(Analysis):
 
         # Make data wider
 
-        by_pair = target_summ.pivot(index=['pairid', 'model', 'cond'], columns='comparison', values=pred_measure).reset_index()
+        by_pair = target_summ.pivot(index=['model', 'cond', 'pairid'], columns='comparison', values=pred_measure).reset_index()
 
         # Remove invalid pairs
-        by_pair = by_pair[by_pair['expected'].notna() & by_pair['unexpected'].notna()]
-
         bad_pairs = set(by_pair[by_pair['expected'].isna() | by_pair['unexpected'].isna()]['pairid'])
 
-        print(f"Excluding pairs which did not have expected or unexpected:\n{bad_pairs}")
+        by_pair = by_pair[by_pair['expected'].notna() & by_pair['unexpected'].notna()]
+
+        if len(bad_pairs) > 0: # removed some bad pairs
+            print(f"WARNING: Excluding pairs which did not have expected or unexpected comparisons:\n{bad_pairs}\n")
 
         # Compute difference and accuracy
         by_pair['diff'] = by_pair['expected'] - by_pair['unexpected']
@@ -210,7 +214,25 @@ class MinimalPair(Analysis):
         return by_cond
 
 
+    def save_df(self, dat, fpath):
+        # re-create condition columns
+        if len(dat) == 0:
+            print(f'Empty dataframe. Not creating {fpath}.')
+        else:
+            if len(self.validcols) > 0 and 'cond' in dat:
+                dat[self.validcols] = dat['cond'].str.split('_', expand = True)
 
+                # reorder columns 
+                for colname in self.validcols[::-1]:
+                    temp = dat.pop(colname)
+                    dat.insert(1, colname, temp)
+
+            # remove column created in pipeline
+            dat = dat.drop(['cond'], axis=1)
+
+            print(f'Creating {fpath}\n')
+
+        dat.to_csv(fpath, sep = '\t', na_rep='NA')
 
     def analyze(self):
         """ Run Minimal Pair analysis and save result to resultsfpath
@@ -224,8 +246,13 @@ class MinimalPair(Analysis):
 
         # combine subword tokens to words (handling punctuation)
         by_word = self.token_to_word(self.preddat.copy())
-        if self.save_byword:
-            fname = f"{self.resultsfpath.replace('.tsv', '')}_byword.tsv"
+
+        # combine with conddat (if present)
+        if len(self.conddat) > 0:
+            by_word = pd.merge(by_word,self.conddat, on='sentid')
+
+        if self.output['by_word']:
+            fname = self.resultsfpath.replace('.tsv', '_byword.tsv')
             self.save_df(by_word, fname)
 
 
@@ -234,19 +261,14 @@ class MinimalPair(Analysis):
 
         by_pair = self.summarize_roi(by_word)
 
-        if self.save_bypair:
-            fname = f"{self.resultsfpath.replace('.tsv', '')}_bypair.tsv"
+        if self.output['by_pair']:
+            fname = self.resultsfpath.replace('.tsv', '_bypair.tsv')
             self.save_df(by_pair, fname)
 
 
-        ## TO DO: refactor this so it is just summary over user specified columns
-
-        # # summarize over lemmas
-        # by_context = self.summarize_lemma(by_pair)
-
         # summarize over contexts
 
-        if self.save_bycond:
+        if self.output['by_cond']:
             by_cond = self.summarize_cond(by_pair)
             self.save_df(by_cond, self.resultsfpath)
 
