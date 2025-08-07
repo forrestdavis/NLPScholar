@@ -1,0 +1,17 @@
+sentid	pairid	contextid	lemma	condition	comparison	sentence	ROI
+1	1	1	BE	sing	expected	Hello, the student is the chameleon.	3,4
+2	1	1	BE	sing	unexpected	Hello, the student are the chameleon.	3,4
+3	2	1	LIKE	sing	expected	Hello, the student likes the chameleon.	3,4
+4	2	1	LIKE	sing	unexpected	Hello, the student like the chameleon.	3,4
+5	3	2	BE	sing	expected	Hello, the chameleon is the student.	3,4
+6	3	2	BE	sing	unexpected	Hello, the chameleon are the student.	3,4
+7	4	2	LIKE	sing	expected	Hello, the chameleon likes the student.	3,4
+8	4	2	LIKE	sing	unexpected	Hello, the chameleon like the student.	3,4
+9	5	3	BE	plu	expected	Hello, students are chameleons.	2,3
+10	5	3	BE	plu	unexpected	Hello, students is chameleons.	2,3
+11	6	3	LIKE	plu	expected	Hello, students like chameleons.	2,3
+12	6	3	LIKE	plu	unexpected	Hello, students likes chameleons.	2,3
+13	7	4	BE	plu	expected	Hello, chameleons are students.	2,3
+14	8	4	BE	plu	unexpected	Hello, chameleons is students.	2,3
+15	9	4	LIKE	plu	expected	Hello, chameleons like students.	2,3
+16	10	4	LIKE	plu	unexpected	Hello, chameleons likes students.	2,3
