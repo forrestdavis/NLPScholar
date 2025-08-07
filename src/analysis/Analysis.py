@@ -19,11 +19,7 @@ class Analysis:
         self.pred_measure = 'surp'
         self.word_summary = 'mean'
         # self.roi_summary = 'micro' # bring this back later maybe
-        self.k_lemmas = 'all'
         self.punctuation = 'previous'
-        self.save_byword = False
-        self.save_bypair = False
-        self.save_bycond = False
         self.conditions = ''
         self.save = ''
          
