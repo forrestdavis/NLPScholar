@@ -30,5 +30,28 @@ print(a.mean() - b.mean())
 
 ## Text Classification
 
+- [x] Make MWE for text classification slightly more complex with condition (e.g., maybe have long/short, as well as source as conditions?)
+
+- [x] Create different granularity of output types: by_cond, by_class 
+
+- [x] If there is by_class make sure to also have a micro-average and macro-average option? 
+
+- [] Compute metrics:
+    - [x] accuracy
+    - [x] precision
+    - [x] recall
+    - [x] f-beta 
+    - [ ] Something to do with the probability of the prediction? Something like P(pred | correct) and P(pred | incorrect)
+
+- [ ] Verify that this works with both paired and not-paired sentences
+
 
 ## Token Classification
+
+
+## Other
+
+- [x] Move the condition stuff from MinimalPair to Analysis. Check it works
+- [x] Remove condition and other things as a thing that evaluate needs. Possibly have a check in analysis?
+- [ ] Make sample configs for each experiment and mode type. Possibly have subfolders for each experiment type
+
