@@ -11,7 +11,7 @@ class TextClassification(Evaluation):
     def __init__(self, config: dict, 
                 **kwargs):
         super().__init__(config, **kwargs)
-        self.NEEDS = ['textid', 'text', 'condition', 'target']
+        self.NEEDS = ['textid', 'text', 'target']
 
     def gather_labeled_output(self, Classifier):
         """ Returns the outputs and word alignments for a langaguage model for

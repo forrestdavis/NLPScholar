@@ -11,8 +11,8 @@ class MinimalPair(Evaluation):
     def __init__(self, config: dict, 
                 **kwargs):
         super().__init__(config, **kwargs)
-        self.NEEDS = ['sentid', 'sentence', 'lemma', 'comparison', 'contextid',
-                      'pairid', 'condition', 'ROI']
+        self.NEEDS = ['sentid', 'sentence', 'comparison',
+                      'pairid']
 
     def gather_token_output(self, LM):
         """ Returns the outputs and word alignments for a langaguage model for
