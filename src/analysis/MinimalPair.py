@@ -13,29 +13,8 @@ class MinimalPair(Analysis):
                 **kwargs):
         super().__init__(config, **kwargs)
 
-        print('\n-----------------------')
-        print("Processing config file\n")
-
-       
-        # Create condition column
-        
-        self.validcols = []
-        for col in self.conditions.split(','): 
-            col = col.strip()
-            if col in self.conddat:
-                self.validcols.append(col)
-            elif len(col) > 0:
-                print(f"WARNING: {col} not in conddat. Ignoring.")
-
-        if len(self.validcols) == 0:
-            print('WARNING: No valid condition columns entered')
-
-        self.conddat['cond'] = self.conddat[self.validcols].apply(
-            lambda row: '_'.join(row.astype(str)), axis=1
-        )
-
         # Create output column 
-
+        print("Verifying output types\n")
         self.output = {'by_word': False,
                        'by_pair': False,
                        'by_cond': False}
