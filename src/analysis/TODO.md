@@ -43,7 +43,7 @@ print(a.mean() - b.mean())
     - [x] f-beta 
     - [ ] Something to do with the probability of the prediction? Something like P(pred | correct) and P(pred | incorrect)
 
-- [ ] Verify that this works with both paired and not-paired sentences
+- [x] Verify that this works with both paired and not-paired sentences
 
 
 ## Token Classification

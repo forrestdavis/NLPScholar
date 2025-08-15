@@ -1,0 +1,23 @@
+exp: TextClassification
+
+mode: 
+    - evaluate
+    - analyze
+
+models:
+    hf_text_classification_model:
+      - roberta-large
+      - FacebookAI/roberta-large-mnli
+
+predfpath: ./predictions/snli_paired_sentences.tsv
+
+datafpath: ./data/snli_paired_sentences.tsv
+
+resultsfpath: ./results/snli_paired_sentences.tsv
+
+save: by_cond, by_target
+
+id2label:
+    0: entailment
+    1: contradiction
+    2: neutral
