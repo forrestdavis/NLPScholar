@@ -1,0 +1,17 @@
+textid	target	model	tokenizer	predicted	prob
+1	Positive	siebert/sentiment-roberta-large-english	siebert/sentiment-roberta-large-english	Positive	0.9989151358604431
+2	Positive	siebert/sentiment-roberta-large-english	siebert/sentiment-roberta-large-english	Positive	0.9988766312599182
+3	Negative	siebert/sentiment-roberta-large-english	siebert/sentiment-roberta-large-english	Negative	0.9995126128196716
+4	Negative	siebert/sentiment-roberta-large-english	siebert/sentiment-roberta-large-english	Negative	0.9995068311691284
+5	Positive	siebert/sentiment-roberta-large-english	siebert/sentiment-roberta-large-english	Positive	0.9989245533943176
+6	Positive	siebert/sentiment-roberta-large-english	siebert/sentiment-roberta-large-english	Positive	0.9980143904685974
+7	Negative	siebert/sentiment-roberta-large-english	siebert/sentiment-roberta-large-english	Negative	0.99951171875
+8	Negative	siebert/sentiment-roberta-large-english	siebert/sentiment-roberta-large-english	Positive	0.998780369758606
+1	Positive	roberta-large	roberta-large	Positive	0.5057743787765503
+2	Positive	roberta-large	roberta-large	Positive	0.5161260366439819
+3	Negative	roberta-large	roberta-large	Negative	0.5111222863197327
+4	Negative	roberta-large	roberta-large	Positive	0.5190313458442688
+5	Positive	roberta-large	roberta-large	Positive	0.5062035918235779
+6	Positive	roberta-large	roberta-large	Negative	0.5309870839118958
+7	Negative	roberta-large	roberta-large	Positive	0.503664493560791
+8	Negative	roberta-large	roberta-large	Negative	0.5122517943382263
