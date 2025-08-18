@@ -1,0 +1,81 @@
+	model	level_1	sentid	wordpos_mod	prob	surp	pairid	contextid	lemma	condition	comparison	sentence	ROI
+0	gpt2	0	1	0	0.5480115972459316	1.6902365684509277	1	1	BE	sing	expected	Hello, the student is the chameleon.	3,4
+1	gpt2	1	1	1	0.0168225113302469	5.893463134765625	1	1	BE	sing	expected	Hello, the student is the chameleon.	3,4
+2	gpt2	2	1	2	0.0002735531015787	11.835891723632812	1	1	BE	sing	expected	Hello, the student is the chameleon.	3,4
+3	gpt2	3	1	3	0.0401069410145282	4.64000415802002	1	1	BE	sing	expected	Hello, the student is the chameleon.	3,4
+4	gpt2	4	1	4	0.0157160926610231	5.991613388061523	1	1	BE	sing	expected	Hello, the student is the chameleon.	3,4
+5	gpt2	5	1	5	0.30844282519319677	4.921128200832754	1	1	BE	sing	expected	Hello, the student is the chameleon.	3,4
+6	gpt2	6	2	0	0.5480115972459316	1.6902365684509277	1	1	BE	sing	unexpected	Hello, the student are the chameleon.	3,4
+7	gpt2	7	2	1	0.0168225113302469	5.893463134765625	1	1	BE	sing	unexpected	Hello, the student are the chameleon.	3,4
+8	gpt2	8	2	2	0.0002735531015787	11.835891723632812	1	1	BE	sing	unexpected	Hello, the student are the chameleon.	3,4
+9	gpt2	9	2	3	0.0005809001740999	10.749422073364258	1	1	BE	sing	unexpected	Hello, the student are the chameleon.	3,4
+10	gpt2	10	2	4	0.015517670661211	6.009943962097168	1	1	BE	sing	unexpected	Hello, the student are the chameleon.	3,4
+11	gpt2	11	2	5	0.103874242027814	5.78997802734375	1	1	BE	sing	unexpected	Hello, the student are the chameleon.	3,4
+12	gpt2	12	3	0	0.5480115972459316	1.6902365684509277	2	1	LIKE	sing	expected	Hello, the student likes the chameleon.	3,4
+13	gpt2	13	3	1	0.0168225113302469	5.893463134765625	2	1	LIKE	sing	expected	Hello, the student likes the chameleon.	3,4
+14	gpt2	14	3	2	0.0002735531015787	11.835891723632812	2	1	LIKE	sing	expected	Hello, the student likes the chameleon.	3,4
+15	gpt2	15	3	3	5.051780317444354e-05	14.27284812927246	2	1	LIKE	sing	expected	Hello, the student likes the chameleon.	3,4
+16	gpt2	16	3	4	0.0619100108742713	4.013683319091797	2	1	LIKE	sing	expected	Hello, the student likes the chameleon.	3,4
+17	gpt2	17	3	5	0.26893784294952633	5.3867304138839245	2	1	LIKE	sing	expected	Hello, the student likes the chameleon.	3,4
+18	gpt2	18	4	0	0.5480115972459316	1.6902365684509277	2	1	LIKE	sing	unexpected	Hello, the student like the chameleon.	3,4
+19	gpt2	19	4	1	0.0168225113302469	5.893463134765625	2	1	LIKE	sing	unexpected	Hello, the student like the chameleon.	3,4
+20	gpt2	20	4	2	0.0002735531015787	11.835891723632812	2	1	LIKE	sing	unexpected	Hello, the student like the chameleon.	3,4
+21	gpt2	21	4	3	0.0001399563625454	12.802735328674316	2	1	LIKE	sing	unexpected	Hello, the student like the chameleon.	3,4
+22	gpt2	22	4	4	0.0277147833257913	5.173200130462647	2	1	LIKE	sing	unexpected	Hello, the student like the chameleon.	3,4
+23	gpt2	23	4	5	0.2659385230217594	5.2226432748138905	2	1	LIKE	sing	unexpected	Hello, the student like the chameleon.	3,4
+24	gpt2	24	5	0	0.5480115972459316	1.6902365684509277	3	2	BE	sing	expected	Hello, the chameleon is the student.	3,4
+25	gpt2	25	5	1	0.0168225113302469	5.893463134765625	3	2	BE	sing	expected	Hello, the chameleon is the student.	3,4
+26	gpt2	26	5	2	0.3067678692071543	5.7931292454401655	3	2	BE	sing	expected	Hello, the chameleon is the student.	3,4
+27	gpt2	27	5	3	0.1586696803569793	2.655901432037353	3	2	BE	sing	expected	Hello, the chameleon is the student.	3,4
+28	gpt2	28	5	4	0.0279798563569784	5.159467697143555	3	2	BE	sing	expected	Hello, the chameleon is the student.	3,4
+29	gpt2	29	5	5	0.035318291542353046	8.236648321151733	3	2	BE	sing	expected	Hello, the chameleon is the student.	3,4
+30	gpt2	30	6	0	0.5480115972459316	1.6902365684509277	3	2	BE	sing	unexpected	Hello, the chameleon are the student.	3,4
+31	gpt2	31	6	1	0.0168225113302469	5.893463134765625	3	2	BE	sing	unexpected	Hello, the chameleon are the student.	3,4
+32	gpt2	32	6	2	0.3067678692071543	5.7931292454401655	3	2	BE	sing	unexpected	Hello, the chameleon are the student.	3,4
+33	gpt2	33	6	3	0.0013222488341853	9.562790870666504	3	2	BE	sing	unexpected	Hello, the chameleon are the student.	3,4
+34	gpt2	34	6	4	0.0283589214086532	5.1400532722473145	3	2	BE	sing	unexpected	Hello, the chameleon are the student.	3,4
+35	gpt2	35	6	5	0.01358427794002635	9.995522022247314	3	2	BE	sing	unexpected	Hello, the chameleon are the student.	3,4
+36	gpt2	36	7	0	0.5480115972459316	1.6902365684509277	4	2	LIKE	sing	expected	Hello, the chameleon likes the student.	3,4
+37	gpt2	37	7	1	0.0168225113302469	5.893463134765625	4	2	LIKE	sing	expected	Hello, the chameleon likes the student.	3,4
+38	gpt2	38	7	2	0.3067678692071543	5.7931292454401655	4	2	LIKE	sing	expected	Hello, the chameleon likes the student.	3,4
+39	gpt2	39	7	3	0.0003873589157592	11.334041595458984	4	2	LIKE	sing	expected	Hello, the chameleon likes the student.	3,4
+40	gpt2	40	7	4	0.0392721779644489	4.670348644256592	4	2	LIKE	sing	expected	Hello, the chameleon likes the student.	3,4
+41	gpt2	41	7	5	0.08945091433815829	9.198052048683167	4	2	LIKE	sing	expected	Hello, the chameleon likes the student.	3,4
+42	gpt2	42	8	0	0.5480115972459316	1.6902365684509277	4	2	LIKE	sing	unexpected	Hello, the chameleon like the student.	3,4
+43	gpt2	43	8	1	0.0168225113302469	5.893463134765625	4	2	LIKE	sing	unexpected	Hello, the chameleon like the student.	3,4
+44	gpt2	44	8	2	0.3067678692071543	5.7931292454401655	4	2	LIKE	sing	unexpected	Hello, the chameleon like the student.	3,4
+45	gpt2	45	8	3	0.0004591270699165	11.088818550109863	4	2	LIKE	sing	unexpected	Hello, the chameleon like the student.	3,4
+46	gpt2	46	8	4	0.0298307444900274	5.067056179046631	4	2	LIKE	sing	unexpected	Hello, the chameleon like the student.	3,4
+47	gpt2	47	8	5	0.026402240786410347	8.528107166290283	4	2	LIKE	sing	unexpected	Hello, the chameleon like the student.	3,4
+48	gpt2	48	9	0	0.5480123423039913	1.69022536277771	5	3	BE	plu	expected	Hello, students are chameleons.	2,3
+49	gpt2	49	9	1	8.310815610457212e-05	13.55465030670166	5	3	BE	plu	expected	Hello, students are chameleons.	2,3
+50	gpt2	50	9	2	0.0264992676675319	5.237903594970703	5	3	BE	plu	expected	Hello, students are chameleons.	2,3
+51	gpt2	51	9	3	0.35515409068466397	5.41664964556694	5	3	BE	plu	expected	Hello, students are chameleons.	2,3
+52	gpt2	52	10	0	0.5480123423039913	1.69022536277771	5	3	BE	plu	unexpected	Hello, students is chameleons.	2,3
+53	gpt2	53	10	1	8.310815610457212e-05	13.55465030670166	5	3	BE	plu	unexpected	Hello, students is chameleons.	2,3
+54	gpt2	54	10	2	0.0007098114001564	10.46027660369873	5	3	BE	plu	unexpected	Hello, students is chameleons.	2,3
+55	gpt2	55	10	3	0.10533541463155413	6.258638620376588	5	3	BE	plu	unexpected	Hello, students is chameleons.	2,3
+56	gpt2	56	11	0	0.5480123423039913	1.69022536277771	6	3	LIKE	plu	expected	Hello, students like chameleons.	2,3
+57	gpt2	57	11	1	8.310815610457212e-05	13.55465030670166	6	3	LIKE	plu	expected	Hello, students like chameleons.	2,3
+58	gpt2	58	11	2	0.0008481859695166	10.20333194732666	6	3	LIKE	plu	expected	Hello, students like chameleons.	2,3
+59	gpt2	59	11	3	0.27013194298451704	5.410050636529922	6	3	LIKE	plu	expected	Hello, students like chameleons.	2,3
+60	gpt2	60	12	0	0.5480123423039913	1.69022536277771	6	3	LIKE	plu	unexpected	Hello, students likes chameleons.	2,3
+61	gpt2	61	12	1	8.310815610457212e-05	13.55465030670166	6	3	LIKE	plu	unexpected	Hello, students likes chameleons.	2,3
+62	gpt2	62	12	2	2.633877102198312e-06	18.534379959106445	6	3	LIKE	plu	unexpected	Hello, students likes chameleons.	2,3
+63	gpt2	63	12	3	0.31476814421184823	4.892061507701873	6	3	LIKE	plu	unexpected	Hello, students likes chameleons.	2,3
+64	gpt2	64	13	0	0.5480123423039913	1.69022536277771	7	4	BE	plu	expected	Hello, chameleons are students.	2,3
+65	gpt2	65	13	1	0.15566957629926031	5.901820212602615	7	4	BE	plu	expected	Hello, chameleons are students.	2,3
+66	gpt2	66	13	2	0.029625641182065	5.077009677886963	7	4	BE	plu	expected	Hello, chameleons are students.	2,3
+67	gpt2	67	13	3	0.08233084700623294	8.62502110004425	7	4	BE	plu	expected	Hello, chameleons are students.	2,3
+68	gpt2	68	14	0	0.5480123423039913	1.69022536277771	8	4	BE	plu	unexpected	Hello, chameleons is students.	2,3
+69	gpt2	69	14	1	0.15566957629926031	5.901820212602615	8	4	BE	plu	unexpected	Hello, chameleons is students.	2,3
+70	gpt2	70	14	2	0.0012954578269273	9.59232234954834	8	4	BE	plu	unexpected	Hello, chameleons is students.	2,3
+71	gpt2	71	14	3	0.06403907151445763	10.956548690795897	8	4	BE	plu	unexpected	Hello, chameleons is students.	2,3
+72	gpt2	72	15	0	0.5480123423039913	1.69022536277771	9	4	LIKE	plu	expected	Hello, chameleons like students.	2,3
+73	gpt2	73	15	1	0.15566957629926031	5.901820212602615	9	4	LIKE	plu	expected	Hello, chameleons like students.	2,3
+74	gpt2	74	15	2	0.0009759772801771	10.00086498260498	9	4	LIKE	plu	expected	Hello, chameleons like students.	2,3
+75	gpt2	75	15	3	0.037706122437157284	9.536061644554138	9	4	LIKE	plu	expected	Hello, chameleons like students.	2,3
+76	gpt2	76	16	0	0.5480123423039913	1.69022536277771	10	4	LIKE	plu	unexpected	Hello, chameleons likes students.	2,3
+77	gpt2	77	16	1	0.15566957629926031	5.901820212602615	10	4	LIKE	plu	unexpected	Hello, chameleons likes students.	2,3
+78	gpt2	78	16	2	2.13628591154702e-05	15.514535903930664	10	4	LIKE	plu	unexpected	Hello, chameleons likes students.	2,3
+79	gpt2	79	16	3	0.08767923851974044	8.7729731798172	10	4	LIKE	plu	unexpected	Hello, chameleons likes students.	2,3

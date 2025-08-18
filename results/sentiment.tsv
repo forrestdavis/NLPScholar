@@ -1,0 +1,5 @@
+	model	Type	micro-precision	micro-recall	micro-f1	macro-precision	macro-recall	macro-f1	accuracy
+0	roberta-large	Full	0.75	0.75	0.75	0.7666666666666666	0.75	0.746031746031746	0.75
+1	roberta-large	One-line	0.75	0.75	0.75	0.7666666666666666	0.75	0.746031746031746	0.75
+2	siebert/sentiment-roberta-large-english	Full	0.75	0.75	0.75	0.7666666666666666	0.75	0.746031746031746	0.75
+3	siebert/sentiment-roberta-large-english	One-line	0.75	0.75	0.75	0.7666666666666666	0.75	0.746031746031746	0.75

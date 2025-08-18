@@ -3,10 +3,16 @@ exp: MinimalPair
 mode: 
     - analyze
 
-predfpath: ./predictions/minimal_pairs.tsv
+models:
+    hf_causal_model:
+      - gpt2
 
-datafpath: ./data/minimal_pairs.tsv
+predfpath: ./predictions/minimal_pairs_bad.tsv
 
-resultsfpath: ./results/minimal_pairs.tsv
+datafpath: ./data/minimal_pairs_bad.tsv
 
-k_lemmas: 1
+resultsfpath: ./results/minimal_pairs_bad.tsv
+
+save: by_word, by_pair, by_cond
+
+conditions: condition, blah, 

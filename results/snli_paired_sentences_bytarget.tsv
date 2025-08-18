@@ -1,0 +1,7 @@
+	model	target_class	precision	recall	f1
+0	FacebookAI/roberta-large-mnli	contradiction	0.0	0.0	0.0
+1	FacebookAI/roberta-large-mnli	neutral	0.0	0.0	0.0
+2	FacebookAI/roberta-large-mnli	entailment	0.14285714285714285	0.5	0.2222222222222222
+3	roberta-large	contradiction	0.0	0.0	0.0
+4	roberta-large	neutral	0.0	0.0	0.0
+5	roberta-large	entailment	0.14285714285714285	0.5	0.2222222222222222

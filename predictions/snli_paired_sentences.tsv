@@ -1,6 +1,11 @@
 textid	target	model	tokenizer	predicted	prob
-1	contradiction	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	contradiction	0.9991848468780518
-2	neutral	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	neutral	0.9771305918693542
-3	contradiction	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	contradiction	0.9990367293357849
-4	entailment	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	entailment	0.9510875940322876
-5	neutral	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	ynie/roberta-large-snli_mnli_fever_anli_R1_R2_R3-nli	neutral	0.9674780964851379
+1	contradiction	roberta-large	roberta-large	entailment	0.46268126368522644
+2	neutral	roberta-large	roberta-large	entailment	0.4554477035999298
+3	contradiction	roberta-large	roberta-large	entailment	0.4690003991127014
+4	entailment	roberta-large	roberta-large	entailment	0.46497341990470886
+5	neutral	roberta-large	roberta-large	entailment	0.47397610545158386
+1	contradiction	FacebookAI/roberta-large-mnli	FacebookAI/roberta-large-mnli	entailment	0.9976708292961121
+2	neutral	FacebookAI/roberta-large-mnli	FacebookAI/roberta-large-mnli	contradiction	0.9977918267250061
+3	contradiction	FacebookAI/roberta-large-mnli	FacebookAI/roberta-large-mnli	entailment	0.9885557889938354
+4	entailment	FacebookAI/roberta-large-mnli	FacebookAI/roberta-large-mnli	neutral	0.9904952049255371
+5	neutral	FacebookAI/roberta-large-mnli	FacebookAI/roberta-large-mnli	contradiction	0.9960687756538391
