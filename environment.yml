@@ -8,7 +8,7 @@ dependencies:
     - accelerate==0.33.0
     - bitsandbytes==0.42.0
     - datasets==2.20.0
-    - evaluate==0.4.2
+    - evaluate==0.4.3
     - ipykernel==6.29.5
     - jupyterlab==4.2.4
     - numpy==1.26.4
