@@ -43,6 +43,9 @@ def load_kwargs(config: dict) -> dict:
                 'conditions',
                 'save',
                 'f_val',
+                'agg_type',
+                'ignore',
+                'ignore_punctuation',
                 # evaluate args
                 'giveAllLabels',
                ]
