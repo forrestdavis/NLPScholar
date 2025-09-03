@@ -25,6 +25,11 @@ class Analysis:
 
         #Params relevant only for Classification
         self.f_val = 1
+
+        #Params relevant only for TokenClassification
+        self.agg_type = 'first'
+        self.ignore_punctuation = True
+        self.ignore = ''
          
         # Set params
         for k, v in kwargs.items():

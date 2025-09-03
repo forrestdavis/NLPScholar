@@ -11,7 +11,7 @@ class TokenClassification(Evaluation):
     def __init__(self, config: dict, 
                 **kwargs):
         super().__init__(config, **kwargs)
-        self.NEEDS = ['textid', 'text', 'condition', 'target']
+        self.NEEDS = ['textid', 'text', 'target']
 
     def gather_token_output(self, Classifier):
         """ Returns the outputs and word alignments for a classification model
@@ -50,13 +50,11 @@ class TokenClassification(Evaluation):
         """
         sentences = self.data['text'].tolist()
         sentids = self.data['textid'].tolist()
-        conditions = self.data['condition'].tolist()
         all_targets = self.data['target'].tolist()
 
         for batch in range(len(sentences)):
             output = outputs[batch]
             sentid = sentids[batch]
-            condition = conditions[batch]
             alignments = word_alignments[batch]['mapping_to_words']
             words = word_alignments[batch]['words']
             targets = all_targets[batch].split()
@@ -96,7 +94,6 @@ class TokenClassification(Evaluation):
                 entriesDict['textid'].append(sentid)
                 entriesDict['word'].append(word)
                 entriesDict['wordpos'].append(alignment)
-                entriesDict['condition'].append(condition)
                 entriesDict['model'].append(Classifier.modelname)
                 entriesDict['tokenizer'].append(Classifier.tokenizer.tokenizername)
                 entriesDict['punctuation'].append(isPunct)
@@ -122,7 +119,6 @@ class TokenClassification(Evaluation):
                     matches what is in `predictability.tsv`
         - `word`: the word the subword token belongs to
         - `wordpos`: the specific word in the context sentence that the subword token belongs to
-        - `condition`: the specific condition, e.g., "grammatical" or "ungrammatical"
         - `model`: the name of the classifier
         - `tokenizer`: the name of the tokenizer
         - `punctuation`: is the token punctuation?
@@ -144,7 +140,6 @@ class TokenClassification(Evaluation):
                        'textid': [], 
                        'word': [],
                        'wordpos': [], 
-                       'condition': [], 
                        'model': [],
                        'tokenizer': [],
                        'punctuation': [],
