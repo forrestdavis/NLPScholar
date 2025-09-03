@@ -70,6 +70,8 @@ classification over tokens in a text.  In other words, one label is returned for
 each token (i.e., subword) in a text (e.g., part of speech tagging, named entity
 recognition). 
 
+You can find further documentation about each of these experiments [here](src/docs)
+
 #### `mode`
 
 Each experiment has four `mode`s: `interact`, `train`,
@@ -236,7 +238,7 @@ In the `analyze` mode, you need to specify three filepaths:
 - `datafpath`: the filepath that maps each input in the evaluation dataset to the specific condition it belongs to. 
 - `resultsfpath`: the filepath where the summary output should be saved. 
 
-Each experiment type has several other optional parameters, the details of which can be found in the experiment specific markdown files in `src/analysis/`. 
+Each experiment type has several other optional parameters, the details of which can be found in the experiment specific markdown files in `src/docs/`. 
 
 
 ## Config Details for `train`
