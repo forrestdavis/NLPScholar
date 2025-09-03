@@ -51,9 +51,10 @@ print(a.mean() - b.mean())
     - [x] take first token label and prob
     - [x] take max prob and get the token with that
     - [ ] take mode label and get mean prob of everything with mode label.   
-- [ ] Add a ignore column. By default ignore is false for everything.
-- [ ] Aggregrate outputs: by_cond, by_class (where ignore is filtered out)
-- [ ] Make MWE for POS (where there is nothing to ignore) and NER (where we want to ignore the non-entity) more complex by adding in condition 
+- [x] Add a ignore flag for aggregation. By default ignore is false for everything.
+- [x] Aggregrate outputs: by_cond, by_class (where ignore is filtered out)
+- [ ] Make MWE for POS (where there is nothing to ignore) and NER (where we want to ignore the non-entity) more complex: add in conditions, demonstrate role of punctuation.
+- [ ] Add explanation in md file for when to include punctuation in data file using POS vs. NER as contrast
 - [ ] Figure out how to specify id2label for POS tagging 
 
 
