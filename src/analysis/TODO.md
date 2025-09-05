@@ -25,6 +25,10 @@ print(a.mean() - b.mean())
 (a-b).mean() == a.mean() - b.mean()
  ```
 
+- [x] Fix how punctuation is handled: currently next isn't working correctly I think. Also need to implement ignore where it just removes punctuation. Also what is remove_gaps doing? Why do I need this? 
+
+- [x] Make sure by_word has word in its output with correct punctuation
+
  - [ ] Let comparison take manually specified labels (with default being expected and unexpected)
 
 
@@ -44,6 +48,8 @@ print(a.mean() - b.mean())
     - [ ] Something to do with the probability of the prediction? Something like P(pred | correct) and P(pred | incorrect)
 
 - [x] Verify that this works with both paired and not-paired sentences
+
+- [ ] Debug by_cond: currently the output of both models are always the same
 
 
 ## Token Classification

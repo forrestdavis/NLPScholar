@@ -28,41 +28,90 @@ class MinimalPair(Analysis):
 
 
 
-    def token_to_word(self, preddat):
+    # def token_to_word(self, preddat):
 
-        # Change word positions of punctuation
-        self.handle_punctuation(preddat)
+    #     # Change word positions of punctuation
+    #     self.handle_punctuation(preddat)
 
-        # Summarize over word position
+    #     # Summarize over word position
+    #     groupby_cols = ['sentid', 'wordpos_mod', 'word', 
+    #     'model']
+
+    #     summ = preddat.groupby(groupby_cols).agg({'prob': 'mean', 'surp': self.word_summary}).reset_index() #note prob is always mean, cannot be sum. 
+
+    #     # Realign wordpositions (remove gaps from handling punctuation)
+
+    #     summ = summ.groupby(['model']).apply(self.remove_gaps, colname = 'wordpos_mod', include_groups=False).reset_index()
+
+    #     return summ
+
+    def get_shifts(self):
+        if self.punctuation == 'previous':
+            pos_shift = 1
+            punc_shift = word_shift = -1
+        elif self.punctuation == 'next':
+            pos_shift = -1
+            punc_shift = word_shift = 1
+        else:
+            pos_shift = punc_shift = word_shift = 0
+
+        return pos_shift, punc_shift, word_shift
+
+    def token_to_word(self, dat):
+        new_dat = dat.copy()
+        new_dat['word_mod'] = new_dat['word']
+        new_dat['wordpos_mod'] = new_dat['wordpos']
+        pos_shift, punc_shift, word_shift = self.get_shifts()
+
+        if self.punctuation in ['previous', 'next']:
+            new_dat['shift_pos'] = new_dat.groupby(['sentid', 'model'])['wordpos'].shift(pos_shift).fillna(0).astype('Int64')
+            new_dat['shift_word'] = new_dat.groupby(['sentid', 'model'])['word'].shift(word_shift).fillna('')
+            new_dat['shift_punc'] = new_dat.groupby(['sentid', 'model'])['punctuation'].shift(punc_shift).fillna(False)
+
+            new_dat.loc[new_dat['punctuation']==True, 'wordpos_mod'] =  new_dat.loc[new_dat['punctuation']==True, 'shift_pos']
+
+            
+            if self.punctuation == 'previous':
+                new_dat.loc[new_dat['shift_punc']==True, 'word_mod'] =  new_dat.loc[new_dat['shift_punc']==True, 'word']+new_dat.loc[new_dat['shift_punc']==True, 'shift_word']
+            else:
+                new_dat.loc[new_dat['shift_punc']==True, 'word_mod'] = new_dat.loc[new_dat['shift_punc']==True, 'shift_word'] + new_dat.loc[new_dat['shift_punc']==True, 'word']
+
+        elif self.punctuation == 'ignore':
+            new_dat = new_dat.loc[new_dat['punctuation'] == False]
+
+        ## merge by wordpos (which will merge punctuation in as well if relevant)
         groupby_cols = ['sentid', 'wordpos_mod', 'model']
+        summ = new_dat.groupby(groupby_cols).agg({'prob': 'mean', 'surp': self.word_summary}).reset_index()
 
-        summ = preddat.groupby(groupby_cols).agg({'prob': 'mean', 'surp': self.word_summary}).reset_index() #note prob is always mean, cannot be sum. 
-
-        # Realign wordpositions (remove gaps from handling punctuation)
-
-        summ = summ.groupby(['model']).apply(self.remove_gaps, colname = 'wordpos_mod', include_groups=False).reset_index()
+        summ = pd.merge(new_dat[['wordpos_mod', 'word_mod', 'sentid', 'punctuation']],
+                        summ,
+                        how = 'left')
+        if self.punctuation in ['previous', 'next', 'ignore']:
+            summ = summ.loc[summ['punctuation']==False] #remove punctuation
+        summ = summ.groupby(['wordpos_mod', 'sentid', 'model']).tail(1) # remove duplicate rows
+        summ['wordpos'] = summ.groupby(['sentid', 'model']).cumcount() ## add in wordpos for ROI later
 
         return summ
 
-    def handle_punctuation(self, dat):
-        dat['wordpos_mod'] = dat['wordpos']
-        if self.punctuation == 'previous':
-            dat.loc[dat['punctuation']==True, 'wordpos_mod'] = dat.loc[dat['punctuation']==True, 'wordpos']-1
-        elif self.punctuation == 'next':
-            dat.loc[dat['punctuation']==True, 'wordpos_mod'] =  dat.loc[dat['punctuation']==True, 'wordpos']+1
+    # def handle_punctuation(self, dat):
+    #     dat['wordpos_mod'] = dat['wordpos']
+    #     if self.punctuation == 'previous':
+    #         dat.loc[dat['punctuation']==True, 'wordpos_mod'] = dat.loc[dat['punctuation']==True, 'wordpos']-1
+    #     elif self.punctuation == 'next':
+    #         dat.loc[dat['punctuation']==True, 'wordpos_mod'] =  dat.loc[dat['punctuation']==True, 'wordpos']+1
 
-    def remove_gaps(self, grouped_df, colname):
+    # def remove_gaps(self, grouped_df, colname):
 
-        prev=-1 #manually keep track because row indices not consecutive in grouped dataframe
+    #     prev=-1 #manually keep track because row indices not consecutive in grouped dataframe
 
-        for i, row in grouped_df.iterrows():
-            if prev != -1: #skip first row in grouped_df
-                diff = row[colname]-grouped_df.loc[prev, colname]
-                if diff>1:
-                    grouped_df.loc[i,colname]-=(diff-1)
+    #     for i, row in grouped_df.iterrows():
+    #         if prev != -1: #skip first row in grouped_df
+    #             diff = row[colname]-grouped_df.loc[prev, colname]
+    #             if diff>1:
+    #                 grouped_df.loc[i,colname]-=(diff-1)
 
-            prev=i
-        return grouped_df
+    #         prev=i
+    #     return grouped_df
 
 
     
@@ -95,7 +144,7 @@ class MinimalPair(Analysis):
             # Exclude non ROI words
             by_word['ROI'] = by_word['ROI'].apply(lambda x: [int(item.strip()) for item in x.split(',')])
 
-            by_word['target'] = by_word.apply(lambda x: True if x['wordpos_mod'] in x['ROI'] else False, axis=1)
+            by_word['target'] = by_word.apply(lambda x: True if x['wordpos'] in x['ROI'] else False, axis=1)
 
             target = by_word.loc[by_word['target']] ## Creating subset for convenience. Will cause warnings that can be ignored.
 
@@ -106,7 +155,7 @@ class MinimalPair(Analysis):
 
         else: # want entire sentence
             target = by_word
-            target['pos'] = target['wordpos_mod']
+            target['pos'] = target['wordpos']
 
 
         # Specify pred measure
