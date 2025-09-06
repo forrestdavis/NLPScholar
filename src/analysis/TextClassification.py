@@ -38,16 +38,16 @@ class TextClassification(Analysis):
     def compute_measures(self, dat, average_types):
         from sklearn.metrics import precision_score, recall_score, fbeta_score, accuracy_score
 
-        classes = self.dat['target'].unique()
+        classes = dat['target'].unique()
 
         summ = pd.DataFrame({'target_class':classes})
 
         for avg in average_types:
         
-            precision = precision_score(self.dat['target'], self.dat['predicted'], average=avg, labels = classes,  zero_division=0)
-            recall = recall_score(self.dat['target'], self.dat['predicted'], average=avg, labels = classes,  zero_division=0)
-            fscore = fbeta_score(self.dat['target'], self.dat['predicted'], beta=self.f_val, average=avg, labels=classes,  zero_division=0)
-            accuracy = accuracy_score(self.dat['target'], self.dat['predicted'])
+            precision = precision_score(dat['target'], dat['predicted'], average=avg, labels = classes,  zero_division=0)
+            recall = recall_score(dat['target'], dat['predicted'], average=avg, labels = classes,  zero_division=0)
+            fscore = fbeta_score(dat['target'], dat['predicted'], beta=self.f_val, average=avg, labels=classes,  zero_division=0)
+            accuracy = accuracy_score(dat['target'], dat['predicted'])
 
             if avg:
                 avg_name = f'{avg}-'

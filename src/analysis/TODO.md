@@ -49,7 +49,7 @@ print(a.mean() - b.mean())
 
 - [x] Verify that this works with both paired and not-paired sentences
 
-- [ ] Debug by_cond: currently the output of both models are always the same
+- [x] Debug by_cond: currently the output of both models are always the same; Fix: was using the wrong data in compute_measures. 
 
 
 ## Token Classification
