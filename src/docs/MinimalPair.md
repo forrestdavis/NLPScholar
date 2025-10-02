@@ -32,7 +32,7 @@ This is the file passed into `datafpath`.
 
 **Required columns**
 - `sentid`: unique id for each text
-- `text`: text
+- `sentence`: text
 
 **Optional columns (used in analysis later)**
 - Columns for different conditions
