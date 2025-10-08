@@ -3,12 +3,14 @@
   being like MinimalPair
 - [ ] Add documentation for LanguageModel
 - [ ] Add explanation of analysis to README
-- [ ] Set up config files for analysis 
+- [ ] Set up config files for analysis
 
 # Mid Term
 - [ ] Add ngram 
 - [ ] Add custom tokenizer 
 - [ ] Add compatibility with marty's neural-complexity
+- [ ] Setup evaluate to run on datasets from Huggingface
+- [ ] Add a method to use pretrained tf models 
 
 # Long Term
 - [ ] Add hyperparameter search 
