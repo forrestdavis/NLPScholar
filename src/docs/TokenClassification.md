@@ -2,6 +2,21 @@
 
 This experiment is used to assign labels to tokens in texts
 
+## Train
+
+This mode is used to train a model to assign token labels to every token in the text. 
+
+You can find details about the parameters to be included in the config file [here](https://github.com/forrestdavis/NLPScholar/tree/main?tab=readme-ov-file#config-details-for-train)
+
+### Data details
+
+The data files passed into `trainfpath` and `validfpath` have to be jsonl files. Essentially each line is a dictionary with two keys: 
+* `tokens`: The value of this is a list of all the tokens.
+* `tags`: The value of this is a list of tags with the numerical value (i.e., the id not the label). 
+
+You can find examples of this file format [here](https://github.com/forrestdavis/NLPScholar/tree/main/src/docs/token_classification_example)
+
+
 
 ## Evaluate
 

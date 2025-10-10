@@ -8,7 +8,7 @@ In this toolkit:
 
 - In measuring predictability of a "word" we either average or sum across the predictability of all the sub-word tokens depending on the specified parameters (see below). 
 
-- "context" can either be just the left context (autoregressive LMs) or both left and right context (Masked LMs). 
+- "context" can either be just the left context (autoregressive causal LMs) or both left and right context (Masked LMs). 
 
 ## Train
 
@@ -17,7 +17,9 @@ This mode is used to train a lanauge model (i.e., a model that computes predicta
 You can find details about the parameters to be included in the config file [here](https://github.com/forrestdavis/NLPScholar/tree/main?tab=readme-ov-file#config-details-for-train)
 
 ### Data details
-This requires a file with one column `text`. Each sequence is on a different line. 
+
+The data file has to have one column called `text`. All sequences are on separate lines. 
+
 
 ## Evaluate
 

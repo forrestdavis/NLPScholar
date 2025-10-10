@@ -2,6 +2,20 @@
 
 This experiment is used to assign labels to texts or pairs of texts. 
 
+## Train
+
+This mode is used to train a model to assign labels to text. 
+
+You can find details about the parameters to be included in the config file [here](https://github.com/forrestdavis/NLPScholar/tree/main?tab=readme-ov-file#config-details-for-train)
+
+### Data details
+You need to have TSV file with the following columns: 
+- `textid`: unique id for each text
+- `text`: text
+- `pair`: the paired text (required only if you want to pass in two texts)
+- `label`: the target label
+
+
 ## Evaluate
 
 This mode is used to get predicted labels from the model for every text in the evaluation data set. 
