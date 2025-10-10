@@ -10,6 +10,15 @@ In this toolkit:
 
 - "context" can either be just the left context (autoregressive LMs) or both left and right context (Masked LMs). 
 
+## Train
+
+This mode is used to train a lanauge model (i.e., a model that computes predictability estimates of tokens given context) 
+
+You can find details about the parameters to be included in the config file [here](https://github.com/forrestdavis/NLPScholar/tree/main?tab=readme-ov-file#config-details-for-train)
+
+### Data details
+This requires a file with one column `text`. Each sequence is on a different line. 
+
 ## Evaluate
 
 This mode is used to get predicted probability for every sub-word token of every text in the evaluation dataset. 
