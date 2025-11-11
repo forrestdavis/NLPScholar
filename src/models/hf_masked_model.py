@@ -58,6 +58,7 @@ class HFMaskedModel(LM):
             self.model = \
                     AutoModelForMaskedLM.from_config(auto_config).to(self.device)
 
+
         else:
             self.model = \
                     AutoModelForMaskedLM.from_pretrained(
@@ -123,7 +124,9 @@ class HFMaskedModel(LM):
             by_token_probabilities, by_token_surprisals = \
                     self.convert_to_predictability(logits)
 
-            # Get by token measures 
+            effective_seq_len = by_token_probabilities.size(1) ## this is different from seq_len in some cases (e.g., when there is UNK token for tokenizer)
+            strided_input_ids = strided_input_ids[:, :effective_seq_len] ## removes the extra input_id for which we don't have logits for. 
+
             by_token_probabilities = by_token_probabilities.gather(-1,
                                                strided_input_ids.unsqueeze(2)).squeeze(-1)
             by_token_surprisals = by_token_surprisals.gather(-1,

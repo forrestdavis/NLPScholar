@@ -51,6 +51,12 @@ class MinimalPair(Evaluation):
             alignments = word_alignments[batch]['mapping_to_words']
             words = word_alignments[batch]['words']
 
+            ## Check for when forward pass skips tokens. See line 127 in hf_masked_model.py with effective_seq_len
+            if len(words) > len(output):
+                print(f'More words than outputs; skipping {words[len(output):]}')
+                words = words[:len(output)]
+                alignments = alignments[:len(output)]
+
             for measure, alignment, word in zip(output, alignments, words,
                                                 strict=True):
                 
