@@ -25,13 +25,19 @@ class HFCausalModel(LM):
 
         # Load tokenizer
         if tokenizer_config is None:
-            tokenizer_config = {'tokenizers': {'hf_tokenizer': [modelname]}}
+            tokenizer_config = {'tokenizers': {'hf_tokenizer': [self.modelname]}}
         tokenizer_config = {**tokenizer_config, **kwargs}
         self.tokenizer = load_tokenizers(tokenizer_config)[0]
 
-        modelkwargs = {'pretrained_model_name_or_path': modelname,
+
+
+        modelkwargs = {'pretrained_model_name_or_path': self.modelname,
             'trust_remote_code': True, 
             'output_hidden_states': self.getHidden}
+
+
+        if len(self.checkpoint) > 0: ## there is a checkpoint included
+            modelkwargs['revision'] = self.checkpoint
 
         if self.precision == '16bit':
             modelkwargs['torch_dtype'] = torch.float16
