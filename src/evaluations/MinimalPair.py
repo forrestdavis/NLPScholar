@@ -80,7 +80,7 @@ class MinimalPair(Evaluation):
                 entriesDict['sentid'].append(sentid)
                 entriesDict['word'].append(word)
                 entriesDict['wordpos'].append(alignment)
-                entriesDict['model'].append(LM.modelname)
+                entriesDict['model'].append(LM.modelname+LM.checkpoint)
                 entriesDict['tokenizer'].append(LM.tokenizer.tokenizername)
                 entriesDict['punctuation'].append(isPunct)
                 entriesDict['prob'].append(measure['probability'])

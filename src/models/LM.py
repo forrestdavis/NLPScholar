@@ -20,7 +20,15 @@ class LM:
                  **kwargs):
 
         self.modelname = modelname
+        if ':' in modelname:
+            self.modelname, self.checkpoint = modelname.split(':')
+        else:
+            self.modelname = modelname
+            self.checkpoint = '' # no checkpoint 
         self.offset = offset
+
+        print('In LM.py')
+        print(self.modelname)
 
         # Default values
         self.getHidden = False
@@ -29,6 +37,7 @@ class LM:
         self.loadPretrained = True
         self.maxTrainSequenceLength = 128
         self.stride = None
+
         for k, v in kwargs.items():
             setattr(self, k, v)
 
@@ -42,6 +51,7 @@ class LM:
 
         self.tokenizer = None
         self.model = None
+
 
     def __repr__(self):
         return self.modelname
