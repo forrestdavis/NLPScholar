@@ -90,7 +90,8 @@ A minimal-pair analysis requires the experimeter to specify an expected directio
 - `datafpath`: File path and name for data TSV with condition information
 - `pred_measure`: `prob`, `surp`, `perplexity`. Specfies which measure to use in the output results; perplexity is sentence level. (Default is `surp`)
 - `word_summary`: `sum` or `mean` predictability across all sub-word tokens. (Default is mean; Probability always uses `sum`)
-- `punctuation`: `previous`, `next`, `separate`, `ignore` (how to handle punctation tokens; fold into previous word, next word, treat as a separate word or ignore from computation. If it is treated as separate token, this will influence ROIs.)
+- `punctuation`: `previous`, `next`, `separate`, `ignore`. Specifies how to handle punctation tokens; fold into previous word, next word, treat as a separate word or ignore from computation. If it is treated as separate token, this will influence ROIs. (Default previous)
+- `combine_possessive`: `True`, `False`. Specifies whether or not possessives, specifically "'s", should be treated like punctuation and combined with words. Note, if punctuation is set to separate or ignore, this will not be combined with words even if set to True. (Default True)
 - `conditions`: the names of the columns in `datafpath` that should be treated as conditions for `by_cond`. Multiple column names be comma separated.  If no conditions are specified, the output of `by_cond` will be aggregated over all rows.   
 
 

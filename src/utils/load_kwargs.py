@@ -46,6 +46,7 @@ def load_kwargs(config: dict) -> dict:
                 'agg_type',
                 'ignore',
                 'ignore_punctuation',
+                'combine_possessive',
                 # evaluate args
                 'giveAllLabels',
                ]

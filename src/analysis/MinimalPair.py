@@ -59,6 +59,8 @@ class MinimalPair(Analysis):
 
     def token_to_word(self, dat):
         new_dat = dat.copy()
+        if self.combine_possessive:
+            new_dat.loc[new_dat['word'] == "'s", 'punctuation'] = True ## hack-y way of combining posessive by treating them like punctuation. 
         new_dat['word_mod'] = new_dat['word']
         new_dat['wordpos_mod'] = new_dat['wordpos']
         pos_shift, punc_shift, word_shift = self.get_shifts()
@@ -287,7 +289,8 @@ class MinimalPair(Analysis):
 
         # comparison summarized over all ROIs for each pair 
 
-        by_pair = self.summarize_roi(by_word)
+        if self.output['by_pair'] or self.output['by_cond']:
+            by_pair = self.summarize_roi(by_word) ## don't need pairs for by_word
 
         if self.output['by_pair']:
             fname = self.resultsfpath.replace('.tsv', '_bypair.tsv')

@@ -20,6 +20,7 @@ class Analysis:
         self.word_summary = 'mean'
         # self.roi_summary = 'micro' # bring this back later maybe
         self.punctuation = 'previous'
+        self.combine_possessive = True
         self.conditions = ''
         self.save = ''
 
