@@ -36,6 +36,9 @@ class HFCausalModel(LM):
         if self.precision == '16bit':
             modelkwargs['torch_dtype'] = torch.float16
             modelkwargs['low_cpu_mem_usage'] = True
+        if self.precision == 'bf16bit':
+            modelkwargs['torch_dtype'] = torch.bfloat16
+            modelkwargs['low_cpu_mem_usage'] = True
         elif self.precision == '8bit':
             modelkwargs['load_in_8bit'] = True
 

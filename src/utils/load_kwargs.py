@@ -3,7 +3,7 @@ def load_kwargs(config: dict) -> dict:
 
     """
     kwargs = {}
-    optional = ['getHidden', 'precision', 'device', 
+    optional = ['getHidden', 'precision', 'logprob_precision', 'device', 
                 'PLL_type', 'id2label', 'addPadToken', 'doLower',
                 'addPrefixSpace', 'loadAll', 'checkFileColumns', 
                'batchSize', 'verbose', 

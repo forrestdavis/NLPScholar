@@ -25,6 +25,7 @@ class LM:
         # Default values
         self.getHidden = False
         self.precision = None
+        self.logprob_precision = None ## for when model precision is low for mem issues, but logprob pecision can still be high
         self.device = 'best' 
         self.loadPretrained = True
         self.maxTrainSequenceLength = 128
@@ -39,6 +40,10 @@ class LM:
                 self.device = 'cpu'
         self.device = torch.device(self.device)
         sys.stderr.write(f"Running on {self.device}\n")
+        if self.precision:
+            sys.stderr.write(f"Running with {self.precision} precision\n")
+        if self.logprob_precision:
+            sys.stderr.write(f"Running with {self.logprob_precision} logprob precision\n")
 
         self.tokenizer = None
         self.model = None
@@ -77,7 +82,11 @@ class LM:
             `torch.Tensor`: probabilities and surprisals (base 2) each 
                     with shape (batch_size, number of tokens, vocab_size)
         """
-        log_probs = torch.nn.functional.log_softmax(logits, dim=-1)
+        if self.logprob_precision == '32bit': ##upscales if og precision lower
+            log_probs = torch.nn.functional.log_softmax(logits.float(), dim=-1) 
+        else:
+            log_probs = torch.nn.functional.log_softmax(logits, dim=-1)
+
         probabilities = torch.exp(log_probs)
         surprisals = -(log_probs/torch.log(torch.tensor(2.0)))
         return probabilities, surprisals
