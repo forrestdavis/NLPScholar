@@ -57,6 +57,11 @@ class MinimalPair(Evaluation):
                 words = words[:len(output)]
                 alignments = alignments[:len(output)]
 
+            ## Sometimes models (e.g., LLama) add BOS token to the start, causing misalignment in output and words
+            if len(output) == len(words)+1 and output[0]['token_id'] == LM.tokenizer.bos_token_id:
+                output = output[1:]
+
+
             for measure, alignment, word in zip(output, alignments, words,
                                                 strict=True):
                 
